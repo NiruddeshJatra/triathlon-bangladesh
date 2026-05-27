@@ -1,11 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 interface Props { dateISO: string }
 
 function useCountdown(targetISO: string) {
   const target = useMemo(() => new Date(targetISO).getTime(), [targetISO]);
   const [t, setT] = useState(() => Math.max(0, target - Date.now()));
+  const reducedMotion = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
   useEffect(() => {
+    if (reducedMotion.current) return;
     const id = setInterval(() => setT(Math.max(0, target - Date.now())), 1000);
     return () => clearInterval(id);
   }, [target]);

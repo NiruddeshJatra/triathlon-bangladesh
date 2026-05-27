@@ -146,6 +146,14 @@ export const onCourse = [
   { k: "Every 5 KM", s: "First aid" },
 ] as const;
 
+export const ROUTE_PATH = "M 95 480 C 150 440 165 380 250 360 C 320 345 335 305 305 255 C 285 218 305 178 365 170 C 440 162 478 144 565 138";
+
+export const routePinXY: [number, number][] = [
+  [95, 480],
+  [305, 255],
+  [565, 138],
+];
+
 export const routePins = [
   { label: "START", sub: "Bastuhara · Khetrochar (নতুন রাস্তা)", t: 0.0 },
   { label: "MIDPOINT", sub: "Khetrochar Jame Mosque & Forkania Madrasa", t: 0.55 },
@@ -253,6 +261,54 @@ export const sponsors = {
   associated: { name: "Chittagong City Corporation", role: "Associated By", logo: null as string | null },
   media: ["Jamuna TV", "Cplus TV", "Somoy News", "News24", "Chattogram24", "Ekhon TV"],
 };
+
+export interface Medal {
+  id: string;
+  name: string;
+  distance: string;
+  finish: string;
+  front: string;
+  back: string;
+  color: string;
+  glow: string;
+  blurb: string;
+}
+
+export const medals: Medal[] = [
+  {
+    id: '21k',
+    name: 'Half Marathon',
+    distance: '21.1 KM',
+    finish: 'GOLD',
+    front: '/assets/medal-gold-front.jpg',
+    back: '/assets/medal-gold-back.jpg',
+    color: '#D4AF37',
+    glow: 'rgba(212,175,55,.32)',
+    blurb: 'The full Karnaphuli. Antique gold with high-relief enamel — Shah Amanat bridge, container terminal, the city clocktower, and the runner cresting the wave.',
+  },
+  {
+    id: '10k',
+    name: '10K Run',
+    distance: '10 KM',
+    finish: 'SILVER',
+    front: '/assets/medal-silver-front.jpg',
+    back: '/assets/medal-silver-back.jpg',
+    color: '#C6CDD0',
+    glow: 'rgba(198,205,208,.32)',
+    blurb: 'Riverside loop. Antique silver with the same hand-painted enamel scene — half the distance, the full hardware.',
+  },
+  {
+    id: '5k',
+    name: 'Beginners Run',
+    distance: '5 KM',
+    finish: 'BRONZE',
+    front: '/assets/medal-bronze-front.jpg',
+    back: '/assets/medal-bronze-back.jpg',
+    color: '#B5743A',
+    glow: 'rgba(181,116,58,.32)',
+    blurb: "Your first start line. Antique bronze — same ship's-wheel rim, same enamel river. Cross the finish, take the helm.",
+  },
+];
 
 export const faq = [
   {

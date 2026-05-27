@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { event, categories } from '../data/event';
 
 const PATH = "M 60 30 C 30 200 90 320 50 480 C 18 620 78 780 40 940 C 16 1080 76 1200 50 1400 C 25 1560 80 1700 45 1880 C 18 2020 70 2160 55 2300";
 
@@ -6,7 +7,7 @@ const PINS = [
   { y: 0.06, label: "00", sub: "Karnaphuli · Pre-dawn" },
   { y: 0.16, label: "START", sub: "Bāstuhārā · Kṣetrochar" },
   { y: 0.32, label: "RACE", sub: "Three distances" },
-  { y: 0.46, label: "FLAG-OFF", sub: "05:00 BST" },
+  { y: 0.46, label: "FLAG-OFF", sub: `${categories[0].flagOff} BST` },
   { y: 0.58, label: "MID", sub: "Jame Mosque · Madrasa" },
   { y: 0.70, label: "MEDAL", sub: "Ship's wheel · 21.1K" },
   { y: 0.84, label: "TURN", sub: "Maritime University" },
@@ -63,7 +64,7 @@ export default function ScrollRoute() {
   }, []);
 
   return (
-    <div className="cmhm-scrollroute" aria-hidden="true" style={{ willChange: 'contents' }}>
+    <div className="cmhm-scrollroute" aria-hidden="true">
       <svg viewBox="0 0 120 2400" preserveAspectRatio="xMinYMin meet">
         <defs>
           <linearGradient id="srg" x1="0" y1="0" x2="0" y2="1">

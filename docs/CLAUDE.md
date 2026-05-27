@@ -21,7 +21,7 @@ npm run preview      # preview built output
 src/
 ├── components/        # 15 static Astro components (one per section)
 ├── data/
-│   └── event.ts       # SINGLE SOURCE OF TRUTH — all event content; never modify
+│   └── event.ts       # SINGLE SOURCE OF TRUTH — all event content + ROUTE_PATH, routePinXY, medals
 ├── islands/           # React interactive components (islands pattern)
 ├── layouts/
 │   └── Layout.astro   # HTML shell, meta tags, font imports — do not touch SEO
@@ -31,19 +31,33 @@ src/
     └── global.css     # Design tokens (:root vars) + all component styles
 ```
 
+## public/ Assets
+
+```
+public/
+├── og-image.jpg          # 1200×630 OG/Twitter card image
+├── favicon.ico           # multi-size favicon
+├── favicon-32.png        # 32×32 favicon
+├── favicon-16.png        # 16×16 favicon
+├── apple-touch-icon.png  # 180×180 Apple touch icon
+└── logo_transparent.png  # chromakey-cleaned brand logo for nav
+```
+
 ## Islands (React, client-rendered)
 
 | File | Directive | Purpose |
 |---|---|---|
-| `CountdownRing.tsx` | `client:load` | Live countdown to flag-off |
+| `CountdownRing.tsx` | `client:idle` | Live countdown to flag-off |
 | `ScrollRoute.tsx` | `client:visible` | Fixed right-edge scroll-progress overlay |
 | `MedalCarousel.tsx` | `client:visible` | Medal/jersey carousel with tabs |
 | `WheelSpin.tsx` | `client:idle` | Scroll-based rAF-throttled wheel rotation (4 dividers) |
+| `CountUp.tsx` | `client:visible` | Animated stat counters in PreviousEvents |
 
 ## Key Constraints
 
-- `src/data/event.ts` — read-only; never modify content, only import from it
+- `src/data/event.ts` — read-only; never modify content, only import from it. SVG path (`ROUTE_PATH`), pin coords (`routePinXY`), and medal data (`medals`) are also sourced here — never duplicate in components.
 - `src/layouts/Layout.astro` — do not touch SEO/meta unless asked
 - `astro.config.mjs` — do not touch build config without approval
+- `vercel.json` — security headers (CSP, HSTS, etc.) at repo root; do not modify without approval
 - Do not add packages not already in `package.json`
 - All animations require a `prefers-reduced-motion` static fallback
