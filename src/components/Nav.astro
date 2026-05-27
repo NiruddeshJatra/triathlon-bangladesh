@@ -42,7 +42,6 @@ import { event } from '../data/event';
     link.addEventListener('click', () => {
       btn?.setAttribute('aria-expanded', 'false');
       nav?.classList.remove('open');
-      if (!link.getAttribute('target')) btn?.focus();
     });
   });
 </script>

@@ -23,7 +23,7 @@ Most recent first.
 **Build:** 1 page · 37 modules · 4.31 s · zero errors · sitemap generated
 
 **DEFERRED — post-launch:**
-- P1-P2: `astro:assets` migration — move all `/public/assets/` images to `src/assets/`, replace raw `<img>` with Astro `<Image />` for WebP conversion + responsive srcset. Estimated 2–4 hr effort. Current optimized JPGs + Vercel Edge CDN accepted as launch-adequate.
+- P1-P2: `astro:assets` migration — move all `/public/assets/` images to `src/assets/`, replace raw `<img>` with Astro `<Image />` for WebP conversion + responsive srcset. Estimated 2–4 hr effort. Current optimized JPGs + Vercel Edge CDN are accepted as launch-adequate.
 
 ---
 

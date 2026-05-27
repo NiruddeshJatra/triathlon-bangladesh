@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { medals } from '../data/event';
+import { prefersReducedMotion } from './prefersReducedMotion';
 
 const slides = medals;
 
 export default function MedalCarousel() {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
-  const reducedMotion = useRef(
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
+  const reducedMotion = useRef(prefersReducedMotion());
 
   const next = () => setIdx((i) => (i + 1) % slides.length);
   const prev = () => setIdx((i) => (i - 1 + slides.length) % slides.length);
@@ -40,6 +39,7 @@ export default function MedalCarousel() {
         <button className="medal-cx-nav prev" onClick={prev} aria-label="Previous medal">‹</button>
         <button className="medal-cx-nav next" onClick={next} aria-label="Next medal">›</button>
         <button
+          type="button"
           className="medal-cx-pause"
           onClick={() => setPaused((p) => !p)}
           aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}

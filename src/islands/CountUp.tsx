@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { prefersReducedMotion } from './prefersReducedMotion';
 
 interface Props {
   end: number;
@@ -11,7 +12,7 @@ export default function CountUp({ end, dur = 1400 }: Props) {
   const started = useRef(false);
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = prefersReducedMotion();
     const io = new IntersectionObserver((entries) => {
       entries.forEach((ent) => {
         if (ent.isIntersecting && !started.current) {
