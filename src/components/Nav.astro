@@ -3,7 +3,7 @@ import { event } from '../data/event';
 ---
 <nav class="cmhm-nav">
   <a href="#top" class="cmhm-brand">
-    <img src="/cmhm-logo.png" alt="Chatto Metro Half Marathon" width="42" height="42" />
+    <img src="/logo_transparent.png" alt="Chatto Metro Half Marathon" width="42" height="42" />
     <span><b>Chatto Metro</b> · Half Marathon</span>
   </a>
   <div id="nav-menu" class="cmhm-navlinks">
@@ -12,7 +12,7 @@ import { event } from '../data/event';
     <a href="#schedule">Schedule</a>
     <a href="#team">Team</a>
     <a href="#about">About</a>
-    <a class="cmhm-nav-cta" href={event.registerUrl} target="_blank" rel="noreferrer">Register</a>
+    <a class="cmhm-nav-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
   </div>
   <button id="nav-toggle" class="cmhm-nav-toggle"
           aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
@@ -29,8 +29,12 @@ import { event } from '../data/event';
 
   btn?.addEventListener('click', () => {
     const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
+    const opening = !expanded;
+    btn.setAttribute('aria-expanded', String(opening));
     nav?.classList.toggle('open');
+    if (opening) {
+      (menu?.querySelector('a') as HTMLElement)?.focus();
+    }
   });
 
   // Close on link click (mobile)
@@ -38,6 +42,7 @@ import { event } from '../data/event';
     link.addEventListener('click', () => {
       btn?.setAttribute('aria-expanded', 'false');
       nav?.classList.remove('open');
+      if (!link.getAttribute('target')) btn?.focus();
     });
   });
 </script>

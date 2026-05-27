@@ -1,13 +1,7 @@
 ---
-import { routePins, onCourse, categories } from '../data/event';
+import { routePins, onCourse, categories, ROUTE_PATH, routePinXY } from '../data/event';
 
-const ROUTE_PATH = "M 95 480 C 150 440 165 380 250 360 C 320 345 335 305 305 255 C 285 218 305 178 365 170 C 440 162 478 144 565 138";
-
-const pinXY = [
-  { x: 95,  y: 480 },
-  { x: 305, y: 255 },
-  { x: 565, y: 138 },
-];
+const pinXY = routePinXY.map(([x, y]) => ({ x, y }));
 
 const kmTicks: [number, number][] = [
   [95,480],[116,460],[145,440],[180,420],[215,400],

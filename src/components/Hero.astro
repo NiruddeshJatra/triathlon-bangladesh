@@ -1,21 +1,8 @@
 ---
 import CountdownRing from '../islands/CountdownRing';
-import { event } from '../data/event';
+import { event, categories } from '../data/event';
 
 const RIVER_PATH = "M -40 320 C 140 270 260 245 380 255 C 500 268 580 230 700 175 C 820 122 900 90 1040 60 L 1080 -20 L -40 -20 Z";
-const ROUTE_PATH = "M 95 480 C 150 440 165 380 250 360 C 320 345 335 305 305 255 C 285 218 305 178 365 170 C 440 162 478 144 565 138";
-
-const pinXY = [
-  { x: 95, y: 480 },
-  { x: 305, y: 255 },
-  { x: 565, y: 138 },
-];
-
-const pins = [
-  { label: "START", sub: "Bāstuhārā · Kṣetrochar" },
-  { label: "MIDPOINT", sub: "Jame Mosque & Madrasa" },
-  { label: "TURN", sub: "Maritime University" },
-];
 ---
 <header id="top" class="cmhm-hero cmhm-hero-graphic">
   <!-- Inline background SVG — river + terrain grid + port silhouettes -->
@@ -72,7 +59,7 @@ const pins = [
         21.1 K along the Karnaphuli. <span class="muted">A port-city dawn run on 10 July 2026.</span>
       </p>
       <div class="cmhm-cta">
-        <a class="cmhm-btn cmhm-btn-p" href={event.registerUrl} target="_blank" rel="noreferrer">
+        <a class="cmhm-btn cmhm-btn-p" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
           Register Now <span class="arr">→</span>
         </a>
         <a class="cmhm-btn cmhm-btn-s" href="#route">View the Route</a>
@@ -80,9 +67,9 @@ const pins = [
       <p class="cmhm-meta-line">{event.dateDisplay} · {event.venueShort} · 21.1 / 10 / 5 KM</p>
     </div>
     <div class="hero-right">
-      <CountdownRing dateISO={event.flagOffISO} client:load />
+      <CountdownRing dateISO={event.flagOffISO} client:idle />
       <a class="cmhm-flag-note" href="#schedule">
-        <span class="dot"></span> Flag-off Friday 10 July 2026, 05:00 BST → see schedule
+        <span class="dot"></span> Flag-off {event.weekday} {event.dateDisplay}, {event.flagOffDisplay} → see schedule
       </a>
     </div>
   </div>

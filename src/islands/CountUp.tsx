@@ -11,10 +11,12 @@ export default function CountUp({ end, dur = 1400 }: Props) {
   const started = useRef(false);
 
   useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((ent) => {
         if (ent.isIntersecting && !started.current) {
           started.current = true;
+          if (reduced) { setV(end); return; }
           const t0 = performance.now();
           const tick = (t: number) => {
             const p = Math.min(1, (t - t0) / dur);
