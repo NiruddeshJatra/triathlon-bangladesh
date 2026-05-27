@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { event } from '../data/event';
 
 interface Props {
   title?: string;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Chatto Metro Half Marathon 2026 · Triathlon Bangladesh",
-  description = "Run the Karnaphuli. 21.1K · 10K · 5K along Chattogram's riverside. 10 July 2026. Organised by Triathlon Bangladesh.",
+  title = `${event.name} ${event.year} · ${event.organizer}`,
+  description = `Run the Karnaphuli. 21.1K · 10K · 5K along ${event.venueShort}. ${event.dateDisplay}. Organised by ${event.organizer}.`,
 } = Astro.props;
 ---
 <!DOCTYPE html>
