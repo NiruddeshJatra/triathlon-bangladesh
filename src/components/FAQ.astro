@@ -1,0 +1,26 @@
+---
+import { faq } from '../data/event';
+---
+<section id="faq" class="cmhm-section cmhm-faq">
+  <div class="cmhm-shead">
+    <div class="eyebrow">11 · FAQ</div>
+    <h2 class="stitle">Things runners <span class="acc">always ask.</span></h2>
+  </div>
+
+  <ul class="cmhm-faq-list">
+    {faq.map((f, i) => (
+      <li>
+        <details>
+          <summary>
+            <div class="fq">
+              <span class="fnum">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f.q}</span>
+              <span class="fchev">+</span>
+            </div>
+          </summary>
+          <div class="fa"><p>{f.a}</p></div>
+        </details>
+      </li>
+    ))}
+  </ul>
+</section>

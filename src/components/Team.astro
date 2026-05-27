@@ -1,0 +1,44 @@
+---
+import { team, pacers } from '../data/event';
+---
+<section id="team" class="cmhm-section cmhm-team">
+  <div class="cmhm-shead">
+    <div class="eyebrow">07 · Race Direction</div>
+    <h2 class="stitle">The crew running <span class="acc">the run.</span></h2>
+    <p class="skicker">Triathletes, IRONMAN 70.3 finishers, ultra runners, doctors. The people who built this race are running it with you.</p>
+  </div>
+
+  <div class="cmhm-team-grid">
+    {team.map((p) => (
+      <article class="tcard">
+        <div class="tphoto">
+          <img src={p.img} alt={p.name} loading="lazy" style={`object-position:${p.pos}`} />
+          <div class="ttint"></div>
+        </div>
+        <div class="tmeta">
+          <div class="trole">{p.role}</div>
+          <div class="tname">{p.name}</div>
+          <ul class="tbio">
+            {p.bio.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <h3 class="cmhm-team-subh"><span class="rule"></span> Pacers on course</h3>
+  <div class="cmhm-pacer-row">
+    {pacers.map((p) => (
+      <div class="pcard">
+        <div class="pphoto">
+          <img src={p.img} alt={p.name} loading="lazy" style={`object-position:${p.pos}`} />
+        </div>
+        <div class="pmeta">
+          <div class="pdist">{p.distance} PACER</div>
+          <div class="pname">{p.name}</div>
+          <div class="ptime">Target time · <b>{p.time}</b></div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

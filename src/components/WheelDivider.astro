@@ -1,0 +1,33 @@
+---
+interface Props {
+  label?: string;
+}
+const { label } = Astro.props;
+
+// 116x116 wheel: cx=58, r=52
+const cx = 58;
+const r = 52;
+const spokes = Array.from({ length: 8 }, (_, i) => i * 45);
+---
+<div class:list={['cmhm-wheel-divider', label && 'with-label']} aria-hidden="true">
+  {label && <div class="rope-rule"></div>}
+  <svg width="56" height="56" viewBox="0 0 116 116" aria-hidden="true">
+    <g>
+      {spokes.map((a) => (
+        <g transform={`rotate(${a} ${cx} ${cx})`}>
+          <rect x={cx - 3} y={cx - r - 9} width="6" height="11" rx="2.6" fill="var(--gold)" opacity="0.9" />
+          <circle cx={cx} cy={cx - r - 7} r="4" fill="var(--gold)" />
+        </g>
+      ))}
+      <circle cx={cx} cy={cx} r={r} fill="none" stroke="var(--gold)" stroke-width="2.6" />
+      <circle cx={cx} cy={cx} r={r - 8} fill="none" stroke="var(--gold)" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.7" />
+      {spokes.map((a) => (
+        <line x1={cx} y1={cx} x2={cx} y2={cx - r + 10} stroke="var(--gold)" stroke-width="2" opacity="0.55" transform={`rotate(${a} ${cx} ${cx})`} />
+      ))}
+      <circle cx={cx} cy={cx} r="9" fill="var(--green-deep)" stroke="var(--gold)" stroke-width="2" />
+      <circle cx={cx} cy={cx} r="2.5" fill="var(--gold)" />
+    </g>
+  </svg>
+  {label && <div class="div-label">{label}</div>}
+  {label && <div class="rope-rule"></div>}
+</div>

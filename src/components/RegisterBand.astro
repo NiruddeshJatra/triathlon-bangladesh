@@ -1,0 +1,27 @@
+---
+import { event } from '../data/event';
+---
+<section id="register" class="cmhm-section cmhm-regband">
+  <div class="cmhm-regband-inner">
+    <div class="rb-eyebrow">Entries open · 600 spots · {event.dateDisplay}</div>
+    <h2 class="rb-title">Come run the <span class="acc">port city.</span></h2>
+    <p class="rb-sub">Pick a distance. Pick a jersey. Show up at Bāstuhārā before sunrise.</p>
+    <a class="cmhm-btn cmhm-btn-p rb-cta" href={event.registerUrl} target="_blank" rel="noreferrer">
+      Register Now <span class="arr">→</span>
+    </a>
+    <div class="rb-meta">
+      <div>
+        <div class="k">{event.dateShort}</div>
+        <div class="s">{event.weekday}</div>
+      </div>
+      <div>
+        <div class="k">05:00</div>
+        <div class="s">21.1K Flag-off</div>
+      </div>
+      <div>
+        <div class="k">৳ 54,000</div>
+        <div class="s">Half marathon prize pool</div>
+      </div>
+    </div>
+  </div>
+</section>
