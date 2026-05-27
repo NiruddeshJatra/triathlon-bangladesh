@@ -1,0 +1,143 @@
+---
+import { routePins, onCourse } from '../data/event';
+
+const RIVER_PATH = "M -40 320 C 140 270 260 245 380 255 C 500 268 580 230 700 175 C 820 122 900 90 1040 60 L 1080 -20 L -40 -20 Z";
+const ROUTE_PATH = "M 95 480 C 150 440 165 380 250 360 C 320 345 335 305 305 255 C 285 218 305 178 365 170 C 440 162 478 144 565 138";
+
+const pinXY = [
+  { x: 95, y: 480 },
+  { x: 305, y: 255 },
+  { x: 565, y: 138 },
+];
+---
+<section id="route" class="cmhm-section cmhm-route-sec">
+  <div class="cmhm-shead">
+    <div class="eyebrow">05 · The Course</div>
+    <h2 class="stitle">The <span class="acc">Karnaphuli</span> route.</h2>
+    <p class="skicker">Flat. Riverside. West bank from Bāstuhārā out to Bangladesh Maritime University, then back.</p>
+  </div>
+
+  <div class="cmhm-route-grid">
+    <div class="route-map">
+      <!-- Primary: animated inline SVG (hidden under prefers-reduced-motion via CSS) -->
+      <div class="route-svg-wrap" id="course-map-wrap">
+        <svg id="course-svg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="river-c" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#0c2f3a" stop-opacity=".9" />
+              <stop offset="1" stop-color="#10485a" stop-opacity=".7" />
+            </linearGradient>
+            <linearGradient id="routeg-c" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="var(--green-bright)" />
+              <stop offset=".6" stop-color="var(--gold-soft)" />
+              <stop offset="1" stop-color="var(--gold)" />
+            </linearGradient>
+            <filter id="glow-c" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3.5" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+          <!-- terrain grid -->
+          <g stroke="rgba(127,184,154,.07)" stroke-width="1">
+            {Array.from({ length: 14 }, (_, i) => (
+              <line x1={i * 77} y1="0" x2={i * 77} y2="560" />
+            ))}
+            {Array.from({ length: 9 }, (_, i) => (
+              <line x1="0" y1={i * 70} x2="1000" y2={i * 70} />
+            ))}
+          </g>
+          <!-- river -->
+          <path d={RIVER_PATH} fill="url(#river-c)" opacity=".85" />
+          <path d={RIVER_PATH} fill="none" stroke="rgba(127,184,154,.22)" stroke-width="1.5" />
+          <!-- port silhouettes -->
+          <g opacity=".4" fill="rgba(212,175,55,.1)" stroke="rgba(212,175,55,.28)" stroke-width=".7">
+            <rect x="780" y="200" width="40" height="14" />
+            <rect x="830" y="195" width="44" height="20" />
+            <rect x="890" y="190" width="38" height="16" />
+            <line x1="790" y1="200" x2="790" y2="180" />
+            <line x1="852" y1="195" x2="852" y2="170" />
+            <line x1="912" y1="190" x2="912" y2="172" />
+          </g>
+          <!-- route track shadow -->
+          <path d={ROUTE_PATH} fill="none" stroke="rgba(255,255,255,.06)" stroke-width="6" stroke-linecap="round" />
+          <!-- animated route line -->
+          <path id="course-route" class="cmhm-route" d={ROUTE_PATH}
+                fill="none" stroke="url(#routeg-c)" stroke-width="4" stroke-linecap="round"
+                filter="url(#glow-c)" />
+          <!-- pins: translate(x,y) set by JS via getPointAtLength; fallback coords for no-JS -->
+          {routePins.map((pin, i) => {
+            const xy = pinXY[i] || pinXY[0];
+            return (
+              <g class="cmhm-pin" data-t={pin.t} transform={`translate(${xy.x},${xy.y})`}>
+                <line x1="0" y1="0" x2="0" y2="-24" stroke="var(--gold)" stroke-width="1.5" />
+                <circle cx="0" cy="-28" r="7" fill="var(--gold)" stroke="#fff" stroke-width="1.5" />
+                <circle cx="0" cy="0" r="4" fill="var(--gold)" />
+                <text class="cmhm-pinlabel" x="14" y="-30">{pin.label}</text>
+                <text class="cmhm-pinsub" x="14" y="-16">{pin.sub}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      <!-- Fallback: static JPG for prefers-reduced-motion and no-JS -->
+      <img class="route-img-fallback" src="/assets/route-render.jpg"
+           alt="Karnaphuli race route plan" width="1000" height="560" loading="lazy" />
+      <noscript>
+        <style>#course-map-wrap{display:none!important}.route-img-fallback{display:block!important}</style>
+      </noscript>
+    </div>
+
+    <div class="route-side">
+      <h3 class="route-side-h">Waypoints</h3>
+      <ol class="route-pins">
+        {routePins.map((pin, i) => (
+          <li>
+            <div class="rp-i">{String(i + 1).padStart(2, '0')}</div>
+            <div>
+              <div class="rp-l">{pin.label}</div>
+              <div class="rp-s">{pin.sub}</div>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <h3 class="route-side-h">On-course support</h3>
+      <ul class="route-support">
+        {onCourse.map((s) => (
+          <li><span class="ok">●</span> <b>{s.k}</b> — {s.s}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  const svg = document.getElementById('course-svg') as SVGSVGElement | null;
+  const routeEl = document.getElementById('course-route') as SVGPathElement | null;
+
+  if (svg && routeEl) {
+    const pins = Array.from(svg.querySelectorAll<SVGGElement>('.cmhm-pin'));
+    const pref = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Position pins on path using getPointAtLength
+    const len = routeEl.getTotalLength();
+    pins.forEach(pin => {
+      const t = parseFloat(pin.getAttribute('data-t') ?? '0');
+      const pt = routeEl.getPointAtLength(t * len);
+      pin.setAttribute('transform', `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})`);
+    });
+
+    if (pref.matches) {
+      routeEl.classList.add('drawn');
+      pins.forEach(p => p.classList.add('show'));
+    } else {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        routeEl.classList.add('drawn');
+        pins.forEach((p, i) => setTimeout(() => p.classList.add('show'), 700 + i * 350));
+        observer.disconnect();
+      }, { threshold: 0.22 });
+      observer.observe(svg);
+    }
+  }
+</script>

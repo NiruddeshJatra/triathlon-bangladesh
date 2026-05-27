@@ -1,0 +1,23 @@
+---
+import { schedule } from '../data/event';
+---
+<section id="schedule" class="cmhm-section cmhm-sched">
+  <div class="cmhm-shead">
+    <div class="eyebrow">04 · Race Day</div>
+    <h2 class="stitle">Five hours from <span class="acc">dark to medal.</span></h2>
+    <p class="skicker">Anchored on the 21.1 K flag-off at 05:00 BST.</p>
+  </div>
+
+  <ol class="cmhm-timeline">
+    {schedule.map((item) => (
+      <li class={`tl-item${item.accent ? ` accent-${item.accent}` : ''}`}>
+        <div class="tl-time">{item.time}</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-title">{item.title}</div>
+          <div class="tl-note">{item.note}</div>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

@@ -1,0 +1,46 @@
+---
+import { categories, event } from '../data/event';
+---
+<section id="race" class="cmhm-section cmhm-cats">
+  <div class="cmhm-shead">
+    <div class="eyebrow">03 · Distances</div>
+    <h2 class="stitle">Three distances. <span class="acc">One river.</span></h2>
+    <p class="skicker">Each category gets its own colourway — pulled from the jerseys you'll wear and the medal hardware on the other side of the finish line.</p>
+  </div>
+
+  <div class="cmhm-cat-grid">
+    {categories.map((c) => (
+      <article class={`cmhm-cat cat-${c.id}`} style={`--cat-color:${c.colorHex}`}>
+        <div class="cat-header">
+          <div class="cat-dist">{c.distance}</div>
+          <div class="cat-name">{c.name}</div>
+        </div>
+        <div class="cat-jersey">
+          <img src={c.jersey} alt={`${c.distance} jersey`} loading="lazy" />
+        </div>
+        <p class="cat-blurb">{c.blurb}</p>
+        <dl class="cat-meta">
+          <div>
+            <dt>Flag-off</dt>
+            <dd>{c.flagOff} BST</dd>
+          </div>
+          <div>
+            <dt>Prize Pool</dt>
+            <dd class="prize">৳ {c.prizePool.replace(' BDT', '')}</dd>
+          </div>
+        </dl>
+        <details class="cat-prizes">
+          <summary>Prize breakdown</summary>
+          <ul>
+            {c.prizeBreakdown.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+        </details>
+        <a class="cat-cta" href={event.registerUrl} target="_blank" rel="noreferrer">
+          Enter {c.distance} <span>→</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

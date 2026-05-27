@@ -1,0 +1,40 @@
+---
+import { event } from '../data/event';
+---
+<footer class="cmhm-footer">
+  <div class="cmhm-footer-grid">
+    <div>
+      <img src="/assets/triathlon-bd-shield-white.png" alt="Triathlon Bangladesh" class="ft-shield" />
+      <p class="ft-org">Organised by <b>Triathlon Bangladesh</b>.<br />In association with Chittagong City Corporation.</p>
+    </div>
+    <div>
+      <div class="ft-h">Contact</div>
+      <a href={`tel:${event.contact.phone}`}>+880 1303-358202</a>
+      <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a>
+    </div>
+    <div>
+      <div class="ft-h">Race</div>
+      <a href="#race">Categories</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#route">Route</a>
+      <a href="#get">What you get</a>
+    </div>
+    <div>
+      <div class="ft-h">More</div>
+      <a href="#team">Team</a>
+      <a href="#previous">Past events</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div>
+      <div class="ft-h">Legal</div>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Refund policy</a>
+    </div>
+  </div>
+  <div class="cmhm-footer-bot">
+    <div>© 2026 Triathlon Bangladesh · All rights reserved</div>
+    <div class="ft-tagline">Feel the pulse of the port city.</div>
+  </div>
+</footer>

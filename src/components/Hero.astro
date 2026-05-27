@@ -1,0 +1,96 @@
+---
+import CountdownRing from '../islands/CountdownRing';
+import { event } from '../data/event';
+
+const RIVER_PATH = "M -40 320 C 140 270 260 245 380 255 C 500 268 580 230 700 175 C 820 122 900 90 1040 60 L 1080 -20 L -40 -20 Z";
+const ROUTE_PATH = "M 95 480 C 150 440 165 380 250 360 C 320 345 335 305 305 255 C 285 218 305 178 365 170 C 440 162 478 144 565 138";
+
+const pinXY = [
+  { x: 95, y: 480 },
+  { x: 305, y: 255 },
+  { x: 565, y: 138 },
+];
+
+const pins = [
+  { label: "START", sub: "Bāstuhārā · Kṣetrochar" },
+  { label: "MIDPOINT", sub: "Jame Mosque & Madrasa" },
+  { label: "TURN", sub: "Maritime University" },
+];
+---
+<header id="top" class="cmhm-hero cmhm-hero-graphic">
+  <!-- Inline background SVG — river + terrain grid + port silhouettes -->
+  <svg class="cmhm-map" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="river" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#0c2f3a" stop-opacity=".9" />
+        <stop offset="1" stop-color="#10485a" stop-opacity=".7" />
+      </linearGradient>
+      <linearGradient id="routeg" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="var(--green-bright)" />
+        <stop offset=".6" stop-color="var(--gold-soft)" />
+        <stop offset="1" stop-color="var(--gold)" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3.2" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+    </defs>
+    <!-- terrain grid -->
+    <g stroke="rgba(127,184,154,.07)" stroke-width="1">
+      {Array.from({ length: 14 }, (_, i) => (
+        <line x1={i * 77} y1="0" x2={i * 77} y2="560" />
+      ))}
+      {Array.from({ length: 9 }, (_, i) => (
+        <line x1="0" y1={i * 70} x2="1000" y2={i * 70} />
+      ))}
+    </g>
+    <!-- river -->
+    <path d={RIVER_PATH} fill="url(#river)" opacity=".85" />
+    <path d={RIVER_PATH} fill="none" stroke="rgba(127,184,154,.22)" stroke-width="1.5" />
+    <!-- port silhouettes -->
+    <g opacity=".45" fill="rgba(212,175,55,.12)" stroke="rgba(212,175,55,.3)" stroke-width=".7">
+      <rect x="780" y="200" width="40" height="14" />
+      <rect x="830" y="195" width="44" height="20" />
+      <rect x="890" y="190" width="38" height="16" />
+      <line x1="790" y1="200" x2="790" y2="180" />
+      <line x1="852" y1="195" x2="852" y2="170" />
+      <line x1="912" y1="190" x2="912" y2="172" />
+    </g>
+  </svg>
+
+  <div class="cmhm-grain" aria-hidden="true"></div>
+
+  <div class="cmhm-hero-grid">
+    <div class="hero-left">
+      <div class="cmhm-eyebrow"><span class="rule"></span> Triathlon Bangladesh · Chittagong</div>
+      <h1 class="cmhm-title">
+        <span class="l1">Chatto Metro</span>
+        <span class="l2">Half Marathon</span>
+      </h1>
+      <p class="cmhm-tag">
+        <em>Feel the pulse of the port city.</em><br />
+        21.1 K along the Karnaphuli. <span class="muted">A port-city dawn run on 10 July 2026.</span>
+      </p>
+      <div class="cmhm-cta">
+        <a class="cmhm-btn cmhm-btn-p" href={event.registerUrl} target="_blank" rel="noreferrer">
+          Register Now <span class="arr">→</span>
+        </a>
+        <a class="cmhm-btn cmhm-btn-s" href="#route">View the Route</a>
+      </div>
+      <p class="cmhm-meta-line">{event.dateDisplay} · {event.venueShort} · 21.1 / 10 / 5 KM</p>
+    </div>
+    <div class="hero-right">
+      <CountdownRing dateISO={event.flagOffISO} client:load />
+      <a class="cmhm-flag-note" href="#schedule">
+        <span class="dot"></span> Flag-off Friday 10 July 2026, 05:00 BST → see schedule
+      </a>
+    </div>
+  </div>
+
+  <a href="#facts" class="cmhm-scrollhint" aria-label="Scroll to begin">
+    <span>Run the page</span>
+    <svg viewBox="0 0 24 28" width="14" height="20">
+      <path d="M12 0 v22 M5 16 L12 24 L19 16" stroke="currentColor" stroke-width="1.5" fill="none" />
+    </svg>
+  </a>
+</header>

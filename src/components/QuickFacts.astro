@@ -1,0 +1,13 @@
+---
+import { quickFacts } from '../data/event';
+---
+<section id="facts" class="cmhm-facts">
+  <div class="cmhm-facts-inner">
+    {quickFacts.map((f) => (
+      <div class="fact">
+        <div class="k">{f.k}</div>
+        <div class="s">{f.s}</div>
+      </div>
+    ))}
+  </div>
+</section>

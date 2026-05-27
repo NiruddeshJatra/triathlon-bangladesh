@@ -1,0 +1,34 @@
+---
+import { entitlements } from '../data/event';
+import MedalCarousel from '../islands/MedalCarousel';
+---
+<section id="get" class="cmhm-section cmhm-get">
+  <div class="cmhm-shead">
+    <div class="eyebrow">06 · What You Get</div>
+    <h2 class="stitle">The hardware at the <span class="acc">end of the river.</span></h2>
+    <p class="skicker">Finisher medal modelled on a ship's helm — gold, silver, bronze by distance — plus the kit you cross the line with.</p>
+  </div>
+
+  <div class="cmhm-get-grid">
+    <MedalCarousel client:visible />
+    <div class="medal-caption">
+      <div class="mc-eyebrow">Ship's-Wheel Hardware</div>
+      <div class="mc-title">Cast from the port. Awarded at the river.</div>
+      <p class="mc-note">Helm rim with paddle-shaped knobs, rope-twist border, anchor finial. The enamel scene pictures the Karnaphuli, the container terminal, the city clocktower, and the runner cresting the wave.</p>
+      <ul class="mc-features">
+        <li>Antique-finish die-cast hardware · 80 mm</li>
+        <li>Per-distance finish: gold / silver / bronze</li>
+        <li>Hand-painted enamel front panel</li>
+        <li>Karnaphuli · Maritime ribbon</li>
+      </ul>
+    </div>
+    <ul class="cmhm-get-list">
+      {entitlements.map((it) => (
+        <li>
+          <div class="g-k">{it.k}</div>
+          <div class="g-s">{it.s}</div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

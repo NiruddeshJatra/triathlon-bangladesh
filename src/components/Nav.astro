@@ -1,0 +1,23 @@
+---
+import { event } from '../data/event';
+---
+<nav class="cmhm-nav">
+  <input type="checkbox" id="nav-toggle" />
+  <a href="#top" class="cmhm-brand">
+    <img src="/cmhm-logo.png" alt="Chatto Metro Half Marathon" width="42" height="42" />
+    <span><b>Chatto Metro</b> · Half Marathon</span>
+  </a>
+  <div class="cmhm-navlinks">
+    <a href="#race">Race</a>
+    <a href="#route">Route</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#team">Team</a>
+    <a href="#about">About</a>
+    <a class="cmhm-nav-cta" href={event.registerUrl} target="_blank" rel="noreferrer">Register</a>
+  </div>
+  <label for="nav-toggle" class="cmhm-nav-toggle-label" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+</nav>

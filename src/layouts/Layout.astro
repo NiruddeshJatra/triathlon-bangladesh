@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Chatto Metro Half Marathon 2026 · Triathlon Bangladesh",
+  description = "Run the Karnaphuli. 21.1K · 10K · 5K along Chattogram's riverside. 10 July 2026. Organised by Triathlon Bangladesh.",
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <!-- OG tags -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="/cmhm-logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://triathlonbangladesh.com" />
+  <!-- Favicon -->
+  <link rel="icon" href="/cmhm-logo.png" />
+</head>
+<body class="bg-[#08140E] text-[#F2F7F3]">
+  <slot />
+</body>
+</html>
