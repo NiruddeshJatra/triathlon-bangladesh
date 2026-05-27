@@ -136,10 +136,10 @@ const kmTicks: [number, number][] = [
 </section>
 
 <script>
-  const svg    = document.getElementById('course-svg')    as SVGSVGElement   | null;
-  const route  = document.getElementById('course-route')  as SVGPathElement  | null;
-  const pulse  = document.getElementById('course-pulse')  as SVGPathElement  | null;
-  const ticks  = document.getElementById('course-ticks')  as SVGGElement     | null;
+  const svg   = document.getElementById('course-svg');
+  const route = document.getElementById('course-route');
+  const pulse = document.getElementById('course-pulse');
+  const ticks = document.getElementById('course-ticks');
 
   if (svg && route) {
     const pins = Array.from(svg.querySelectorAll<SVGGElement>('.cmhm-pin'));
