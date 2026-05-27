@@ -9,7 +9,7 @@ export const event = {
   flagOffISO: "2026-07-10T05:00:00+06:00",
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
-  venueLong: "Bāstuhārā, Kṣetrochar (নতুন রাস্তা), Chattogram",
+  venueLong: "Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram",
   associatedWith: "Chittagong City Corporation",
   organizer: "Triathlon Bangladesh",
   targetRunners: 600,
@@ -35,6 +35,9 @@ export interface Category {
   color: string;
   colorHex: string;
   flagOff: string;
+  cutoff: string;
+  regFee: string;
+  slots: number;
   prizePool: string;
   prizeBreakdown: string[];
   jersey: string;
@@ -50,6 +53,9 @@ export const categories: Category[] = [
     color: "var(--d-21k)",
     colorHex: "#2E9E54",
     flagOff: "05:00",
+    cutoff: "4 hrs",
+    regFee: "1,250 BDT",
+    slots: 350,
     prizePool: "54,000 BDT",
     prizeBreakdown: [
       "General Male — 20,500",
@@ -68,6 +74,9 @@ export const categories: Category[] = [
     color: "var(--d-10k)",
     colorHex: "#1E88E5",
     flagOff: "05:05",
+    cutoff: "2 hrs",
+    regFee: "1,150 BDT",
+    slots: 250,
     prizePool: "50,000 BDT",
     prizeBreakdown: [
       "General Male — 14,500",
@@ -86,6 +95,9 @@ export const categories: Category[] = [
     color: "var(--d-5k)",
     colorHex: "#A23B4D",
     flagOff: "05:10",
+    cutoff: "60 min",
+    regFee: "1,050 BDT",
+    slots: 50,
     prizePool: "3,000 BDT",
     prizeBreakdown: ["Top-3 finisher gift"],
     jersey: "/assets/jersey-5k.jpg",
@@ -135,8 +147,8 @@ export const onCourse = [
 ] as const;
 
 export const routePins = [
-  { label: "START", sub: "Bāstuhārā · Kṣetrochar (নতুন রাস্তা)", t: 0.0 },
-  { label: "MIDPOINT", sub: "Kṣetrochar Jame Mosque & Forkania Madrasa", t: 0.55 },
+  { label: "START", sub: "Bastuhara · Khetrochar (নতুন রাস্তা)", t: 0.0 },
+  { label: "MIDPOINT", sub: "Khetrochar Jame Mosque & Forkania Madrasa", t: 0.55 },
   { label: "TURN", sub: "Bangladesh Maritime University", t: 1.0 },
 ] as const;
 
@@ -221,8 +233,8 @@ export const pacers: Pacer[] = [
 ];
 
 export const previousEvents = [
-  { year: "2026", title: "Kutubdia Island Half Marathon", date: "27 March 2026", runners: 400, dist: "21K · 10K · Kids 2.1K", note: "Title: Infinity Mega Mall" },
-  { year: "2025", title: "Moheshkhali Island Half Marathon", date: "12 September 2025", runners: 320, dist: "21K · 10K", note: "" },
+  { year: "2026", title: "Kutubdia Island Half Marathon", date: "27 March 2026", runners: 400, dist: "21K · 10K · Kids 2.1K", note: "Motto: Run for Kutubdia Embankment, Save Kutubdia" },
+  { year: "2025", title: "Moheshkhali Island Half Marathon", date: "12 September 2025", runners: 320, dist: "21K · 10K · Kids 2.1K", note: "Motto: Miles for Moheshkhali, Stand for Salt & Betel Farmers" },
   { year: "2024–25", title: "Kutubdia Channel Swimming", date: "Two editions", runners: null as number | null, dist: "Open water", note: "Rescue & support" },
   { year: "—", title: "Boot Camps · CRB", date: "Ongoing", runners: 140, dist: "2nd largest in Chattogram", note: "Largest swimming bootcamp: 25+" },
 ];
@@ -245,7 +257,7 @@ export const sponsors = {
 export const faq = [
   {
     q: "When and where is the race?",
-    a: "Friday, 10 July 2026. The start village is at Bāstuhārā, Kṣetrochar (নতুন রাস্তা), Chattogram — Karnaphuli riverside. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
+    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram — Karnaphuli riverside. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
   },
   {
     q: "Which distances can I enter?",
@@ -261,7 +273,7 @@ export const faq = [
   },
   {
     q: "What's the course like?",
-    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start in Bāstuhārā, pass the Kṣetrochar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
+    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start in Bastuhara, pass the Khetrochar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
   },
   {
     q: "What on-course support is there?",
