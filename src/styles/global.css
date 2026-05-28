@@ -80,8 +80,19 @@ body{
     linear-gradient(180deg, #0a1812 0%, var(--bg-base) 30%, #060f0a 100%);
 }
 
+/* sr-only — visually hidden, accessible to screen readers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
 /* hairline rule helper */
 .rule{display:inline-block;width:34px;height:1px;background:var(--gold);vertical-align:middle;margin-right:10px;opacity:.8;}
+
+/* course mobile legend — hidden on desktop, shown on mobile via media query */
+.course-mobile-legend{display:none;}
+.cml-item{display:flex;align-items:center;gap:12px;}
+.cml-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:#000;font-family:var(--f-display);font-weight:700;font-size:12px;display:grid;place-items:center;flex-shrink:0;}
+.cml-detail{display:flex;flex-direction:column;gap:2px;}
+.cml-label{font-family:var(--f-display);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);}
+.cml-sub{font-size:11px;color:var(--text-muted);}
 
 /* ─── nav ───────────────────────────────────────────────────────────────── */
 .cmhm-nav{
@@ -103,8 +114,11 @@ body{
 .cmhm-nav-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .2s,opacity .2s;}
 
 @media (max-width:900px){
-  .cmhm-navlinks{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(8,20,14,.96);padding:24px var(--pad);gap:18px;border-bottom:1px solid rgba(212,175,55,.1);transform:translateY(-110%);transition:transform .25s;}
-  .cmhm-nav.open .cmhm-navlinks{transform:translateY(0);}
+  /* Bug #1: solid background on mobile so closed nav never bleeds through */
+  .cmhm-nav{background:var(--bg-base);border-bottom-color:rgba(212,175,55,.2);}
+  /* display:none (not transform) so closed drawer is fully gone from hit-testing */
+  .cmhm-navlinks{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(8,20,14,.98);padding:24px var(--pad);gap:18px;border-bottom:1px solid rgba(212,175,55,.1);display:none;}
+  .cmhm-nav.open .cmhm-navlinks{display:flex;}
   .cmhm-nav-toggle{display:flex;}
   .cmhm-brand span{display:none;}
   .cmhm-nav.open .cmhm-nav-toggle span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
@@ -376,6 +390,14 @@ svg.cmhm-map, svg.cmhm-map *,
 @media (max-width:980px){.cmhm-get-grid{grid-template-columns:1fr;gap:40px;}.medal-cx-nav.prev{left:8px;}.medal-cx-nav.next{right:8px;}.cmhm-get-list{grid-template-columns:1fr 1fr;}.cmhm-get-list li{border-right:1px solid rgba(255,255,255,.04);}.cmhm-get-list li:nth-child(2n){border-right:0;}}
 @media (max-width:680px){.medal-cx-tabs{grid-template-columns:1fr;}.cmhm-get-list{grid-template-columns:1fr;}.cmhm-get-list li{border-right:0;}}
 
+/* These H2s are long enough that 64ch shead container forces 3 lines at large
+   font sizes. Widen the shead so both titles sit on 2 lines. */
+.cmhm-team .cmhm-shead,
+.cmhm-get .cmhm-shead { max-width: 900px; }
+
+.cmhm-team .stitle,
+.cmhm-get .stitle { text-wrap: auto; }
+
 /* ─── team ────────────────────────────────────────────────────────────────── */
 .cmhm-team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .tcard{position:relative;border-radius:6px;overflow:hidden;background:var(--bg-card);border:1px solid rgba(255,255,255,.04);transition:transform .25s,border-color .25s;}
@@ -550,6 +572,18 @@ details[open] .fchev{transform:rotate(45deg);}
   .rb-meta{gap:22px;}
   .rb-meta .k{font-size:17px;}
   .cmhm-footer-grid{grid-template-columns:1fr 1fr;gap:24px;}
+  /* Bug #2: body prose font sizes on narrow viewports */
+  .about-mission{font-size:1rem;line-height:1.55;}
+  .route-support{font-size:1rem;}
+  .cat-blurb{font-size:14px;}
+  /* Bug #3: route map — show SVG pin labels larger, hide long sub-labels, show legend for sub-text */
+  .cmhm-pinlabel{font-size:26px;}
+  .cmhm-pinsub{display:none;}
+  .rcp-card .hr-badge{display:none;}
+  .rcp-card{aspect-ratio:auto;min-height:240px;}
+  .course-mobile-legend{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+  /* Hero: hide decorative scroll hint so it doesn't overlap flag-note on short screens */
+  .cmhm-scrollhint{display:none;}
 }
 @media (max-width:420px){
   .cmhm-cta{flex-direction:column;align-items:stretch;}
