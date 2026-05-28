@@ -13,13 +13,14 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
+const currentUrl = Astro.url?.href ?? siteUrl;
 
 const jsonLdEvent = {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
   "name": `${event.name} ${event.year}`,
   "startDate": event.flagOffISO,
-  "endDate": "2026-07-10T10:00:00+06:00",
+  "endDate": event.endISO,
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
@@ -34,8 +35,8 @@ const jsonLdEvent = {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 22.3569,
-      "longitude": 91.7832
+      "latitude": event.venueGeo.lat,
+      "longitude": event.venueGeo.lng
     }
   },
   "organizer": {
@@ -78,7 +79,7 @@ const jsonLdBreadcrumb = {
       "@type": "ListItem",
       "position": 1,
       "name": `${event.name} ${event.year}`,
-      "item": siteUrl
+      "item": currentUrl
     }
   ]
 };
@@ -110,8 +111,8 @@ const jsonLdBreadcrumb = {
   <!-- Geo + locale -->
   <meta name="geo.region" content="BD-B" />
   <meta name="geo.placename" content="Chattogram, Bangladesh" />
-  <meta name="geo.position" content="22.3569;91.7832" />
-  <meta name="ICBM" content="22.3569, 91.7832" />
+  <meta name="geo.position" content={`${event.venueGeo.lat};${event.venueGeo.lng}`} />
+  <meta name="ICBM" content={`${event.venueGeo.lat}, ${event.venueGeo.lng}`} />
   <meta http-equiv="content-language" content="en-BD" />
   <!-- JSON-LD structured data -->
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdEvent)} />

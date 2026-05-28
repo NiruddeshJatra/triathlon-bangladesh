@@ -7,6 +7,7 @@ export const event = {
   dateShort: "10 JUL 2026",
   weekday: "Friday",
   flagOffISO: "2026-07-10T05:00:00+06:00",
+  endISO: "2026-07-10T10:00:00+06:00",
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
   venueLong: "Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram",
@@ -18,6 +19,7 @@ export const event = {
     phone: "01303358202",
     email: "triathlonbangladesh.swimbikerun@gmail.com",
   },
+  venueGeo: { lat: 22.3569, lng: 91.7832 },
 } as const;
 
 export const quickFacts = [

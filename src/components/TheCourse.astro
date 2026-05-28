@@ -143,13 +143,15 @@ const kmTicks: [number, number][] = [
 </section>
 
 <script>
-  const svg   = document.getElementById('course-svg');
+  const svg = document.getElementById('course-svg');
+  const mq  = window.matchMedia('(max-width: 640px)');
 
-  // On narrow viewports align the SVG left-edge so the route path
-  // sits noticeably more to the right of the container.
-  if (svg && window.innerWidth <= 640) {
-    svg.setAttribute('preserveAspectRatio', 'xMinYMid slice');
+  function syncAspectRatio() {
+    svg?.setAttribute('preserveAspectRatio', mq.matches ? 'xMinYMid slice' : 'xMidYMid slice');
   }
+
+  mq.addEventListener('change', syncAspectRatio);
+  syncAspectRatio();
 
   const route = document.getElementById('course-route');
   const pulse = document.getElementById('course-pulse');
