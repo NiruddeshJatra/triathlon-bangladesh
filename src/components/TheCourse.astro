@@ -15,6 +15,7 @@ const kmTicks: [number, number][] = [
     <p class="skicker">Flat. Riverside. West bank from Bastuhara out to Bangladesh Maritime University, then back.</p>
   </div>
 
+  <!-- Mobile: numbered markers are on the SVG path; legend appears below the map -->
   <div class="rcp-card">
     <div class="hr-badge hr-start">
       <span class="hr-badge-l">START</span>
@@ -57,7 +58,7 @@ const kmTicks: [number, number][] = [
       </g>
 
       <!-- route + pins shifted right to clear the START badge -->
-      <g transform="translate(70, 0)">
+      <g class="course-route-group" transform="translate(70, 0)">
         <!-- route shadow -->
         <path d={ROUTE_PATH} fill="none" stroke="rgba(255,255,255,.07)"
               stroke-width="5" stroke-linecap="round" />
@@ -98,6 +99,18 @@ const kmTicks: [number, number][] = [
     </svg>
   </div>
 
+  <div class="course-mobile-legend" aria-label="Course waypoints">
+    {routePins.map((pin, i) => (
+      <div class="cml-item">
+        <span class="cml-num">{i + 1}</span>
+        <div class="cml-detail">
+          <span class="cml-label">{pin.label}</span>
+          <span class="cml-sub">{pin.sub}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
   <div class="route-below">
     <div class="route-col">
       <h3 class="route-side-h">Cut-off Times</h3>
@@ -131,6 +144,13 @@ const kmTicks: [number, number][] = [
 
 <script>
   const svg   = document.getElementById('course-svg');
+
+  // On narrow viewports align the SVG left-edge so the route path
+  // sits noticeably more to the right of the container.
+  if (svg && window.innerWidth <= 640) {
+    svg.setAttribute('preserveAspectRatio', 'xMinYMid slice');
+  }
+
   const route = document.getElementById('course-route');
   const pulse = document.getElementById('course-pulse');
   const ticks = document.getElementById('course-ticks');

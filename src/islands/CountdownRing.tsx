@@ -24,7 +24,7 @@ function useCountdown(targetISO: string) {
 
 function ShipWheel({ size = 88, rotation = 0 }: { size?: number; rotation?: number }) {
   const cx = size / 2;
-  const r = size / 2 - 6;
+  const r = size / 2 - 10;
   const spokes = Array.from({ length: 8 }, (_, i) => i * 45);
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: 'block' }} aria-hidden="true">

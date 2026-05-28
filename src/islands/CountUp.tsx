@@ -27,7 +27,7 @@ export default function CountUp({ end, dur = 1400 }: Props) {
           requestAnimationFrame(tick);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0 });
     if (ref.current) io.observe(ref.current);
     return () => io.disconnect();
   }, [end, dur]);

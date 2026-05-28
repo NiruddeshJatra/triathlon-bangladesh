@@ -36,8 +36,8 @@ export default function MedalCarousel() {
             <img src={s.front} alt={`${s.distance} ${s.finish} finisher medal`} loading="lazy" />
           </div>
         ))}
-        <button className="medal-cx-nav prev" onClick={prev} aria-label="Previous medal">‹</button>
-        <button className="medal-cx-nav next" onClick={next} aria-label="Next medal">›</button>
+        <button type="button" className="medal-cx-nav prev" onClick={prev} aria-label="Previous medal">‹</button>
+        <button type="button" className="medal-cx-nav next" onClick={next} aria-label="Next medal">›</button>
         <button
           type="button"
           className="medal-cx-pause"

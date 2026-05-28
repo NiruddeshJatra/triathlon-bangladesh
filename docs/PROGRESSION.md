@@ -4,6 +4,41 @@ Most recent first.
 
 ---
 
+## 2026-05-28 — Mobile QA fixes, content integrity restore, SEO pass
+
+### Content integrity (A — done first)
+- **Removed 3 invented people** from `src/data/event.ts` that escaped prior review passes:
+  - Shaila Kabir (Influencer) — removed from `team` array
+  - Zinnia Mahjabin (21 KM Pacer) — removed
+  - Sumaiya Hasan (10 KM Pacer) — removed
+  - `pacers` array now empty; pacer names to be added once provided by race director
+- `src/components/Team.astro` — pacers section guarded with `{pacers.length > 0 && (...)}` — no "Pacers on course" heading rendered when array is empty
+- `docs/CONTENT.md` — truth-up: Shaila Kabir row removed from team table; pacers table replaced with "no confirmed pacers" note
+
+### Mobile bugs fixed (B — 6 issues from Android Chrome real-device QA)
+- **Bug #1 (Nav)** — `src/styles/global.css`: mobile nav drawer changed from `transform:translateY(-110%)` (incomplete hide) to `display:none`/`display:flex`. Nav bar background changed to solid `var(--bg-base)` below 900px. Closed menu fully removed from hit-testing.
+- **Bug #2 (Prose)** — `src/styles/global.css`: `.about-mission`, `.route-support`, `.cat-blurb` capped at `1rem` / `1.55` line-height under 640px.
+- **Bug #3 (Route map labels)** — `src/components/TheCourse.astro`: added `.course-mobile-legend` div (numbered 1/2/3 markers) below the map. `src/styles/global.css`: SVG `.cmhm-pinlabel` / `.cmhm-pinsub` hidden on mobile; `.hr-badge` START/TURN overlays hidden; `rcp-card` gets `min-height:240px`; legend shown. Desktop layout unchanged.
+- **Bug #4 (CountUp stuck at 0)** — `src/islands/CountUp.tsx`: IntersectionObserver threshold changed from `0.4` to `{ threshold: 0, rootMargin: '0px 0px -10% 0px' }` so counters fire on first entry into viewport.
+- **Bug #5 (MedalCarousel buttons)** — `src/islands/MedalCarousel.tsx`: added `type="button"` to prev/next nav buttons to prevent accidental form submission behavior.
+- **Bug #6 (Countdown ring gap)** — `src/islands/CountdownRing.tsx`: ShipWheel inner radius reduced from `size/2 - 6` to `size/2 - 10` (r=34 for size=88), giving ~20px breathing room to progress ring inner edge. Knob spokes now stay within SVG viewBox.
+
+### SEO additions (C — no visible copy changed)
+- **Meta description** — `src/layouts/Layout.astro`: rewritten with target keywords (half marathon, Chittagong, Chattogram, Karnaphuli, 21.1K, 10K, 5K, registration) — 158 chars.
+- **JSON-LD** — 3 blocks added to `<head>`: `SportsEvent` (name, startDate, endDate, location with GeoCoordinates, organizer, offers, sport, image), `Organization` (name, url, logo, contactPoint), `BreadcrumbList`.
+- **Geo + locale meta** — added `geo.region`, `geo.placename`, `geo.position`, `ICBM`, `content-language` meta tags.
+- **SR-only keywords** — `src/components/Categories.astro`: SR-only span after H2 "Half Marathon, 10K, and 5K races in Chittagong". `src/components/About.astro`: SR-only paragraph "Triathlon Bangladesh organises endurance events — marathons, triathlons, open-water swims — across Chittagong and coastal Bangladesh." `src/styles/global.css`: `.sr-only` utility class added.
+
+### Deferred (unchanged)
+- Production DNS cutover
+- Action photos from race day
+- CCC (Chittagong City Corporation) vector logo — logo pending
+- Total Active Sports vector logo — logo pending
+- Pacer names — to be added to event.ts once provided by race director (do NOT invent)
+- `astro:assets` migration (post-launch)
+
+---
+
 ## 2026-05-28 — Pre-deploy pass: OG image, favicons, security headers, robots.txt
 
 **Files created:**

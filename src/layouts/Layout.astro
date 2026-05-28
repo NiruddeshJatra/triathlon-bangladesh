@@ -9,8 +9,79 @@ interface Props {
 
 const {
   title = `${event.name} ${event.year} · ${event.organizer}`,
-  description = `Run the Karnaphuli. 21.1K · 10K · 5K along ${event.venueShort}. ${event.dateDisplay}. Organised by ${event.organizer}.`,
+  description = `Half marathon in Chittagong (Chattogram), 10 July 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Registration open. Organised by Triathlon Bangladesh.`,
 } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
+
+const jsonLdEvent = {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": `${event.name} ${event.year}`,
+  "startDate": event.flagOffISO,
+  "endDate": "2026-07-10T10:00:00+06:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": event.venueLong,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bastuhara, Khetrochar",
+      "addressLocality": "Chattogram",
+      "addressRegion": "Chittagong Division",
+      "addressCountry": "BD"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 22.3569,
+      "longitude": 91.7832
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": event.organizer,
+    "url": siteUrl
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": event.registerUrl,
+    "validFrom": "2026-01-01",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "BDT"
+  },
+  "image": `${siteUrl}/og-image.jpg`,
+  "description": description,
+  "sport": "Running",
+  "url": siteUrl
+};
+
+const jsonLdOrg = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": event.organizer,
+  "url": siteUrl,
+  "logo": `${siteUrl}/og-image.jpg`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": `+880-${event.contact.phone}`,
+    "email": event.contact.email,
+    "contactType": "customer service"
+  }
+};
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": `${event.name} ${event.year}`,
+      "item": siteUrl
+    }
+  ]
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +106,17 @@ const {
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <!-- Canonical -->
-  <link rel="canonical" href={Astro.site?.toString() ?? 'https://triathlonbangladesh.com'} />
+  <link rel="canonical" href={siteUrl} />
+  <!-- Geo + locale -->
+  <meta name="geo.region" content="BD-B" />
+  <meta name="geo.placename" content="Chattogram, Bangladesh" />
+  <meta name="geo.position" content="22.3569;91.7832" />
+  <meta name="ICBM" content="22.3569, 91.7832" />
+  <meta http-equiv="content-language" content="en-BD" />
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdEvent)} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdBreadcrumb)} />
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
