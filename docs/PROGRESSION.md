@@ -4,6 +4,13 @@ Most recent first.
 
 ---
 
+## 2026-05-29 — Conditional Vercel deployment & SSR adapter config
+
+- **Conditional Vercel configuration** — `astro.config.mjs`: configured Astro to conditionally use `adapter: vercel(...)` and `output: 'server'` when the `VERCEL` environment variable is detected. Otherwise, it defaults to `output: 'static'` without forcing SSR or requiring Vercel runtime.
+- **Fixed package dependencies** — restored the correct matching Astro 5.x dependency set that was broken during forced audits, ensuring the local dev server and static builds function seamlessly.
+
+---
+
 ## 2026-05-28 — Mobile QA fixes, content integrity restore, SEO pass
 
 ### Content integrity (A — done first)
