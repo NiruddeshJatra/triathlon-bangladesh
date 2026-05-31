@@ -40,7 +40,7 @@ Most recent first.
 - **Bug #6 (Countdown ring gap)** — `src/islands/CountdownRing.tsx`: ShipWheel inner radius reduced from `size/2 - 6` to `size/2 - 10` (r=34 for size=88), giving ~20px breathing room to progress ring inner edge. Knob spokes now stay within SVG viewBox.
 
 ### SEO additions (C — no visible copy changed)
-- **Meta description** — `src/layouts/Layout.astro`: rewritten with target keywords (half marathon, Chattogram, Chattogram, Karnaphuli, 21.1K, 10K, 5K, registration) — 158 chars.
+- **Meta description** — `src/layouts/Layout.astro`: rewritten with target keywords (half marathon, Chittagong, Chattogram, Karnaphuli, 21.1K, 10K, 5K, registration) — 158 chars.
 - **JSON-LD** — 3 blocks added to `<head>`: `SportsEvent` (name, startDate, endDate, location with GeoCoordinates, organizer, offers, sport, image), `Organization` (name, url, logo, contactPoint), `BreadcrumbList`.
 - **Geo + locale meta** — added `geo.region`, `geo.placename`, `geo.position`, `ICBM`, `content-language` meta tags.
 - **SR-only keywords** — `src/components/Categories.astro`: SR-only span after H2 "Half Marathon, 10K, and 5K races in Chattogram". `src/components/About.astro`: SR-only paragraph "Triathlon Bangladesh organises endurance events — marathons, triathlons, open-water swims — across Chattogram and coastal Bangladesh." `src/styles/global.css`: `.sr-only` utility class added.
@@ -48,7 +48,6 @@ Most recent first.
 ### Deferred (unchanged)
 - Production DNS cutover
 - Action photos from race day
-- CCC (Chattogram City Corporation) vector logo — logo pending
 - Total Active Sports vector logo — logo pending
 - Pacer names — to be added to event.ts once provided by race director (do NOT invent)
 - `astro:assets` migration (post-launch)
