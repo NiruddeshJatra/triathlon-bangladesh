@@ -11,7 +11,6 @@ export const event = {
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
   venueLong: "Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram",
-  associatedWith: "Chittagong City Corporation",
   organizer: "Triathlon Bangladesh",
   targetRunners: 600,
   registerUrl: "https://coxsbazartriathletes.com",
@@ -27,7 +26,6 @@ export const quickFacts = [
   { k: "Karnaphuli", s: "Riverside · Chattogram" },
   { k: "21.1 / 10 / 5", s: "Kilometres" },
   { k: "≈600", s: "Runners" },
-  { k: "CCC", s: "Chittagong City Corporation" },
 ] as const;
 
 export interface Category {
@@ -118,7 +116,7 @@ export interface ScheduleItem {
 export const schedule: ScheduleItem[] = [
   { time: "04:30", title: "Reporting & Bib Collection", note: "Gate opens at the start village." },
   { time: "04:50", title: "Warm-up Session", note: "Group warm-up led by the race crew." },
-  { time: "04:55", title: "Opening Remarks", note: "Welcome from Triathlon Bangladesh & Chittagong City Corporation." },
+  { time: "04:55", title: "Opening Remarks", note: "Welcome from Triathlon Bangladesh" },
   { time: "05:00", title: "21.1 KM Flag-Off", note: "Half marathon starts.", accent: "21k" },
   { time: "05:05", title: "10 KM Flag-Off", note: "10K runners released.", accent: "10k" },
   { time: "05:10", title: "5 KM Run", note: "Beginners & families.", accent: "5k" },
@@ -260,7 +258,6 @@ export const sponsors = {
   timing: { name: "Total Active Sports", role: "Timing Solution Partner", logo: null as string | null },
   crew: { name: "D-Chokrozan", role: "Race Crew Partner", logo: "/assets/sponsor-chokrozan.jpg" },
   promo: { name: "NextGen Doctors", role: "Promotional Partner", logo: "/assets/sponsor-nextgen.jpg" },
-  associated: { name: "Chittagong City Corporation", role: "Associated By", logo: null as string | null },
   media: ["Jamuna TV", "Cplus TV", "Somoy News", "News24", "Chattogram24", "Ekhon TV"],
 };
 

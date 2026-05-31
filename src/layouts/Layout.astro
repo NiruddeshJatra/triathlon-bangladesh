@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = `${event.name} ${event.year} · ${event.organizer}`,
-  description = `Half marathon in Chittagong (Chattogram), 10 July 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Registration open. Organised by Triathlon Bangladesh.`,
+  description = `Half marathon in Chattogram (Chattogram), 10 July 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Registration open. Organised by Triathlon Bangladesh.`,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
@@ -30,7 +30,7 @@ const jsonLdEvent = {
       "@type": "PostalAddress",
       "streetAddress": "Bastuhara, Khetrochar",
       "addressLocality": "Chattogram",
-      "addressRegion": "Chittagong Division",
+      "addressRegion": "Chattogram Division",
       "addressCountry": "BD"
     },
     "geo": {
