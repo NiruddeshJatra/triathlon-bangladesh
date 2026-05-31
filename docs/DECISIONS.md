@@ -61,7 +61,7 @@ Two intentionally distinct elements — do not merge them:
 - **Homepage (`/`)** — org/brand hub. Not event-specific. Sections: BrandHero, TwoRegisterCTAs, UpcomingEventsList, PreviousEventsList, OrgAbout.
 - **Event detail (`/events/[slug]`)** — full event experience via dynamic Astro route. Current event (chatto-metro) renders all sections. Previous/upcoming events render a simple info page.
 - **`src/data/event.ts`** is now multi-event: `org`, `EventEntry[]`, `events[]`, helper functions. All prior named exports retained (backward compat).
-- **Team page is public** (`/team`) — not an admin panel. Powered by `team[]` + `pacers[]` from `event.ts`.
+- **Team page is public** (`/team`) — not an admin panel. Powered by `orgTeam[]` from `event.ts`.
 - **Join page has no form** — contact CTA only. Form deferred until race director confirms availability.
 - **Partners scoped per event** — `EventEntry.partners?: Partner[]` field. Chatto Metro uses `chattoMetroPartners` derived from existing `sponsors` object.
 - **3 wheel dividers on homepage** (UPCOMING, TRACK RECORD, THE MISSION). Event detail page retains original 4 (THE DISTANCES, THE COURSE, THE CREW, REGISTER). Neither page exceeds the 4-max rule.

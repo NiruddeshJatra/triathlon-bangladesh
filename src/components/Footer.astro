@@ -1,5 +1,8 @@
 ---
-import { event } from '../data/event';
+import { event, getCurrentEvent } from '../data/event';
+
+const currentEvent = getCurrentEvent();
+const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
 ---
 <footer class="cmhm-footer">
   <div class="cmhm-footer-grid">
@@ -12,19 +15,21 @@ import { event } from '../data/event';
       <a href={`tel:${event.contact.phone}`}>+880 1303-358202</a>
       <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a>
     </div>
-    <div>
-      <div class="ft-h">Race</div>
-      <a href="/events/chatto-metro#race">Categories</a>
-      <a href="/events/chatto-metro#schedule">Schedule</a>
-      <a href="/events/chatto-metro#route">Route</a>
-      <a href="/events/chatto-metro#get">What you get</a>
-    </div>
+    {eventBase && (
+      <div>
+        <div class="ft-h">Race</div>
+        <a href={`${eventBase}#race`}>Categories</a>
+        <a href={`${eventBase}#schedule`}>Schedule</a>
+        <a href={`${eventBase}#route`}>Route</a>
+        <a href={`${eventBase}#get`}>What you get</a>
+      </div>
+    )}
     <div>
       <div class="ft-h">More</div>
       <a href="/team">Our Team</a>
       <a href="/">Past events</a>
       <a href="/">About</a>
-      <a href="/events/chatto-metro#faq">FAQ</a>
+      {eventBase && <a href={`${eventBase}#faq`}>FAQ</a>}
     </div>
   </div>
   <div class="cmhm-footer-bot">
