@@ -1,0 +1,50 @@
+---
+import CountdownRing from '../islands/CountdownRing';
+import { org, getCurrentEvent, event } from '../data/event';
+
+const currentEvent = getCurrentEvent();
+---
+<header id="top" class="cmhm-brand-hero">
+  <svg class="cmhm-map" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="bh-river" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#0c2f3a" stop-opacity=".9" />
+        <stop offset="1" stop-color="#10485a" stop-opacity=".7" />
+      </linearGradient>
+    </defs>
+    <g stroke="rgba(127,184,154,.06)" stroke-width="1">
+      {Array.from({ length: 14 }, (_, i) => (
+        <line x1={i * 77} y1="0" x2={i * 77} y2="560" />
+      ))}
+      {Array.from({ length: 9 }, (_, i) => (
+        <line x1="0" y1={i * 70} x2="1000" y2={i * 70} />
+      ))}
+    </g>
+    <path d="M -40 320 C 140 270 260 245 380 255 C 500 268 580 230 700 175 C 820 122 900 90 1040 60 L 1080 -20 L -40 -20 Z" fill="url(#bh-river)" opacity=".7" />
+  </svg>
+
+  <div class="cmhm-grain" aria-hidden="true"></div>
+
+  <div class="bh-grid">
+    <div class="bh-left">
+      <div class="cmhm-eyebrow"><span class="rule"></span> Endurance Events · Chattogram · Bangladesh</div>
+      <h1 class="bh-title">
+        <span class="bh-l1">Triathlon</span>
+        <span class="bh-l2">Bangladesh</span>
+      </h1>
+      <p class="bh-tagline">{org.tagline}</p>
+      {currentEvent && (
+        <div class="bh-event-card">
+          <div class="bh-event-label">Next race</div>
+          <div class="bh-event-name">{currentEvent.name}</div>
+          <div class="bh-event-meta">{currentEvent.dateDisplay} · {currentEvent.location}</div>
+        </div>
+      )}
+    </div>
+    <div class="bh-right">
+      {currentEvent && (
+        <CountdownRing dateISO={event.flagOffISO} client:idle />
+      )}
+    </div>
+  </div>
+</header>

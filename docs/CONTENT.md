@@ -113,6 +113,30 @@ Flat, riverside, western bank of the Karnaphuli. Out-and-back from Bastuhara to 
 
 Notes: Kutubdia 2026 title sponsor Infinity Mega Mall. Boot camps: 2nd largest in Chattogram; largest swimming bootcamp (25+).
 
+## Multi-Event Structure (added 2026-05-31)
+
+`event.ts` now exports a multi-event shape alongside all existing named exports.
+
+### org object
+| Field | Value |
+|---|---|
+| name | Triathlon Bangladesh |
+| tagline | Swim · Ride · Run |
+| mission | (same as `about.mission`) |
+| pillars | (same as `about.pillars`) |
+| contact | (same as `event.contact`) |
+
+### events[] array
+
+| Slug | Name | Status |
+|---|---|---|
+| `chatto-metro` | Chatto Metro Half Marathon 2026 | current |
+| `duathlon-2026` | Triathlon Bangladesh Duathlon 2026 | upcoming (TODO: all details) |
+| `kutubdia-hm-2026` | Kutubdia Island Half Marathon 2026 | previous |
+| `moheshkhali-hm-2025` | Moheshkhali Island Half Marathon 2025 | previous |
+
+Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents()`, `getEventBySlug(slug)`.
+
 ## Stats (from event.ts)
 
 - 720 runners hosted across past events

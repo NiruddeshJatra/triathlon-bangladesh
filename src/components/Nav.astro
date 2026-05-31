@@ -1,17 +1,19 @@
 ---
-import { event } from '../data/event';
+import { event, getCurrentEvent } from '../data/event';
+
+const currentEvent = getCurrentEvent();
 ---
 <nav class="cmhm-nav">
-  <a href="#top" class="cmhm-brand">
-    <img src="/cmhm-logo-for-dark.png" alt="Chatto Metro Half Marathon" width="53" height="42" style="width:auto;max-width:180px;" />
-    <span><b>Chatto Metro</b> · Half Marathon</span>
+  <a href="/" class="cmhm-brand">
+    <img src="/cmhm-logo-for-dark.png" alt="Triathlon Bangladesh — Chatto Metro Half Marathon" width="53" height="42" style="width:auto;max-width:180px;" />
+    <span><b>Triathlon</b> Bangladesh</span>
   </a>
   <div id="nav-menu" class="cmhm-navlinks">
-    <a href="#race">Race</a>
-    <a href="#route">Route</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#team">Team</a>
-    <a href="#about">About</a>
+    <a href="/">Home</a>
+    {currentEvent && <a href={`/events/${currentEvent.slug}`}>Events</a>}
+    <a href="/team">Our Team</a>
+    <a href="/join">Join Our Team</a>
+    <a href="/terms">Terms</a>
     <a class="cmhm-nav-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
   </div>
   <button id="nav-toggle" class="cmhm-nav-toggle"

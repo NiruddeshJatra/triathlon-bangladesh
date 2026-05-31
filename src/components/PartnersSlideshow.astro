@@ -1,0 +1,46 @@
+---
+import type { Partner } from '../data/event';
+
+interface Props {
+  partners: Partner[];
+}
+
+const { partners } = Astro.props;
+const mainPartners = partners.filter(p => p.tier !== 'media');
+const mediaPartners = partners.filter(p => p.tier === 'media');
+---
+<section id="partners" class="cmhm-section cmhm-partners">
+  <div class="cmhm-shead">
+    <div class="eyebrow">Partners</div>
+    <h2 class="stitle">Built with the <span class="acc">city.</span></h2>
+    <p class="skicker">Powered by partners on the ground and on air.</p>
+  </div>
+
+  {mainPartners.length > 0 && (
+    <div class="ps-marquee-wrap" aria-label="Event partners">
+      <div class="ps-marquee">
+        {/* Duplicated for seamless infinite loop */}
+        {[...mainPartners, ...mainPartners].map((p, i) => (
+          <div class="sp-card ps-item" aria-hidden={i >= mainPartners.length ? 'true' : undefined}>
+            {p.logo && (
+              <div class="sp-logo-wrap">
+                <img src={p.logo} alt={p.name} loading="lazy" />
+              </div>
+            )}
+            <div class="sp-role">{p.role}</div>
+            <div class="sp-name">{p.name}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {mediaPartners.length > 0 && (
+    <div class="cmhm-media">
+      <div class="mh">Media partners</div>
+      <div class="mlist">
+        {mediaPartners.map((m) => <span>{m.name}</span>)}
+      </div>
+    </div>
+  )}
+</section>

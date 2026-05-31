@@ -1,44 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import QuickFacts from '../components/QuickFacts.astro';
+import BrandHero from '../components/BrandHero.astro';
+import TwoRegisterCTAs from '../components/TwoRegisterCTAs.astro';
 import WheelDivider from '../components/WheelDivider.astro';
-import Categories from '../components/Categories.astro';
-import Schedule from '../components/Schedule.astro';
-import TheCourse from '../components/TheCourse.astro';
-import Entitlements from '../components/Entitlements.astro';
-import Team from '../components/Team.astro';
-import PreviousEvents from '../components/PreviousEvents.astro';
-import About from '../components/About.astro';
-import Sponsors from '../components/Sponsors.astro';
-import FAQ from '../components/FAQ.astro';
-import RegisterBand from '../components/RegisterBand.astro';
+import UpcomingEventsList from '../components/UpcomingEventsList.astro';
+import PreviousEventsList from '../components/PreviousEventsList.astro';
+import OrgAbout from '../components/OrgAbout.astro';
 import Footer from '../components/Footer.astro';
-import ScrollRoute from '../islands/ScrollRoute';
 import WheelSpin from '../islands/WheelSpin';
 ---
-<Layout>
-  <ScrollRoute client:visible />
+<Layout
+  title="Triathlon Bangladesh · Endurance Events · Chattogram"
+  description="Triathlon Bangladesh organises endurance events — half marathons, triathlons, open-water swims — across Chattogram and coastal Bangladesh. Next: Chatto Metro Half Marathon, 10 July 2026."
+>
   <WheelSpin client:idle />
   <Nav />
   <main>
-    <Hero />
-    <QuickFacts />
-    <WheelDivider label="THE DISTANCES" />
-    <Categories />
-    <Schedule />
-    <WheelDivider label="THE COURSE" />
-    <TheCourse />
-    <Entitlements />
-    <WheelDivider label="THE CREW" />
-    <Team />
-    <PreviousEvents />
-    <About />
-    <Sponsors />
-    <FAQ />
-    <WheelDivider label="REGISTER" />
-    <RegisterBand />
+    <BrandHero />
+    <TwoRegisterCTAs />
+    <WheelDivider label="UPCOMING" />
+    <UpcomingEventsList />
+    <WheelDivider label="TRACK RECORD" />
+    <PreviousEventsList />
+    <WheelDivider label="THE MISSION" />
+    <OrgAbout />
   </main>
   <Footer />
 </Layout>

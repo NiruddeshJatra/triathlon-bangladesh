@@ -225,6 +225,20 @@ export const team: TeamMember[] = [
     img: "/assets/team-nripen.jpg",
     pos: "62% 38%",
   },
+  {
+    role: "Mentor",
+    name: "Shamsud Douza Nayan",
+    bio: ["Ultra Marathon Runner", "Cyclist"],
+    img: "/assets/team-doha.jpeg",
+    pos: "50% 20%",
+  },
+  {
+    role: "Mentor",
+    name: "Shahriar Morshed Siddiqui",
+    bio: [],
+    img: "/assets/team-shahriar.jpeg",
+    pos: "50% 20%",
+  },
 ];
 
 export interface Pacer {
@@ -349,3 +363,136 @@ export const about = {
     { k: "Community", s: "Boot camps, pacers, mentors. The largest swim bootcamp in Chattogram is ours." },
   ],
 };
+
+// ─── Multi-event structure ────────────────────────────────────────────────────
+
+export const org = {
+  name: "Triathlon Bangladesh",
+  tagline: "Swim · Ride · Run",
+  mission: about.mission,
+  pillars: about.pillars,
+  contact: event.contact,
+} as const;
+
+export interface Partner {
+  name: string;
+  role: string;
+  logo: string | null;
+  tier: 'title' | 'gold' | 'silver' | 'media';
+}
+
+export interface EventEntry {
+  slug: string;
+  name: string;
+  status: 'upcoming' | 'current' | 'previous';
+  date: string;
+  dateDisplay: string;
+  location: string;
+  tagline: string;
+  registerUrl: string;
+  heroImage: string | null;
+  summary: string;
+  runners?: number | null;
+  dist?: string;
+  note?: string;
+  partners?: Partner[];
+}
+
+export const chattoMetroPartners: Partner[] = [
+  { name: sponsors.timing.name, role: sponsors.timing.role, logo: sponsors.timing.logo, tier: 'silver' },
+  { name: sponsors.crew.name, role: sponsors.crew.role, logo: sponsors.crew.logo, tier: 'silver' },
+  { name: sponsors.promo.name, role: sponsors.promo.role, logo: sponsors.promo.logo, tier: 'silver' },
+  ...sponsors.media.map((m): Partner => ({ name: m, role: 'Media Partner', logo: null, tier: 'media' })),
+];
+
+export const events: EventEntry[] = [
+  {
+    slug: 'chatto-metro',
+    name: 'Chatto Metro Half Marathon 2026',
+    status: 'current',
+    date: event.date,
+    dateDisplay: event.dateDisplay,
+    location: event.venueShort,
+    tagline: event.tagline,
+    registerUrl: event.registerUrl,
+    heroImage: null,
+    summary: '21.1K, 10K, and 5K along the Karnaphuli riverside — a port-city dawn run on 10 July 2026.',
+    dist: '21.1K · 10K · 5K',
+    partners: chattoMetroPartners,
+  },
+  {
+    slug: 'duathlon-2026',
+    name: 'Triathlon Bangladesh Duathlon 2026',
+    status: 'upcoming',
+    date: '',                      // TODO: confirm date with race director
+    dateDisplay: 'July 2026 (TBC)',
+    location: 'Chattogram',        // TODO: confirm venue
+    tagline: '',                   // TODO: provide tagline
+    registerUrl: '',               // TODO: registration link when open
+    heroImage: null,
+    summary: 'Registration opening soon. Details to follow.', // TODO: provide event details
+  },
+  {
+    slug: 'kutubdia-hm-2026',
+    name: 'Kutubdia Island Half Marathon 2026',
+    status: 'previous',
+    date: '2026-03-27',
+    dateDisplay: '27 March 2026',
+    location: 'Kutubdia Island',
+    tagline: 'Run for Kutubdia Embankment, Save Kutubdia',
+    registerUrl: '',
+    heroImage: null,
+    summary: '400 runners. 21K · 10K · Kids 2.1K on Kutubdia Island. Title sponsor: Infinity Mega Mall.',
+    runners: 400,
+    dist: '21K · 10K · Kids 2.1K',
+    note: 'Motto: Run for Kutubdia Embankment, Save Kutubdia',
+  },
+  {
+    slug: 'moheshkhali-hm-2025',
+    name: 'Moheshkhali Island Half Marathon 2025',
+    status: 'previous',
+    date: '2025-09-12',
+    dateDisplay: '12 September 2025',
+    location: 'Moheshkhali Island',
+    tagline: 'Miles for Moheshkhali, Stand for Salt & Betel Farmers',
+    registerUrl: '',
+    heroImage: null,
+    summary: '320 runners. 21K · 10K · Kids 2.1K on Moheshkhali Island.',
+    runners: 320,
+    dist: '21K · 10K · Kids 2.1K',
+    note: 'Motto: Miles for Moheshkhali, Stand for Salt & Betel Farmers',
+  },
+];
+
+// ─── Org-level team (for /team page) ─────────────────────────────────────────
+
+export interface OrgMember {
+  name: string;
+  role?: string;   // TODO: fill in once confirmed
+  bio?: string;    // TODO: fill in once confirmed
+  img: string;
+}
+
+export const orgTeam: OrgMember[] = [
+  { name: "Nesarul Hoque Suja", img: "/assets/team-suja.jpeg" },
+  { name: "Md Shahidul Islam",   img: "/assets/team-shahid.jpeg" },
+  { name: "Mahbubul Islam",      img: "/assets/team-mahbub.jpeg" },
+  { name: "Mohammad Ziaul Haque", img: "/assets/team-zia.jpeg" },
+  { name: "Nasiful Alam",        img: "/assets/team-nasif.jpeg" },
+];
+
+export function getCurrentEvent(): EventEntry | undefined {
+  return events.find(e => e.status === 'current');
+}
+
+export function getUpcomingEvents(): EventEntry[] {
+  return events.filter(e => e.status === 'upcoming');
+}
+
+export function getPreviousEvents(): EventEntry[] {
+  return events.filter(e => e.status === 'previous');
+}
+
+export function getEventBySlug(slug: string): EventEntry | undefined {
+  return events.find(e => e.slug === slug);
+}
