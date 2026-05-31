@@ -14,7 +14,6 @@ Human-readable spec mirroring `src/data/event.ts`. **`event.ts` is the live sour
 | Venue (short) | Karnaphuli Riverside, Chattogram |
 | Venue (long) | Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram |
 | Organizer | Triathlon Bangladesh |
-| Associated with | Chittagong City Corporation |
 | Target runners | 600 |
 | Register URL | https://coxsbazartriathletes.com |
 
@@ -50,7 +49,7 @@ Human-readable spec mirroring `src/data/event.ts`. **`event.ts` is the live sour
 |---|---|
 | 04:30 | Reporting & Bib Collection — gate opens at the start village |
 | 04:50 | Warm-up Session — group warm-up led by the race crew |
-| 04:55 | Opening Remarks — Triathlon Bangladesh & Chittagong City Corporation |
+| 04:55 | Opening Remarks — Triathlon Bangladesh |
 | 05:00 | 21.1 KM Flag-Off |
 | 05:05 | 10 KM Flag-Off |
 | 05:10 | 5 KM Run — beginners & families |
@@ -128,7 +127,6 @@ Notes: Kutubdia 2026 title sponsor Infinity Mega Mall. Boot camps: 2nd largest i
 | Timing Solution Partner | Total Active Sports | logo pending |
 | Race Crew Partner | D-Chokrozan | `/assets/sponsor-chokrozan.jpg` |
 | Promotional Partner | NextGen Doctors | `/assets/sponsor-nextgen.jpg` |
-| Associated By | Chittagong City Corporation | logo pending |
 
 Media partners: Jamuna TV, Cplus TV, Somoy News, News24, Chattogram24, Ekhon TV
 

@@ -35,12 +35,14 @@ src/
 
 ```
 public/
-├── og-image.jpg          # 1200×630 OG/Twitter card image
-├── favicon.ico           # multi-size favicon
-├── favicon-32.png        # 32×32 favicon
-├── favicon-16.png        # 16×16 favicon
-├── apple-touch-icon.png  # 180×180 Apple touch icon
-└── logo_transparent.png  # chromakey-cleaned brand logo for nav
+├── og-image.jpg                          # 1200×630 OG/Twitter card image
+├── favicon.ico                           # proper multi-size ICO (16+32px)
+├── favicon-32.png                        # 32×32 favicon (bg-removed logo)
+├── favicon-16.png                        # 16×16 favicon (bg-removed logo)
+├── apple-touch-icon.png                  # 180×180 Apple touch icon (bg-removed logo)
+├── cmhm-logo-for-dark.png               # dark-bg optimised nav logo (active)
+├── logo-nobg.png                         # bg-removed source used to generate favicon set
+└── "Chatto Metro Half Marathon_Logo.png" # original uploaded logo (source asset)
 ```
 
 ## Islands (React, client-rendered)

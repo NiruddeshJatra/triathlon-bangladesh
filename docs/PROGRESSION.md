@@ -4,6 +4,15 @@ Most recent first.
 
 ---
 
+## 2026-05-31 — Logo & favicon refresh
+
+- **Nav logo** — `src/components/Nav.astro`: swapped from `logo_transparent.png` → `cmhm-logo-for-dark.png` (user-supplied variant optimised for dark backgrounds); sized `height:42px / width:auto / max-width:180px`
+- **Background removal** — processed `Chatto Metro Half Marathon_Logo.png` via Sharp raw-pixel pass (threshold R/G/B > 230 → alpha 0); output saved as `public/logo-nobg.png`
+- **Favicon set regenerated** — all 4 icons rebuilt from bg-removed logo: `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png` (180×180), `favicon.ico` (proper multi-size ICO via `png-to-ico`)
+- **Dependency added** — `png-to-ico` (devDependency) for proper `.ico` generation (previous `.ico` was PNG-in-disguise)
+
+---
+
 ## 2026-05-29 — Conditional Vercel deployment & SSR adapter config
 
 - **Conditional Vercel configuration** — `astro.config.mjs`: configured Astro to conditionally use `adapter: vercel(...)` and `output: 'server'` when the `VERCEL` environment variable is detected. Otherwise, it defaults to `output: 'static'` without forcing SSR or requiring Vercel runtime.
@@ -31,15 +40,15 @@ Most recent first.
 - **Bug #6 (Countdown ring gap)** — `src/islands/CountdownRing.tsx`: ShipWheel inner radius reduced from `size/2 - 6` to `size/2 - 10` (r=34 for size=88), giving ~20px breathing room to progress ring inner edge. Knob spokes now stay within SVG viewBox.
 
 ### SEO additions (C — no visible copy changed)
-- **Meta description** — `src/layouts/Layout.astro`: rewritten with target keywords (half marathon, Chittagong, Chattogram, Karnaphuli, 21.1K, 10K, 5K, registration) — 158 chars.
+- **Meta description** — `src/layouts/Layout.astro`: rewritten with target keywords (half marathon, Chattogram, Chattogram, Karnaphuli, 21.1K, 10K, 5K, registration) — 158 chars.
 - **JSON-LD** — 3 blocks added to `<head>`: `SportsEvent` (name, startDate, endDate, location with GeoCoordinates, organizer, offers, sport, image), `Organization` (name, url, logo, contactPoint), `BreadcrumbList`.
 - **Geo + locale meta** — added `geo.region`, `geo.placename`, `geo.position`, `ICBM`, `content-language` meta tags.
-- **SR-only keywords** — `src/components/Categories.astro`: SR-only span after H2 "Half Marathon, 10K, and 5K races in Chittagong". `src/components/About.astro`: SR-only paragraph "Triathlon Bangladesh organises endurance events — marathons, triathlons, open-water swims — across Chittagong and coastal Bangladesh." `src/styles/global.css`: `.sr-only` utility class added.
+- **SR-only keywords** — `src/components/Categories.astro`: SR-only span after H2 "Half Marathon, 10K, and 5K races in Chattogram". `src/components/About.astro`: SR-only paragraph "Triathlon Bangladesh organises endurance events — marathons, triathlons, open-water swims — across Chattogram and coastal Bangladesh." `src/styles/global.css`: `.sr-only` utility class added.
 
 ### Deferred (unchanged)
 - Production DNS cutover
 - Action photos from race day
-- CCC (Chittagong City Corporation) vector logo — logo pending
+- CCC (Chattogram City Corporation) vector logo — logo pending
 - Total Active Sports vector logo — logo pending
 - Pacer names — to be added to event.ts once provided by race director (do NOT invent)
 - `astro:assets` migration (post-launch)
@@ -123,7 +132,6 @@ Most recent first.
 
 **Open items:**
 - ⚠️ Flag-off time: `event.ts` says `05:00` — confirm 05:00 vs 05:30 with race director before publishing
-- ⚠️ CCC (Chittagong City Corporation) logo — not yet available
 - ⚠️ Total Active Sports logo — not yet available
 - ⚠️ Action photography — no race-day photos yet
 

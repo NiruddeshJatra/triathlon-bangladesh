@@ -57,6 +57,6 @@ Two intentionally distinct elements — do not merge them:
 ## Open Items (not yet decided)
 
 - ⚠️ **Flag-off time: 05:00 or 05:30?** Current `event.ts` has `05:00`. Confirm with race director before publishing.
-- ⚠️ **CCC logo** (Chittagong City Corporation) — not yet available; placeholder text used
+- ⚠️ **CCC logo** (Chattogram City Corporation) — not yet available; placeholder text used
 - ⚠️ **Total Active Sports logo** — not yet available; placeholder text used
 - ⚠️ **Action photography** — no race-day photos yet; team photos are in place
