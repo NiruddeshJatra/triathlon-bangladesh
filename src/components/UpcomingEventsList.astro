@@ -1,0 +1,31 @@
+---
+import { getUpcomingEvents } from '../data/event';
+
+const upcoming = getUpcomingEvents();
+---
+<section class="cmhm-section ev-list-section">
+  <div class="cmhm-shead">
+    <div class="eyebrow">Upcoming</div>
+    <h2 class="stitle">On the <span class="acc">calendar.</span></h2>
+  </div>
+
+  {upcoming.length === 0 ? (
+    <p class="ev-empty">More events coming soon.</p>
+  ) : (
+    <div class="ev-card-grid">
+      {upcoming.map((e) => (
+        <article class="ev-card">
+          <div class="ev-card-img ev-card-img-placeholder" aria-hidden="true"></div>
+          <div class="ev-card-body">
+            <div class="ev-card-meta">{e.dateDisplay}</div>
+            <div class="ev-card-name">{e.name}</div>
+            {e.summary && <p class="ev-card-summary">{e.summary}</p>}
+            <a class="ev-card-link" href={`/events/${e.slug}`} aria-label={`View details for ${e.name}`}>
+              View details →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+</section>

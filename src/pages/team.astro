@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { orgTeam } from '../data/event';
+---
+<Layout
+  title="Our Team · Triathlon Bangladesh"
+  description="Meet the people behind Triathlon Bangladesh — the team driving endurance events across Chattogram and coastal Bangladesh."
+>
+  <Nav />
+  <main>
+    <section class="cmhm-section cmhm-org-team">
+      <div class="cmhm-shead">
+        <div class="eyebrow">Our Team</div>
+        <h1 class="stitle">The people behind <span class="acc">the races.</span></h1>
+        <p class="skicker">Building Triathlon Bangladesh — one race at a time.</p>
+      </div>
+
+      <div class="org-team-grid">
+        {orgTeam.map((member) => (
+          <article class="org-member-card">
+            <div class="org-member-photo">
+              <img
+                src={member.img}
+                alt={member.name}
+                loading="lazy"
+              />
+            </div>
+            <div class="org-member-meta">
+              <div class="org-member-name">{member.name}</div>
+              {member.role && <div class="org-member-role">{member.role}</div>}
+              {member.bio && <p class="org-member-bio">{member.bio}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="team-page-cta">
+        <a class="cmhm-btn cmhm-btn-s" href="/join">Join Our Team →</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

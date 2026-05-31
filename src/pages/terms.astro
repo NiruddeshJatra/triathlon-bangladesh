@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { event } from '../data/event';
+---
+<Layout
+  title="Terms & Conditions · Triathlon Bangladesh"
+  description="Terms and conditions for Triathlon Bangladesh events, including registration, refund policy, liability, photography, and code of conduct."
+>
+  <Nav />
+  <main>
+    <section class="cmhm-section cmhm-terms">
+      <div class="terms-inner">
+        <div class="cmhm-shead">
+          <div class="eyebrow">Legal</div>
+          <h1 class="stitle">Terms &amp; <span class="acc">Conditions</span></h1>
+        </div>
+
+        <div class="terms-draft-notice" role="note">
+          <!-- CLIENT REVIEW: This entire document is a draft. Review all sections before publishing. -->
+          <strong>Draft — under review.</strong> This document has not yet been approved by Triathlon Bangladesh. Do not rely on it as a final or legally binding statement.
+        </div>
+
+        <div class="terms-body">
+
+          <h2>1. Registration Policy</h2>
+          <!-- CLIENT REVIEW: Confirm whether online registration (coxsbazartriathletes.com) is the sole channel, or if walk-in entries are accepted. -->
+          <p>Registration for Triathlon Bangladesh events is processed via <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">coxsbazartriathletes.com</a>, operated by Total Active Sports. By completing registration you agree to these terms and all rules issued by Triathlon Bangladesh for the specific event.</p>
+          <p>Entries are non-transferable to another person without prior written consent from the organisers. Category changes (e.g., 21.1K to 10K) may be permitted up to a date specified in the event briefing, subject to availability.</p>
+
+          <h2>2. Refund &amp; Cancellation Policy</h2>
+          <!-- CLIENT REVIEW: Confirm the exact refund window and percentages. Placeholder below. -->
+          <p><em>Placeholder — client must confirm exact policy before publishing.</em></p>
+          <ul>
+            <li>Cancellations requested more than 30 days before the event: [percentage] refund, less processing fees.</li>
+            <li>Cancellations within 30 days of the event: no refund.</li>
+            <li>If Triathlon Bangladesh cancels or postpones the event due to circumstances beyond its control (force majeure, government order, weather), participants will be offered a credit towards a future event or a partial refund at the organisers' discretion.</li>
+          </ul>
+
+          <h2>3. Liability &amp; Waiver</h2>
+          <!-- CLIENT REVIEW: Have this section reviewed by a legal professional before publishing. -->
+          <p>Participation in Triathlon Bangladesh events involves inherent physical risk. By registering, participants:</p>
+          <ul>
+            <li>Acknowledge they are physically fit and medically cleared to participate in their chosen distance.</li>
+            <li>Accept all risks associated with the event, including but not limited to physical injury, illness, or property damage.</li>
+            <li>Release and indemnify Triathlon Bangladesh, its directors, volunteers, sponsors, and partners from any claims arising from participation.</li>
+          </ul>
+          <p>First aid is stationed every 5 KM on course. Medical withdrawal from the race is at the discretion of the medical team. Their decision is final.</p>
+
+          <h2>4. Photography &amp; Media Usage</h2>
+          <!-- CLIENT REVIEW: Confirm opt-out procedure if any. -->
+          <p>Triathlon Bangladesh and its media partners (including Jamuna TV, Cplus TV, Somoy News, News24, Chattogram24, and Ekhon TV) may photograph, film, or broadcast participants during events. By registering, participants grant Triathlon Bangladesh a royalty-free licence to use such images for promotional and editorial purposes. Participants who wish to opt out should notify the organisers in writing before race day.</p>
+
+          <h2>5. Code of Conduct</h2>
+          <p>All participants, volunteers, and spectators are expected to:</p>
+          <ul>
+            <li>Treat all other participants, officials, and volunteers with respect.</li>
+            <li>Follow the instructions of race marshals and medical personnel at all times.</li>
+            <li>Not use performance-enhancing substances prohibited under applicable sports regulations.</li>
+            <li>Not litter on the course. Waste must be disposed of at designated stations.</li>
+            <li>Not use headphones or earphones on course unless specifically permitted for a category.</li>
+          </ul>
+          <p>Triathlon Bangladesh reserves the right to disqualify or remove any participant who violates this code, without refund.</p>
+
+          <h2>6. Timing &amp; Results</h2>
+          <!-- CLIENT REVIEW: Confirm whether chip timing is chip-time or gun-time for results. -->
+          <p>Official timing is provided by Total Active Sports. Results are based on chip time (net time from crossing the start mat). Gun time may be used for overall category rankings. Disputes must be submitted in writing to the timing provider within 24 hours of results publication.</p>
+
+          <h2>7. Governing Law</h2>
+          <!-- CLIENT REVIEW: Confirm jurisdiction. -->
+          <p>These terms are governed by the laws of Bangladesh. Any disputes shall be subject to the exclusive jurisdiction of the courts of Chattogram, Bangladesh.</p>
+
+          <h2>8. Contact</h2>
+          <p>For questions about these terms, contact Triathlon Bangladesh:</p>
+          <ul>
+            <li>Email: <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a></li>
+            <li>Phone: <a href={`tel:${event.contact.phone}`}>+880 {event.contact.phone}</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
