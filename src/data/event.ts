@@ -523,7 +523,7 @@ export const events: EventEntry[] = [
     date: '2025-09-12',
     dateDisplay: '12 September 2025',
     location: 'Shaplapur, Moheshkhali, Cox\'s Bazar',
-    tagline: 'Miles for Moheshkhali, Stand for Salt and Betel Farmer',
+    tagline: 'Miles for Moheshkhali, Stand for Salt and Betel Farmers',
     registerUrl: '',
     heroImage: '/assets/events/moheshkhali-2025/start-line.jpg',
     gallery: [
@@ -588,7 +588,7 @@ export const events: EventEntry[] = [
       '/assets/events/bootcamp-swimming-2026/gallery-5.jpg',
     ],
     summary: 'Free swimming boot camp — basics through Bangla Channel motivation, organised by Cox\'s Bazar Triathletes.',
-    note: 'Time: 6:40 AM. Boot camp leader: Homaed Ishaque Moon (Bangla Channel Conquerer, IRONMAN 70.3 Finisher). Free. Covers basics, technique, floating, hydrotherapy, form coaching, nutrition/recovery, mentor Q&A.',
+    note: 'Time: 6:40 AM. Boot camp leader: Homaed Ishaque Moon (Bangla Channel Conqueror, IRONMAN 70.3 Finisher). Free. Covers basics, technique, floating, hydrotherapy, form coaching, nutrition/recovery, mentor Q&A.',
   },
 ];
 

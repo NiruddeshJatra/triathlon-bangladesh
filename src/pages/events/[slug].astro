@@ -121,7 +121,7 @@ const pageDesc = eventEntry.summary;
           {eventEntry.gallery && eventEntry.gallery.length > 0 && (
             <div class="ev-page-gallery-wrap">
               <div class="eyebrow ev-gallery-eyebrow">Gallery</div>
-              <div class={`ev-page-gallery ev-gallery-${Math.min(eventEntry.gallery.length, 4)}`}>
+              <div class="ev-page-gallery">
                 {eventEntry.gallery.map((src, i) => (
                   <div class="ev-gallery-item">
                     <img src={src} alt={`${eventEntry.name} — photo ${i + 1}`} loading="lazy" />
