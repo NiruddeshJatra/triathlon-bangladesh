@@ -67,6 +67,14 @@ Two intentionally distinct elements — do not merge them:
 - **3 wheel dividers on homepage** (UPCOMING, TRACK RECORD, THE MISSION). Event detail page retains original 4 (THE DISTANCES, THE COURSE, THE CREW, REGISTER). Neither page exceeds the 4-max rule.
 - **ScrollRoute island on event detail only** — removed from homepage (race-specific, brand homepage has no course to trace).
 
+## Locked Decisions (added 2026-06-04)
+
+- **"Bike" not "Ride"** — In all triathlon-discipline contexts, use "Bike". Never "Ride". `org.tagline` is "Swim · Bike · Run". Do not revert.
+- **Chatto Metro canonical address** — "Bastuhara, Khetrochar, Karnaphuli Bank Road, Chattogram". Used in `event.ts` EventEntry location, JSON-LD streetAddress, and any copy. Do not shorten.
+- **Nav brand mark = Triathlon Bangladesh** — Nav logo is `triathlon-bd-shield-white.png` (org shield). Event logos belong on per-event pages only, not in the nav.
+- **Frosted-glass navbar** — `rgba(255,255,255,0.07)` + `backdrop-filter:blur(14px)`. Pending client review (applied 2026-06-04). Revert: change background to `rgba(8,20,14,.6)` and remove `@media (prefers-reduced-transparency)` block.
+- **Bootcamps as `eventType: 'program'`** — Non-race events (bootcamps, training sessions) use `eventType: 'program'` on `EventEntry`. Race-only fields remain optional; program cards render a distinct variant.
+
 ## Open Items (not yet decided)
 
 - ✅ **Flag-off time: 05:00 AM BST** — confirmed by race director (2026-06-01). `event.ts` value correct.

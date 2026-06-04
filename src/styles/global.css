@@ -95,12 +95,19 @@ body{
 .cml-sub{font-size:11px;color:var(--text-muted);}
 
 /* ─── nav ───────────────────────────────────────────────────────────────── */
+/* Frosted-glass navbar — PROPOSAL for client review (2026-06-04).
+   Revert: change background back to rgba(8,20,14,.6) and remove the @media prefers-reduced-transparency block. */
 .cmhm-nav{
   position:sticky;top:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px var(--pad);
-  background:rgba(8,20,14,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(212,175,55,.08);
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+/* Users who disable transparency get an opaque dark bar */
+@media (prefers-reduced-transparency: reduce){
+  .cmhm-nav{background:var(--bg-base);backdrop-filter:none;-webkit-backdrop-filter:none;}
 }
 .cmhm-brand{display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;}
 .cmhm-brand img{height:42px;width:auto;}
@@ -630,7 +637,10 @@ details[open] .fchev{transform:rotate(45deg);}
 .ev-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1120px;margin:32px auto 0;padding:0 32px;}
 .ev-card{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.14);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;}
 .ev-card-prev{opacity:.85;}
-.ev-card-img{height:160px;background:linear-gradient(135deg,rgba(46,158,84,.18) 0%,rgba(212,175,55,.12) 100%);}
+.ev-card-img{height:160px;overflow:hidden;background:linear-gradient(135deg,rgba(46,158,84,.18) 0%,rgba(212,175,55,.12) 100%);}
+.ev-card-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform .35s ease;}
+.ev-card:hover .ev-card-img img{transform:scale(1.05);}
+.ev-card-img-placeholder{width:100%;height:100%;}
 .ev-card-img-dim{background:linear-gradient(135deg,rgba(30,60,40,.3) 0%,rgba(100,80,30,.2) 100%);}
 .ev-card-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:8px;}
 .ev-card-meta{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
@@ -653,14 +663,65 @@ details[open] .fchev{transform:rotate(45deg);}
 .ps-item{width:260px;flex-shrink:0;padding:0 16px;}
 @media (prefers-reduced-motion:reduce){.ps-marquee{animation:none;}}
 
-/* ─── Event detail simple page ───────────────────────────────────────────── */
-.ev-detail-simple{min-height:60vh;}
-.ev-detail-inner{max-width:720px;margin:0 auto;padding:80px 32px;}
-.ev-tagline{font-size:18px;color:var(--gold);font-style:italic;margin:12px 0 8px;}
-.ev-meta-row{font-size:14px;color:var(--text-muted);margin:8px 0 20px;display:flex;flex-wrap:wrap;gap:4px;}
-.ev-summary{font-size:17px;color:var(--text);line-height:1.6;margin-bottom:12px;}
-.ev-note{font-size:14px;color:var(--text-muted);font-style:italic;}
-.ev-back{margin-top:16px;display:inline-block;}
+/* ─── Event detail rich page ─────────────────────────────────────────────── */
+.ev-page{min-height:100vh;}
+
+/* Hero */
+.ev-page-hero{position:relative;min-height:320px;display:flex;align-items:flex-end;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg-elev) 0%,var(--bg-card-2) 100%);}
+.ev-page-hero--img{min-height:420px;}
+.ev-page-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.ev-page-hero-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(8,20,14,.92) 0%, rgba(8,20,14,.55) 45%, rgba(8,20,14,.25) 100%);}
+.ev-page-hero-content{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(40px,6vw,80px) var(--pad) clamp(36px,5vw,64px);}
+.ev-page-eyebrow{font-family:var(--f-display);font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;}
+.ev-page-title{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,5vw,64px);
+  text-transform:uppercase;line-height:.95;letter-spacing:-.01em;margin:0;color:var(--text);}
+.ev-page-tagline{font-size:clamp(15px,1.6vw,19px);color:var(--gold-soft);font-style:italic;
+  margin:14px 0 0;max-width:52ch;}
+
+/* Body */
+.ev-page-body{max-width:var(--maxw);margin:0 auto;padding:clamp(40px,5vw,72px) var(--pad);}
+
+/* Key facts strip */
+.ev-page-facts{display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid rgba(212,175,55,.16);border-radius:6px;overflow:hidden;margin-bottom:36px;}
+.ev-fact{flex:1;min-width:140px;padding:16px 20px;border-right:1px solid rgba(212,175,55,.10);}
+.ev-fact:last-child{border-right:none;}
+.ev-fact-label{font-family:var(--f-display);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;}
+.ev-fact-val{font-size:14px;color:var(--text);font-weight:500;line-height:1.3;}
+
+/* Summary / note */
+.ev-page-summary{font-size:clamp(16px,1.5vw,18px);color:var(--text);line-height:1.65;
+  max-width:68ch;margin-bottom:16px;}
+.ev-page-note{font-size:14px;color:var(--text-muted);line-height:1.6;max-width:68ch;
+  border-left:2px solid rgba(212,175,55,.3);padding-left:14px;margin-bottom:32px;}
+
+/* CTAs */
+.ev-page-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:56px;}
+
+/* Gallery */
+.ev-page-gallery-wrap{margin-top:8px;}
+.ev-gallery-eyebrow{font-family:var(--f-display);font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;}
+.ev-page-gallery{display:grid;gap:8px;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+.ev-gallery-item{overflow:hidden;border-radius:4px;background:var(--bg-card);aspect-ratio:4/3;}
+.ev-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .35s ease;}
+.ev-gallery-item:hover img{transform:scale(1.04);}
+/* wide first item for posters/banners */
+.ev-page-gallery .ev-gallery-item:first-child{grid-column:span 2;}
+
+@media (max-width:640px){
+  .ev-page-gallery .ev-gallery-item:first-child{grid-column:span 1;}
+  .ev-page-facts{flex-direction:column;}
+  .ev-fact{border-right:none;border-bottom:1px solid rgba(212,175,55,.10);}
+  .ev-fact:last-child{border-bottom:none;}
+}
 
 /* ─── Team page — org member cards (passport photo style) ─────────────────── */
 .cmhm-org-team{padding-top:80px;padding-bottom:80px;}

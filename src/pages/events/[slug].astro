@@ -58,27 +58,80 @@ const pageDesc = eventEntry.summary;
         <RegisterBand />
       </>
     ) : (
-      <section class="ev-detail-simple cmhm-section">
-        <div class="ev-detail-inner">
-          <div class="eyebrow">{eventEntry.status === 'previous' ? 'Past Event' : 'Upcoming Event'}</div>
-          <h1 class="stitle">{eventEntry.name}</h1>
-          {eventEntry.tagline && <p class="ev-tagline">{eventEntry.tagline}</p>}
-          <div class="ev-meta-row">
-            <span>{eventEntry.dateDisplay}</span>
-            {eventEntry.location && <span>· {eventEntry.location}</span>}
-            {eventEntry.dist && <span>· {eventEntry.dist}</span>}
-            {eventEntry.runners && <span>· {eventEntry.runners} runners</span>}
-          </div>
-          <p class="ev-summary">{eventEntry.summary}</p>
-          {eventEntry.note && <p class="ev-note">{eventEntry.note}</p>}
-          {eventEntry.registerUrl && (
-            <a class="cmhm-btn cmhm-btn-p" href={eventEntry.registerUrl} target="_blank" rel="noopener noreferrer">
-              Register Now <span class="arr">→</span>
-            </a>
+      <div class="ev-page">
+        {/* Hero */}
+        <div class={`ev-page-hero${eventEntry.heroImage ? ' ev-page-hero--img' : ''}`}>
+          {eventEntry.heroImage && (
+            <img class="ev-page-hero-img" src={eventEntry.heroImage} alt={eventEntry.name} loading="eager" />
           )}
-          <a class="cmhm-btn cmhm-btn-s ev-back" href="/">← Back to Triathlon Bangladesh</a>
+          <div class="ev-page-hero-overlay" aria-hidden="true"></div>
+          <div class="ev-page-hero-content">
+            <div class="eyebrow ev-page-eyebrow">
+              {eventEntry.eventType === 'program' ? 'Training Programme' : (eventEntry.status === 'previous' ? 'Past Event' : 'Upcoming Event')}
+              {' · '}{eventEntry.dateDisplay}
+            </div>
+            <h1 class="ev-page-title">{eventEntry.name}</h1>
+            {eventEntry.tagline && <p class="ev-page-tagline">{eventEntry.tagline}</p>}
+          </div>
         </div>
-      </section>
+
+        {/* Body */}
+        <div class="ev-page-body">
+          {/* Key facts */}
+          <div class="ev-page-facts">
+            <div class="ev-fact">
+              <div class="ev-fact-label">Date</div>
+              <div class="ev-fact-val">{eventEntry.dateDisplay}</div>
+            </div>
+            <div class="ev-fact">
+              <div class="ev-fact-label">Location</div>
+              <div class="ev-fact-val">{eventEntry.location}</div>
+            </div>
+            {eventEntry.dist && (
+              <div class="ev-fact">
+                <div class="ev-fact-label">Distance</div>
+                <div class="ev-fact-val">{eventEntry.dist}</div>
+              </div>
+            )}
+            {eventEntry.runners && (
+              <div class="ev-fact">
+                <div class="ev-fact-label">Runners</div>
+                <div class="ev-fact-val">{eventEntry.runners}</div>
+              </div>
+            )}
+          </div>
+
+          {/* Summary + note */}
+          <p class="ev-page-summary">{eventEntry.summary}</p>
+          {eventEntry.note && (
+            <p class="ev-page-note">{eventEntry.note}</p>
+          )}
+
+          {/* CTAs */}
+          <div class="ev-page-ctas">
+            {eventEntry.registerUrl && eventEntry.status !== 'previous' && (
+              <a class="cmhm-btn cmhm-btn-p" href={eventEntry.registerUrl} target="_blank" rel="noopener noreferrer">
+                Register Now <span class="arr">→</span>
+              </a>
+            )}
+            <a class="cmhm-btn cmhm-btn-s" href="/">← All Events</a>
+          </div>
+
+          {/* Gallery */}
+          {eventEntry.gallery && eventEntry.gallery.length > 0 && (
+            <div class="ev-page-gallery-wrap">
+              <div class="eyebrow ev-gallery-eyebrow">Gallery</div>
+              <div class={`ev-page-gallery ev-gallery-${Math.min(eventEntry.gallery.length, 4)}`}>
+                {eventEntry.gallery.map((src, i) => (
+                  <div class="ev-gallery-item">
+                    <img src={src} alt={`${eventEntry.name} — photo ${i + 1}`} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     )}
   </main>
   <Footer />

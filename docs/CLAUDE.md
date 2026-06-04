@@ -38,13 +38,16 @@ src/
 │                              #   schedule, entitlements, team, pacers, sponsors, faq, about, medals,
 │                              #   org, events[], orgTeam[], chattoMetroPartners[], plus helpers:
 │                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getEventBySlug()
+│                              #   EventEntry fields: slug, name, eventType?('race'|'program'), status,
+│                              #   date, dateDisplay, location, tagline, registerUrl, heroImage,
+│                              #   gallery?[], summary, runners?, dist?, note?, partners?
 ├── islands/                   # React interactive components (islands pattern)
 ├── layouts/
 │   └── Layout.astro           # HTML shell, meta tags, font imports — do not touch SEO
 ├── pages/
 │   ├── index.astro            # Brand homepage: BrandHero → CTAs → UpcomingEvents → PreviousEvents → OrgAbout
 │   ├── events/
-│   │   └── [slug].astro       # Dynamic event detail — full experience for 'current', simple for others
+│   │   └── [slug].astro       # Dynamic event detail — full rich layout for ALL events (hero, facts, CTAs, gallery)
 │   ├── team.astro             # Public org team page (uses orgTeam[] from event.ts)
 │   ├── terms.astro            # Draft T&C — CLIENT REVIEW markers inline
 │   └── join.astro             # Join Our Team — static, no form
@@ -60,6 +63,8 @@ public/
 ├── cmhm-logo-for-dark.png     # dark-bg nav logo
 ├── logo-nobg.png              # bg-removed source (favicon generation)
 ├── assets/
+│   ├── events/
+│   │   └── <slug>/            # Per-event images: poster.jpg, logo.jpg, gallery-*.jpg, eligibility.jpg
 │   ├── team-*.jpg / .jpeg     # Team member photos (event crew + org team)
 │   ├── jersey-*.jpg · medal-*.jpg  # Event merchandise images
 │   └── sponsor-*.jpg          # Partner logos
