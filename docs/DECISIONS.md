@@ -54,8 +54,25 @@ Two intentionally distinct elements — do not merge them:
 - `public/assets/` — static images served as-is
 - Use `astro:assets` for images that go through the Astro image optimization pipeline
 
+## Site Structure (updated 2026-05-31)
+
+**Brand-first, multi-page.** Locked decisions from the 2026-05-31 restructure:
+
+- **Homepage (`/`)** — org/brand hub. Not event-specific. Sections: BrandHero, TwoRegisterCTAs, UpcomingEventsList, PreviousEventsList, OrgAbout.
+- **Event detail (`/events/[slug]`)** — full event experience via dynamic Astro route. Current event (chatto-metro) renders all sections. Previous/upcoming events render a simple info page.
+- **`src/data/event.ts`** is now multi-event: `org`, `EventEntry[]`, `events[]`, helper functions. All prior named exports retained (backward compat).
+- **Team page is public** (`/team`) — not an admin panel. Powered by `orgTeam[]` from `event.ts`.
+- **Join page has no form** — contact CTA only. Form deferred until race director confirms availability.
+- **Partners scoped per event** — `EventEntry.partners?: Partner[]` field. Chatto Metro uses `chattoMetroPartners` derived from existing `sponsors` object.
+- **3 wheel dividers on homepage** (UPCOMING, TRACK RECORD, THE MISSION). Event detail page retains original 4 (THE DISTANCES, THE COURSE, THE CREW, REGISTER). Neither page exceeds the 4-max rule.
+- **ScrollRoute island on event detail only** — removed from homepage (race-specific, brand homepage has no course to trace).
+
 ## Open Items (not yet decided)
 
-- ⚠️ **Flag-off time: 05:00 or 05:30?** Current `event.ts` has `05:00`. Confirm with race director before publishing.
+- ✅ **Flag-off time: 05:00 AM BST** — confirmed by race director (2026-06-01). `event.ts` value correct.
 - ⚠️ **Total Active Sports logo** — not yet available; placeholder text used
 - ⚠️ **Action photography** — no race-day photos yet; team photos are in place
+- ⚠️ **Duathlon 2026** — date, venue, tagline all `// TODO` in `event.ts`. Confirm with race director.
+- ⚠️ **Terms & Conditions** — draft in `src/pages/terms.astro`; all sections marked `<!-- CLIENT REVIEW -->`. Must be legally reviewed before publishing.
+- ⚠️ **Join Our Team roles** — placeholder list in `join.astro`. Move to `event.ts` as `rolesAvailable[]` once confirmed.
+- ⚠️ **Orphaned components** — `About.astro`, `PreviousEvents.astro`, `Sponsors.astro` no longer imported. Delete only with explicit approval.

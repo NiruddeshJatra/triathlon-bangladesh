@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { event } from '../data/event';
+
+// TODO: add rolesAvailable array to event.ts when confirmed by race director
+const roles = [
+  { title: 'Pacer', desc: 'Lead runners to their target finish time across the 21K or 10K. Requires a strong consistent pace and race experience.' },
+  { title: 'Operations', desc: 'Manage internal logistics, on-ground arrangements, and event-day coordination. The backbone that keeps every moving part running on time.' },
+  { title: 'Volunteer — Aid Station', desc: 'Staff water and refreshment stations every 2 KM. High-energy, high-impact role.' },
+  { title: 'Medical Volunteer', desc: 'First aid trained. Stationed every 5 KM and at the finish. Medical background preferred.' },
+  { title: 'Start & Finish Crew', desc: 'Manage bib collection, timing chip distribution, and finish-line support.' },
+  { title: 'Photography & Media', desc: "Capture the race for Triathlon Bangladesh's media archive and post-event coverage. Own equipment required." },
+];
+---
+<Layout
+  title="Join Our Team · Triathlon Bangladesh"
+  description="Volunteer, pace, marshal, or support Triathlon Bangladesh events. Find out how to join the crew behind Chattogram's premier endurance race series."
+>
+  <Nav />
+  <main>
+    <section class="cmhm-section cmhm-join">
+      <div class="join-inner">
+        <div class="cmhm-shead">
+          <div class="eyebrow">Get Involved</div>
+          <h1 class="stitle">Join the <span class="acc">crew.</span></h1>
+          <p class="skicker">Triathlon Bangladesh is built by volunteers, athletes, and community leaders. If you want to help bring endurance events to Chattogram, we want to hear from you.</p>
+        </div>
+
+        <h2 class="join-subh">Roles available</h2>
+        <!-- TODO: replace with data from event.ts once race director confirms final role list -->
+        <div class="join-roles">
+          {roles.map((r) => (
+            <div class="join-role-card">
+              <div class="join-role-title">{r.title}</div>
+              <p class="join-role-desc">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="join-subh">How to apply</h2>
+        <ol class="join-steps">
+          <li>Send an email with the subject line <strong>"Join the Crew — [Role]"</strong> to the address below.</li>
+          <li>Tell us about yourself: name, running/sports background, and why you want to volunteer.</li>
+          <li>We'll respond with availability and next steps before each event cycle.</li>
+        </ol>
+
+        <div class="join-contact">
+          <div class="join-contact-label">Get in touch</div>
+          <a class="join-email" href={`mailto:${event.contact.email}`}>{event.contact.email}</a>
+          <a class="join-phone" href={`tel:${event.contact.phone}`}>+880 {event.contact.phone}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

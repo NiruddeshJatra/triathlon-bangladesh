@@ -1,0 +1,32 @@
+---
+import { getPreviousEvents } from '../data/event';
+
+const previous = getPreviousEvents();
+---
+<section class="cmhm-section ev-list-section">
+  <div class="cmhm-shead">
+    <div class="eyebrow">Track Record</div>
+    <h2 class="stitle">Not our <span class="acc">first start line.</span></h2>
+    <p class="skicker">Kutubdia, Moheshkhali, channel swims, boot camps. The Karnaphuli is the next chapter — not the opening one.</p>
+  </div>
+
+  {previous.length === 0 ? (
+    <p class="ev-empty">Past event archive coming soon.</p>
+  ) : (
+    <div class="ev-card-grid">
+      {previous.map((e) => (
+        <article class="ev-card ev-card-prev">
+          <div class="ev-card-img ev-card-img-placeholder ev-card-img-dim" aria-hidden="true"></div>
+          <div class="ev-card-body">
+            <div class="ev-card-meta">{e.dateDisplay}</div>
+            <div class="ev-card-name">{e.name}</div>
+            {e.summary && <p class="ev-card-summary">{e.summary}</p>}
+            <a class="ev-card-link" href={`/events/${e.slug}`} aria-label={`View details for ${e.name}`}>
+              View details →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+</section>

@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import QuickFacts from '../../components/QuickFacts.astro';
+import WheelDivider from '../../components/WheelDivider.astro';
+import Categories from '../../components/Categories.astro';
+import Schedule from '../../components/Schedule.astro';
+import TheCourse from '../../components/TheCourse.astro';
+import Entitlements from '../../components/Entitlements.astro';
+import Team from '../../components/Team.astro';
+import PartnersSlideshow from '../../components/PartnersSlideshow.astro';
+import FAQ from '../../components/FAQ.astro';
+import RegisterBand from '../../components/RegisterBand.astro';
+import Footer from '../../components/Footer.astro';
+import ScrollRoute from '../../islands/ScrollRoute';
+import WheelSpin from '../../islands/WheelSpin';
+import { events, getEventBySlug } from '../../data/event';
+
+export function getStaticPaths() {
+  return events.map(e => ({ params: { slug: e.slug } }));
+}
+
+const { slug } = Astro.params;
+const eventEntry = getEventBySlug(slug!);
+
+if (!eventEntry) {
+  return Astro.redirect('/');
+}
+
+const isFullEvent = eventEntry.status === 'current';
+
+const pageTitle = `${eventEntry.name} · Triathlon Bangladesh`;
+const pageDesc = eventEntry.summary;
+---
+<Layout title={pageTitle} description={pageDesc}>
+  {isFullEvent && <ScrollRoute client:visible />}
+  {isFullEvent && <WheelSpin client:idle />}
+  <Nav />
+  <main>
+    {isFullEvent ? (
+      <>
+        <Hero />
+        <QuickFacts />
+        <WheelDivider label="THE DISTANCES" />
+        <Categories />
+        <Schedule />
+        <WheelDivider label="THE COURSE" />
+        <TheCourse />
+        <Entitlements />
+        <WheelDivider label="THE CREW" />
+        <Team />
+        {eventEntry.partners && eventEntry.partners.length > 0 && (
+          <PartnersSlideshow partners={eventEntry.partners} />
+        )}
+        <FAQ />
+        <WheelDivider label="REGISTER" />
+        <RegisterBand />
+      </>
+    ) : (
+      <section class="ev-detail-simple cmhm-section">
+        <div class="ev-detail-inner">
+          <div class="eyebrow">{eventEntry.status === 'previous' ? 'Past Event' : 'Upcoming Event'}</div>
+          <h1 class="stitle">{eventEntry.name}</h1>
+          {eventEntry.tagline && <p class="ev-tagline">{eventEntry.tagline}</p>}
+          <div class="ev-meta-row">
+            <span>{eventEntry.dateDisplay}</span>
+            {eventEntry.location && <span>· {eventEntry.location}</span>}
+            {eventEntry.dist && <span>· {eventEntry.dist}</span>}
+            {eventEntry.runners && <span>· {eventEntry.runners} runners</span>}
+          </div>
+          <p class="ev-summary">{eventEntry.summary}</p>
+          {eventEntry.note && <p class="ev-note">{eventEntry.note}</p>}
+          {eventEntry.registerUrl && (
+            <a class="cmhm-btn cmhm-btn-p" href={eventEntry.registerUrl} target="_blank" rel="noopener noreferrer">
+              Register Now <span class="arr">→</span>
+            </a>
+          )}
+          <a class="cmhm-btn cmhm-btn-s ev-back" href="/">← Back to Triathlon Bangladesh</a>
+        </div>
+      </section>
+    )}
+  </main>
+  <Footer />
+</Layout>

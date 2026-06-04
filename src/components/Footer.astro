@@ -1,5 +1,8 @@
 ---
-import { event } from '../data/event';
+import { event, getCurrentEvent } from '../data/event';
+
+const currentEvent = getCurrentEvent();
+const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
 ---
 <footer class="cmhm-footer">
   <div class="cmhm-footer-grid">
@@ -12,23 +15,26 @@ import { event } from '../data/event';
       <a href={`tel:${event.contact.phone}`}>+880 1303-358202</a>
       <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a>
     </div>
-    <div>
-      <div class="ft-h">Race</div>
-      <a href="#race">Categories</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#route">Route</a>
-      <a href="#get">What you get</a>
-    </div>
+    {eventBase && (
+      <div>
+        <div class="ft-h">Race</div>
+        <a href={`${eventBase}#race`}>Categories</a>
+        <a href={`${eventBase}#schedule`}>Schedule</a>
+        <a href={`${eventBase}#route`}>Route</a>
+        <a href={`${eventBase}#get`}>What you get</a>
+      </div>
+    )}
     <div>
       <div class="ft-h">More</div>
-      <a href="#team">Team</a>
-      <a href="#previous">Past events</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
+      <a href="/team">Our Team</a>
+      <a href="/">Past events</a>
+      <a href="/">About</a>
+      {eventBase && <a href={`${eventBase}#faq`}>FAQ</a>}
     </div>
   </div>
   <div class="cmhm-footer-bot">
     <div>© 2026 Triathlon Bangladesh · All rights reserved</div>
     <div class="ft-tagline">Feel the pulse of the port city.</div>
+    <div class="ft-credit">Made with ❤️ by <a href="https://niruddeshjatra.space" target="_blank" rel="noopener noreferrer">nj</a></div>
   </div>
 </footer>

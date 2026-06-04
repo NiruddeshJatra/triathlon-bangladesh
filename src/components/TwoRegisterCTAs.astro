@@ -1,0 +1,27 @@
+---
+import { getCurrentEvent } from '../data/event';
+
+const currentEvent = getCurrentEvent();
+---
+{currentEvent && (
+  <div class="two-ctas-wrap">
+    <div class="two-ctas">
+      <a
+        class="cmhm-btn cmhm-btn-p two-cta-primary"
+        href={currentEvent.registerUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Register for ${currentEvent.name} on coxsbazartriathletes.com`}
+      >
+        Register Now <span class="arr">→</span>
+      </a>
+      <a
+        class="cmhm-btn cmhm-btn-s two-cta-secondary"
+        href={`/events/${currentEvent.slug}`}
+        aria-label={`View full details for ${currentEvent.name}`}
+      >
+        View Event Details
+      </a>
+    </div>
+  </div>
+)}

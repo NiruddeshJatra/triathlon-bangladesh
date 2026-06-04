@@ -4,6 +4,47 @@ Most recent first.
 
 ---
 
+## 2026-05-31 — Brand-first multi-page restructure
+
+### What changed
+- **Site structure** — single-page (`/`) exploded into brand-hub homepage + per-event detail pages + 3 static pages.
+- **Homepage** (`src/pages/index.astro`) — rewritten as brand hub: `BrandHero → TwoRegisterCTAs → [WheelDivider UPCOMING] → UpcomingEventsList → [WheelDivider TRACK RECORD] → PreviousEventsList → [WheelDivider THE MISSION] → OrgAbout → Footer`. 3 wheel dividers (within 4-max rule). ScrollRoute removed from homepage (race-specific; lives on event detail page only).
+- **Event detail page** (`src/pages/events/[slug].astro`) — dynamic route generated for all events. For the current event (chatto-metro), renders the full original experience: `Nav → Hero → QuickFacts → [WheelDivider THE DISTANCES] → Categories → Schedule → [WheelDivider THE COURSE] → TheCourse → Entitlements → [WheelDivider THE CREW] → Team → PartnersSlideshow → FAQ → [WheelDivider REGISTER] → RegisterBand → Footer`. For previous/upcoming events (limited data), renders a simple info page.
+- **`src/data/event.ts`** — appended multi-event structure. Existing named exports (event, categories, schedule, etc.) unchanged for backward compat. Added: `org`, `Partner` interface, `EventEntry` interface, `events[]` array (4 entries: chatto-metro current, duathlon-2026 upcoming placeholder, kutubdia-hm-2026 previous, moheshkhali-hm-2025 previous), `chattoMetroPartners[]`, helper functions `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents()`, `getEventBySlug()`.
+- **Nav** (`src/components/Nav.astro`) — replaced anchor links (Race, Route, Schedule, Team, About) with page-level links: Home (`/`) · Events (`/events/{slug}`) · Our Team (`/team`) · Join Our Team (`/join`) · Terms (`/terms`) · Register (external, unchanged). Brand link changed from `#top` to `/`.
+
+### New files created
+| File | Purpose |
+|---|---|
+| `src/pages/events/[slug].astro` | Dynamic event detail route |
+| `src/pages/team.astro` | Public team page (org-level, not "admin panel") |
+| `src/pages/terms.astro` | Draft T&C — CLIENT REVIEW markers inline |
+| `src/pages/join.astro` | Static join-the-crew page, no form |
+| `src/components/BrandHero.astro` | Brand-level hero with org identity + current event card + countdown |
+| `src/components/TwoRegisterCTAs.astro` | Primary (external register) + Secondary (event detail page) CTA pair |
+| `src/components/UpcomingEventsList.astro` | Card grid for upcoming events from `events[]` |
+| `src/components/PreviousEventsList.astro` | Card grid for previous events from `events[]` |
+| `src/components/OrgAbout.astro` | Brand-level org intro (mission + pillars); replaces About.astro on homepage |
+| `src/components/PartnersSlideshow.astro` | Per-event partners slideshow with prev/next + pause; prefers-reduced-motion honored |
+
+### Orphaned components (NOT deleted — awaiting approval)
+- `src/components/PreviousEvents.astro` — superseded by `PreviousEventsList.astro` on homepage; still used on event detail page implicitly (no, it's not — report only)
+- `src/components/About.astro` — superseded by `OrgAbout.astro`
+- `src/components/Sponsors.astro` — superseded by `PartnersSlideshow.astro` on event detail page
+
+### Build
+- 8 pages built · 4.21s · zero errors · sitemap regenerated with all new routes
+- Routes: `/` `/events/chatto-metro` `/events/duathlon-2026` `/events/kutubdia-hm-2026` `/events/moheshkhali-hm-2025` `/team` `/terms` `/join`
+
+### Open items (client must provide)
+- ⚠️ `terms.astro` — all sections marked `<!-- CLIENT REVIEW: ... -->` must be reviewed and approved before publishing. Refund percentage and exact jurisdiction are placeholders.
+- ⚠️ `join.astro` — roles list is a placeholder derived from standard endurance event roles. Must be confirmed with race director and added to `event.ts` as `rolesAvailable[]`.
+- ⚠️ `duathlon-2026` event entry — date, venue, tagline all `// TODO`. Confirm with race director.
+- ⚠️ Action photos for event cards — `ev-card-img-placeholder` gradient shown where no `heroImage` is available.
+- ⚠️ Flag-off time 05:00 — still unconfirmed (see prior entries).
+
+---
+
 ## 2026-05-31 — Logo & favicon refresh
 
 - **Nav logo** — `src/components/Nav.astro`: swapped from `logo_transparent.png` → `cmhm-logo-for-dark.png` (user-supplied variant optimised for dark backgrounds); sized `height:42px / width:auto / max-width:180px`
