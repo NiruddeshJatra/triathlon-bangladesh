@@ -23,7 +23,7 @@ export const event = {
 
 export const quickFacts = [
   { k: "10 July 2026", s: "Friday · Race Day" },
-  { k: "Karnaphuli", s: "Riverside · Chattogram" },
+  { k: "Bastuhara, Khetrochar", s: "Karnaphuli Bank Road · Chattogram" },
   { k: "21.1 / 10 / 5", s: "Kilometres" },
   { k: "≈600", s: "Runners" },
 ] as const;
@@ -368,7 +368,7 @@ export const about = {
 
 export const org = {
   name: "Triathlon Bangladesh",
-  tagline: "Swim · Ride · Run",
+  tagline: "Swim · Bike · Run",
   mission: about.mission,
   pillars: about.pillars,
   contact: event.contact,
@@ -384,6 +384,7 @@ export interface Partner {
 export interface EventEntry {
   slug: string;
   name: string;
+  eventType?: 'race' | 'program';
   status: 'upcoming' | 'current' | 'previous';
   date: string;
   dateDisplay: string;
@@ -391,6 +392,7 @@ export interface EventEntry {
   tagline: string;
   registerUrl: string;
   heroImage: string | null;
+  gallery?: string[];
   summary: string;
   runners?: number | null;
   dist?: string;
@@ -406,13 +408,14 @@ export const chattoMetroPartners: Partner[] = [
 ];
 
 export const events: EventEntry[] = [
+  // ── current ──────────────────────────────────────────────────────────────
   {
     slug: 'chatto-metro',
     name: 'Chatto Metro Half Marathon 2026',
     status: 'current',
     date: event.date,
     dateDisplay: event.dateDisplay,
-    location: event.venueShort,
+    location: 'Bastuhara, Khetrochar, Karnaphuli Bank Road, Chattogram',
     tagline: event.tagline,
     registerUrl: event.registerUrl,
     heroImage: null,
@@ -420,47 +423,172 @@ export const events: EventEntry[] = [
     dist: '21.1K · 10K · 5K',
     partners: chattoMetroPartners,
   },
+
+  // ── upcoming ─────────────────────────────────────────────────────────────
   {
-    slug: 'duathlon-2026',
-    name: 'Triathlon Bangladesh Duathlon 2026',
+    slug: 'chatto-metro-relay-2026',
+    name: 'Chatto Metro Relay Race 2026',
     status: 'upcoming',
-    date: '',                      // TODO: confirm date with race director
-    dateDisplay: 'July 2026 (TBC)',
-    location: 'Chattogram',        // TODO: confirm venue
-    tagline: '',                   // TODO: provide tagline
-    registerUrl: '',               // TODO: registration link when open
-    heroImage: null,
-    summary: 'Registration opening soon. Details to follow.', // TODO: provide event details
+    date: '2026-09-25',
+    dateDisplay: '25 September 2026',
+    location: 'Karnaphuli Riverside (2nd outer ring road), Chattogram',
+    tagline: 'Four runners. One river. One team.',
+    registerUrl: '',
+    heroImage: '/assets/events/chatto-metro-relay-2026/logo.jpg',
+    gallery: [],
+    summary: 'Four-runner relay along the Karnaphuli — a fast 4×800m team challenge.',
+    dist: '4 × 800 m = 3200 m',
+    note: 'Relay format. 10 teams. 5000 BDT per team. Reporting 5:00 AM · Start 5:30 AM.',
   },
   {
-    slug: 'kutubdia-hm-2026',
+    slug: 'moheshkhali-ultra-2026',
+    name: 'Moheshkhali Island Ultra 2026',
+    status: 'upcoming',
+    date: '2026-09-26',
+    dateDisplay: '26 September 2026',
+    location: 'Moheshkhali Island, Cox\'s Bazar District',
+    tagline: 'Run to Save Moheshkhali\'s Mangrove Forest',
+    registerUrl: '',
+    heroImage: '/assets/events/moheshkhali-ultra-2026/poster.jpg',
+    gallery: ['/assets/events/moheshkhali-ultra-2026/eligibility.jpg'],
+    summary: '55-kilometre ultra protecting Moheshkhali\'s mangrove forest — 100 slots, eligibility-based.',
+    dist: '55K',
+    // NOTE: early poster showed Feb 7 2026; Sep 26 2026 is the confirmed race date per DATA SPEC
+    note: 'Eligibility (last 6 months): 1 ultra marathon (50K+ sub-8h) OR 2 marathons (sub-6h each) OR 3 half marathons sub-2:30 (including Moheshkhali HM 2025). 100 slots. Reporting 4:00 AM · Start 4:30 AM · Cut-off 9 hours.',
+  },
+  {
+    slug: 'duathlon-2026',
+    name: 'Chattogram Duathlon 2026',
+    status: 'upcoming',
+    date: '2026-11-13',
+    dateDisplay: '13 November 2026',
+    location: 'Karnaphuli Riverside, Chattogram',
+    tagline: 'Run. Bike. Run. Chattogram.',
+    registerUrl: '',
+    heroImage: '/assets/events/duathlon-2026/poster.jpg',
+    gallery: [],
+    summary: 'Chattogram\'s first standard-distance duathlon — 10K run, 40K bike, 5K run.',
+    dist: '10K Run · 40K Bike · 5K Run',
+    note: 'First duathlon in Chattogram, second in Bangladesh. Olympic distance. Categories: Open 18–39 (M/F), Masters 40+ (M/F).',
+  },
+  {
+    slug: 'kutubdia-2027',
+    name: 'Kutubdia Island Half Marathon 2027',
+    status: 'upcoming',
+    date: '2027-01-08',
+    dateDisplay: '8 January 2027',
+    location: 'Kutubdia Island, Cox\'s Bazar District',
+    tagline: 'Run for Kutubdia Embankment, Save Kutubdia',
+    registerUrl: '',
+    heroImage: null,
+    // NOTE: gallery-1.jpg in this folder appears to be a Moheshkhali 2025 race image — may be misplaced
+    gallery: [],
+    summary: 'Return of the Kutubdia Half Marathon — climate-justice race continues into 2027.',
+    dist: '21.1K · 10K · 3K Kids',
+    note: 'Entitlements: T-shirt, Kit Bag, Photography, Medal (finishers), Chip Timing, Washroom, Prayer Room, Dressing Room.',
+  },
+
+  // ── previous ─────────────────────────────────────────────────────────────
+  {
+    slug: 'kutubdia-2026',
     name: 'Kutubdia Island Half Marathon 2026',
     status: 'previous',
     date: '2026-03-27',
     dateDisplay: '27 March 2026',
-    location: 'Kutubdia Island',
+    location: 'Kutubdia Island, Cox\'s Bazar District',
     tagline: 'Run for Kutubdia Embankment, Save Kutubdia',
-    registerUrl: '',
-    heroImage: null,
-    summary: '400 runners. 21K · 10K · Kids 2.1K on Kutubdia Island. Title sponsor: Infinity Mega Mall.',
-    runners: 400,
-    dist: '21K · 10K · Kids 2.1K',
-    note: 'Motto: Run for Kutubdia Embankment, Save Kutubdia',
+    registerUrl: 'https://forms.gle/twrm5cNg2epk69TE6',
+    heroImage: '/assets/events/kutubdia-2026/poster.jpg',
+    gallery: [
+      '/assets/events/kutubdia-2026/medal-render.jpg',
+      '/assets/events/kutubdia-2026/medals-beach.jpg',
+      '/assets/events/kutubdia-2026/medals-all.jpg',
+      '/assets/events/kutubdia-2026/gallery-1.jpg',
+      '/assets/events/kutubdia-2026/gallery-2.jpg',
+      '/assets/events/kutubdia-2026/gallery-3.jpg',
+      '/assets/events/kutubdia-2026/gallery-4.jpg',
+      '/assets/events/kutubdia-2026/gallery-5.jpg',
+      '/assets/events/kutubdia-2026/gallery-6.jpg',
+      '/assets/events/kutubdia-2026/gallery-7.jpg',
+      '/assets/events/kutubdia-2026/gallery-8.jpg',
+    ],
+    summary: 'Climate-justice half marathon on the shrinking island of Kutubdia, demanding a permanent sea embankment.',
+    dist: '21.1K · 10K · Kids 2.1K',
+    note: 'Kutubdia has shrunk from ~250 sq km to ~37 sq km; 60,000+ people displaced as climate refugees. Organizer: Cox\'s Bazar Triathletes. Supported by: Upazila Administration, Kutubdia.',
   },
   {
-    slug: 'moheshkhali-hm-2025',
+    slug: 'moheshkhali-2025',
     name: 'Moheshkhali Island Half Marathon 2025',
     status: 'previous',
     date: '2025-09-12',
     dateDisplay: '12 September 2025',
-    location: 'Moheshkhali Island',
-    tagline: 'Miles for Moheshkhali, Stand for Salt & Betel Farmers',
+    location: 'Shaplapur, Moheshkhali, Cox\'s Bazar',
+    tagline: 'Miles for Moheshkhali, Stand for Salt and Betel Farmers',
     registerUrl: '',
-    heroImage: null,
-    summary: '320 runners. 21K · 10K · Kids 2.1K on Moheshkhali Island.',
-    runners: 320,
-    dist: '21K · 10K · Kids 2.1K',
-    note: 'Motto: Miles for Moheshkhali, Stand for Salt & Betel Farmers',
+    heroImage: '/assets/events/moheshkhali-2025/start-line.jpg',
+    gallery: [
+      '/assets/events/moheshkhali-2025/poster.jpg',
+      '/assets/events/moheshkhali-2025/medal.jpg',
+      '/assets/events/moheshkhali-2025/flag-off.jpg',
+      '/assets/events/moheshkhali-2025/kids-start.jpg',
+      '/assets/events/moheshkhali-2025/prize-giving.jpg',
+      '/assets/events/moheshkhali-2025/gallery-1.jpg',
+      '/assets/events/moheshkhali-2025/gallery-2.jpg',
+      '/assets/events/moheshkhali-2025/gallery-3.jpg',
+    ],
+    summary: 'Hilly-island half marathon through salt fields, mangroves and betel farms, raising voices for Moheshkhali\'s farmers.',
+    dist: '21.1K · 10K · Kids 2.1K',
+    note: 'Venue: Shaplapur High School. Organizer: Cox\'s Bazar Triathletes. Reporting 5:30 AM · Start 6:00 AM. Contact: coxsbazartriathletes@gmail.com',
+  },
+  {
+    slug: 'bootcamp-kutubdia-2026',
+    eventType: 'program',
+    name: 'Bootcamp for Kutubdia Island Half Marathon',
+    status: 'previous',
+    date: '2026-01-23',
+    dateDisplay: '23 January 2026',
+    location: 'CRB Hill, Chattogram',
+    tagline: 'Train together. Run further.',
+    registerUrl: '',
+    heroImage: '/assets/events/bootcamp-kutubdia-2026/group-photo.jpg',
+    gallery: [
+      '/assets/events/bootcamp-kutubdia-2026/poster.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/leader.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/warmup-1.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/warmup-2.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-1.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-2.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-3.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-4.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-5.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-6.jpg',
+      '/assets/events/bootcamp-kutubdia-2026/gallery-7.jpg',
+    ],
+    summary: 'Training boot camp for the Kutubdia Island Half Marathon, in collaboration with Chattala Runners.',
+    note: 'Time: 6:30 AM. Boot camp leader: Shak Nahid Uddin (National Athlete, IRONMAN 70.3 Finisher). Collaboration: Cox\'s Bazar Triathletes × Chattala Runners. Open to beginners through intermediate runners.',
+  },
+  {
+    slug: 'bootcamp-swimming-2026',
+    eventType: 'program',
+    name: 'Swimming Bootcamp 2026',
+    status: 'previous',
+    date: '2026-01-27',
+    dateDisplay: '27 January 2026',
+    location: 'Agrabad Deba, Chattogram',
+    tagline: 'From basics to the Bangla Channel.',
+    registerUrl: 'https://freeshort.info/kMeBeb',
+    heroImage: '/assets/events/bootcamp-swimming-2026/group-photo.jpg',
+    gallery: [
+      '/assets/events/bootcamp-swimming-2026/leader.jpg',
+      '/assets/events/bootcamp-swimming-2026/group-photo-2.jpg',
+      '/assets/events/bootcamp-swimming-2026/gallery-1.jpg',
+      '/assets/events/bootcamp-swimming-2026/gallery-2.jpg',
+      '/assets/events/bootcamp-swimming-2026/gallery-3.jpg',
+      '/assets/events/bootcamp-swimming-2026/gallery-4.jpg',
+      '/assets/events/bootcamp-swimming-2026/gallery-5.jpg',
+    ],
+    summary: 'Free swimming boot camp — basics through Bangla Channel motivation, organised by Cox\'s Bazar Triathletes.',
+    note: 'Time: 6:40 AM. Boot camp leader: Homaed Ishaque Moon (Bangla Channel Conqueror, IRONMAN 70.3 Finisher). Free. Covers basics, technique, floating, hydrotherapy, form coaching, nutrition/recovery, mentor Q&A.',
   },
 ];
 
