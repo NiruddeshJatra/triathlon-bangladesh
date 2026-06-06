@@ -15,7 +15,12 @@ const upcoming = getUpcomingEvents();
     <div class="ev-card-grid">
       {upcoming.map((e) => (
         <article class="ev-card">
-          <div class="ev-card-img ev-card-img-placeholder" aria-hidden="true"></div>
+          <div class="ev-card-img">
+            {e.heroImage
+              ? <img src={e.heroImage} alt={e.name} loading="lazy" />
+              : <div class="ev-card-img-placeholder" aria-hidden="true"></div>
+            }
+          </div>
           <div class="ev-card-body">
             <div class="ev-card-meta">{e.dateDisplay}</div>
             <div class="ev-card-name">{e.name}</div>

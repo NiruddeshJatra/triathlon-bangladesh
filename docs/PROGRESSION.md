@@ -4,6 +4,44 @@ Most recent first.
 
 ---
 
+## 2026-06-04 — 8 events seeded; asset folderization; copy + nav + JSON-LD fixes; frosted-glass nav proposal
+
+### What changed
+- **`src/data/event.ts`** — added `eventType?: 'race' | 'program'` to `EventEntry` interface. Replaced 4-entry `events[]` with 9-entry array:
+  - Current: `chatto-metro` (location refined to full street address)
+  - Upcoming: `chatto-metro-relay-2026`, `moheshkhali-ultra-2026`, `duathlon-2026` (real date/data), `kutubdia-2027`
+  - Previous: `kutubdia-2026`, `moheshkhali-2025`, `bootcamp-kutubdia-2026` (program), `bootcamp-swimming-2026` (program)
+  - Old placeholder slugs `kutubdia-hm-2026` and `moheshkhali-hm-2025` replaced with canonical slugs from DATA SPEC.
+  - `org.tagline` changed from `"Swim · Ride · Run"` → `"Swim · Bike · Run"`.
+- **`src/components/OrgAbout.astro`** — alt text: "Swim · Ride · Run" → "Swim · Bike · Run".
+- **`src/components/Nav.astro`** — brand logo swapped from `cmhm-logo-for-dark.png` → `triathlon-bd-shield-white.png` (Triathlon Bangladesh org mark).
+- **`src/styles/global.css`** — navbar frosted-glass proposal: `rgba(8,20,14,.6)` → `rgba(255,255,255,0.07)` + `backdrop-filter:blur(14px)`. `@media (prefers-reduced-transparency: reduce)` fallback to solid `var(--bg-base)`. Mobile stays solid `var(--bg-base)` (unchanged).
+- **`src/layouts/Layout.astro`** — JSON-LD `streetAddress`: "Bastuhara, Khetrochar" → "Bastuhara, Khetrochar, Karnaphuli Bank Road".
+- **`public/assets/events/`** — 8 per-event subfolders created (empty, ready for image assignment).
+- **`docs/CONTENT.md`** — tagline + 8 new events appended.
+- **`docs/DECISIONS.md`** — 5 new locked decisions appended.
+
+### Asset inventory (ambiguous — human assignment required)
+All 50+ loose Facebook/WhatsApp/numbered images in `public/assets/` could not be confidently classified without visual inspection. Files left in place:
+- `517959411_...`, `526487671_...`, `547xxx_...` (7 files), `548xxx_...` (1 file), `549xxx_...` (1 file)
+- `615276172_...`, `616xxx_...` (3 files), `617xxx_...` (5 files), `618xxx_...` (3 files), `619xxx_...` (4 files), `621xxx_...`, `622xxx_...` (2 files), `623364294_...`, `674601241_...`
+- `WhatsApp Image 2026-06-01 at 1.09.43 PM.jpeg`
+- `WhatsApp Image 2026-06-03 at ...` (14 files)
+**Action required:** View each image and move to the appropriate `public/assets/events/<slug>/` subfolder with a clean name (e.g., `poster.jpg`, `gallery-1.jpg`, `medal-finisher.jpg`).
+
+### Null fields (human to fill in later)
+- `chatto-metro-relay-2026`: `registerUrl` = '' (not yet open)
+- `moheshkhali-ultra-2026`: `registerUrl` = '' · eligibility criteria = TBC
+- `duathlon-2026`: `tagline` = '' · `registerUrl` = ''
+- `kutubdia-2027`: `registerUrl` = ''
+- All new events: `heroImage` = null (no classified images yet)
+
+### Build
+- 13 pages built · 16.26 s · zero errors · sitemap regenerated
+- Routes: `/` `/events/chatto-metro` `/events/chatto-metro-relay-2026` `/events/moheshkhali-ultra-2026` `/events/duathlon-2026` `/events/kutubdia-2027` `/events/kutubdia-2026` `/events/moheshkhali-2025` `/events/bootcamp-kutubdia-2026` `/events/bootcamp-swimming-2026` `/team` `/terms` `/join`
+
+---
+
 ## 2026-05-31 — Brand-first multi-page restructure
 
 ### What changed

@@ -16,7 +16,12 @@ const previous = getPreviousEvents();
     <div class="ev-card-grid">
       {previous.map((e) => (
         <article class="ev-card ev-card-prev">
-          <div class="ev-card-img ev-card-img-placeholder ev-card-img-dim" aria-hidden="true"></div>
+          <div class="ev-card-img">
+            {e.heroImage
+              ? <img src={e.heroImage} alt={e.name} loading="lazy" />
+              : <div class="ev-card-img-placeholder ev-card-img-dim" aria-hidden="true"></div>
+            }
+          </div>
           <div class="ev-card-body">
             <div class="ev-card-meta">{e.dateDisplay}</div>
             <div class="ev-card-name">{e.name}</div>
