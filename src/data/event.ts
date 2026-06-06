@@ -604,9 +604,11 @@ export interface OrgMember {
 export const orgTeam: OrgMember[] = [
   { name: "Nesarul Hoque Suja", img: "/assets/team-suja.jpeg" },
   { name: "Md. Abdul Matin", img: "/assets/team-matin.jpeg" },
+  { name: "Shamsud Douza Nayan", img: "/assets/team-douza.jpeg" },
   { name: "Md. Shahidul Islam",   img: "/assets/team-shahid.jpeg" },
   { name: "Mohammad Ziaul Haque", img: "/assets/team-zia.jpeg" },
   { name: "Mahbubul Islam",      img: "/assets/team-mahbub.jpeg" },
+  { name: "Mohammad Wasir Salil",      img: "/assets/team-wasir.jpeg" },
   { name: "Nasiful Alam",        img: "/assets/team-nasif.jpeg" },
 ];
 
