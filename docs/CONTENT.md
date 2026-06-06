@@ -12,7 +12,7 @@ Human-readable spec mirroring `src/data/event.ts`. **`event.ts` is the live sour
 | Date | Friday, 10 July 2026 |
 | Flag-off (21.1K) | 05:00 AM BST — ⚠️ CONFIRM: 05:00 vs 05:30 with race director |
 | Venue (short) | Karnaphuli Riverside, Chattogram |
-| Venue (long) | Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram |
+| Venue (long) | Bastuhara, Khetchar (নতুন রাস্তা), Chattogram |
 | Organizer | Triathlon Bangladesh |
 | Target runners | 600 |
 | Register URL | https://coxsbazartriathletes.com |
@@ -78,8 +78,8 @@ Flat, riverside, western bank of the Karnaphuli. Out-and-back from Bastuhara to 
 
 | # | Label | Location |
 |---|---|---|
-| 1 | START | Bastuhara · Khetrochar (নতুন রাস্তা) |
-| 2 | MIDPOINT | Khetrochar Jame Mosque & Forkania Madrasa |
+| 1 | START | Bastuhara · Khetchar (নতুন রাস্তা) |
+| 2 | MIDPOINT | Khetchar Jame Mosque & Forkania Madrasa |
 | 3 | TURN | Bangladesh Maritime University |
 
 ## Team

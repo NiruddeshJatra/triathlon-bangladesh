@@ -10,7 +10,7 @@ export const event = {
   endISO: "2026-07-10T10:00:00+06:00",
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
-  venueLong: "Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram",
+  venueLong: "Bastuhara, Khetchar (নতুন রাস্তা), Chattogram",
   organizer: "Triathlon Bangladesh",
   targetRunners: 600,
   registerUrl: "https://coxsbazartriathletes.com",
@@ -23,7 +23,7 @@ export const event = {
 
 export const quickFacts = [
   { k: "10 July 2026", s: "Friday · Race Day" },
-  { k: "Bastuhara, Khetrochar", s: "Karnaphuli Bank Road · Chattogram" },
+  { k: "Bastuhara, Khetchar", s: "Karnaphuli Bank Road · Chattogram" },
   { k: "21.1 / 10 / 5", s: "Kilometres" },
   { k: "≈600", s: "Runners" },
 ] as const;
@@ -155,8 +155,8 @@ export const routePinXY: [number, number][] = [
 ];
 
 export const routePins = [
-  { label: "START", sub: "Bastuhara · Khetrochar (নতুন রাস্তা)", t: 0.0 },
-  { label: "MIDPOINT", sub: "Khetrochar Jame Mosque & Forkania Madrasa", t: 0.55 },
+  { label: "START", sub: "Bastuhara · Khetchar (নতুন রাস্তা)", t: 0.0 },
+  { label: "MIDPOINT", sub: "Khetchar Jame Mosque & Forkania Madrasa", t: 0.55 },
   { label: "TURN", sub: "Bangladesh Maritime University", t: 1.0 },
 ] as const;
 
@@ -326,7 +326,7 @@ export const medals: Medal[] = [
 export const faq = [
   {
     q: "When and where is the race?",
-    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetrochar (নতুন রাস্তা), Chattogram — Karnaphuli riverside. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
+    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetchar (নতুন রাস্তা), Chattogram — Karnaphuli riverside. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
   },
   {
     q: "Which distances can I enter?",
@@ -342,7 +342,7 @@ export const faq = [
   },
   {
     q: "What's the course like?",
-    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start in Bastuhara, pass the Khetrochar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
+    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start in Bastuhara, pass the Khetchar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
   },
   {
     q: "What on-course support is there?",
@@ -415,7 +415,7 @@ export const events: EventEntry[] = [
     status: 'current',
     date: event.date,
     dateDisplay: event.dateDisplay,
-    location: 'Bastuhara, Khetrochar, Karnaphuli Bank Road, Chattogram',
+    location: 'Bastuhara, Khetchar, Karnaphuli Bank Road, Chattogram',
     tagline: event.tagline,
     registerUrl: event.registerUrl,
     heroImage: null,
@@ -603,9 +603,10 @@ export interface OrgMember {
 
 export const orgTeam: OrgMember[] = [
   { name: "Nesarul Hoque Suja", img: "/assets/team-suja.jpeg" },
-  { name: "Md Shahidul Islam",   img: "/assets/team-shahid.jpeg" },
-  { name: "Mahbubul Islam",      img: "/assets/team-mahbub.jpeg" },
+  { name: "Md. Abdul Matin", img: "/assets/team-matin.jpeg" },
+  { name: "Md. Shahidul Islam",   img: "/assets/team-shahid.jpeg" },
   { name: "Mohammad Ziaul Haque", img: "/assets/team-zia.jpeg" },
+  { name: "Mahbubul Islam",      img: "/assets/team-mahbub.jpeg" },
   { name: "Nasiful Alam",        img: "/assets/team-nasif.jpeg" },
 ];
 

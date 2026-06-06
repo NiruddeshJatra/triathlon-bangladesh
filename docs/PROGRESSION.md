@@ -4,6 +4,19 @@ Most recent first.
 
 ---
 
+## 2026-06-06 — Center align text in mobile CTA buttons & fix mobile frosted navbar
+
+### What changed
+- **`src/styles/global.css`** —
+  - Added `justify-content: center;` to `.two-cta-primary` and `.two-cta-secondary` rules in both base and responsive media query blocks. Since these buttons inherit `display: inline-flex` from `.cmhm-btn`, this ensures their texts and arrow spans are center-aligned when the buttons stretch to 100% width on mobile views.
+  - Removed the solid background (`var(--bg-base)`) override and gold border override on mobile viewports under 900px for `.cmhm-nav`, allowing it to correctly inherit the desktop's frosted-glass design (`background: rgba(255,255,255,0.07)` and `backdrop-filter: blur(14px)`).
+  - Adjusted the mobile navigation drawer menu `.cmhm-navlinks` top inset from `64px` to `70px` to match the actual height of the navbar (14px top/bottom padding + 42px brand logo height), preventing visual overlapping/bleeding under the semi-transparent frosted-glass navbar.
+
+### Build
+- 13 pages built · zero errors · sitemap index created
+
+---
+
 ## 2026-06-04 — 8 events seeded; asset folderization; copy + nav + JSON-LD fixes; frosted-glass nav proposal
 
 ### What changed
@@ -16,7 +29,7 @@ Most recent first.
 - **`src/components/OrgAbout.astro`** — alt text: "Swim · Ride · Run" → "Swim · Bike · Run".
 - **`src/components/Nav.astro`** — brand logo swapped from `cmhm-logo-for-dark.png` → `triathlon-bd-shield-white.png` (Triathlon Bangladesh org mark).
 - **`src/styles/global.css`** — navbar frosted-glass proposal: `rgba(8,20,14,.6)` → `rgba(255,255,255,0.07)` + `backdrop-filter:blur(14px)`. `@media (prefers-reduced-transparency: reduce)` fallback to solid `var(--bg-base)`. Mobile stays solid `var(--bg-base)` (unchanged).
-- **`src/layouts/Layout.astro`** — JSON-LD `streetAddress`: "Bastuhara, Khetrochar" → "Bastuhara, Khetrochar, Karnaphuli Bank Road".
+- **`src/layouts/Layout.astro`** — JSON-LD `streetAddress`: "Bastuhara, Khetchar" → "Bastuhara, Khetchar, Karnaphuli Bank Road".
 - **`public/assets/events/`** — 8 per-event subfolders created (empty, ready for image assignment).
 - **`docs/CONTENT.md`** — tagline + 8 new events appended.
 - **`docs/DECISIONS.md`** — 5 new locked decisions appended.

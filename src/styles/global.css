@@ -121,10 +121,9 @@ body{
 .cmhm-nav-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .2s,opacity .2s;}
 
 @media (max-width:900px){
-  /* Bug #1: solid background on mobile so closed nav never bleeds through */
-  .cmhm-nav{background:var(--bg-base);border-bottom-color:rgba(212,175,55,.2);}
+  /* Mobile navbar inherits the desktop frosted-glass background and blur styles */
   /* display:none (not transform) so closed drawer is fully gone from hit-testing */
-  .cmhm-navlinks{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(8,20,14,.98);padding:24px var(--pad);gap:18px;border-bottom:1px solid rgba(212,175,55,.1);display:none;}
+  .cmhm-navlinks{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:rgba(8,20,14,.98);padding:24px var(--pad);gap:18px;border-bottom:1px solid rgba(212,175,55,.1);display:none;}
   .cmhm-nav.open .cmhm-navlinks{display:flex;}
   .cmhm-nav-toggle{display:flex;}
   .cmhm-brand span{display:none;}
@@ -630,7 +629,7 @@ details[open] .fchev{transform:rotate(45deg);}
 /* ─── TwoRegisterCTAs ────────────────────────────────────────────────────── */
 .two-ctas-wrap{width:100%;display:flex;justify-content:center;padding:32px 24px;}
 .two-ctas{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;}
-.two-cta-primary,.two-cta-secondary{text-align:center;white-space:nowrap;}
+.two-cta-primary,.two-cta-secondary{text-align:center;white-space:nowrap;justify-content:center;}
 
 /* ─── Event card lists ───────────────────────────────────────────────────── */
 .ev-list-section{padding-top:60px;padding-bottom:60px;}
@@ -772,7 +771,7 @@ details[open] .fchev{transform:rotate(45deg);}
   .cmhm-brand-hero{min-height:auto;padding:70px 0 40px;}
   .two-ctas-wrap{padding:24px 20px;}
   .two-ctas{flex-direction:column;align-items:stretch;width:100%;}
-  .two-cta-primary,.two-cta-secondary{text-align:center;width:100%;}
+  .two-cta-primary,.two-cta-secondary{text-align:center;width:100%;justify-content:center;}
   .ev-card-grid{grid-template-columns:1fr;padding:0 20px;}
   .org-team-grid{grid-template-columns:1fr 1fr;padding:0 20px;gap:20px;}
   .terms-inner,.join-inner,.ev-detail-inner{padding:0 20px;}
