@@ -3,6 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { orgTeam } from '../data/event';
+
+function roleClass(role?: string): string {
+  if (!role) return '';
+  const r = role.toLowerCase();
+  if (r.includes('founder')) return 'org-role-founder';
+  if (r.includes('mentor')) return 'org-role-mentor';
+  if (r.includes('social')) return 'org-role-social';
+  return 'org-role-coordinator';
+}
 ---
 <Layout
   title="Our Team · Triathlon Bangladesh"
@@ -19,7 +28,7 @@ import { orgTeam } from '../data/event';
 
       <div class="org-team-grid">
         {orgTeam.map((member) => (
-          <article class="org-member-card">
+          <article class={`org-member-card ${roleClass(member.role)}`}>
             <div class="org-member-photo">
               <img
                 src={member.img}

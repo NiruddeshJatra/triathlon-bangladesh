@@ -5,7 +5,7 @@ const PATH = "M 60 30 C 30 200 90 320 50 480 C 18 620 78 780 40 940 C 16 1080 76
 
 const PINS = [
   { y: 0.06, label: "00", sub: "Karnaphuli · Pre-dawn" },
-  { y: 0.16, label: "START", sub: "Bāstuhārā · Kṣetrochar" },
+  { y: 0.16, label: "START", sub: "Bastuhara · Kṣetrochar" },
   { y: 0.32, label: "RACE", sub: "Three distances" },
   { y: 0.46, label: "FLAG-OFF", sub: `${categories[0].flagOff} BST` },
   { y: 0.58, label: "MID", sub: "Jame Mosque · Madrasa" },

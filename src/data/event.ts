@@ -10,7 +10,7 @@ export const event = {
   endISO: "2026-07-10T10:00:00+06:00",
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
-  venueLong: "Bastuhara, Khetchar (নতুন রাস্তা), Chattogram",
+  venueLong: "Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram",
   organizer: "Triathlon Bangladesh",
   targetRunners: 600,
   registerUrl: "https://coxsbazartriathletes.com",
@@ -23,7 +23,7 @@ export const event = {
 
 export const quickFacts = [
   { k: "10 July 2026", s: "Friday · Race Day" },
-  { k: "Bastuhara, Khetchar", s: "Karnaphuli Bank Road · Chattogram" },
+  { k: "Bastuhara, Khetchar", s: "Behind Noman College · Shah Amanat Bridge" },
   { k: "21.1 / 10 / 5", s: "Kilometres" },
   { k: "≈600", s: "Runners" },
 ] as const;
@@ -155,7 +155,7 @@ export const routePinXY: [number, number][] = [
 ];
 
 export const routePins = [
-  { label: "START", sub: "Bastuhara · Khetchar (নতুন রাস্তা)", t: 0.0 },
+  { label: "START", sub: "Bastuhara · Khetchar (Behind Noman College)", t: 0.0 },
   { label: "MIDPOINT", sub: "Khetchar Jame Mosque & Forkania Madrasa", t: 0.55 },
   { label: "TURN", sub: "Bangladesh Maritime University", t: 1.0 },
 ] as const;
@@ -213,6 +213,13 @@ export const team: TeamMember[] = [
   },
   {
     role: "Influencer",
+    name: "Emranul Haque",
+    bio: ["Wellness advocate"],
+    img: "/assets/team-emranul.jpg",
+    pos: "50% 50%",
+  },
+  {
+    role: "Influencer",
     name: "Shaila Kabir",
     bio: ["Trail runner", "Community lead"],
     img: "/assets/team-shaila.jpg",
@@ -235,7 +242,7 @@ export const team: TeamMember[] = [
   {
     role: "Mentor",
     name: "Shahriar Morshed Siddiqui",
-    bio: [],
+    bio: ["Fitness Enthusiast"],
     img: "/assets/team-shahriar.jpeg",
     pos: "50% 20%",
   },
@@ -250,8 +257,13 @@ export interface Pacer {
 }
 
 export const pacers: Pacer[] = [
-  { distance: "21 KM", name: "Zinnia Mahjabin", time: "3:00 hrs", img: "/assets/team-zinnia.jpg", pos: "50% 32%" },
-  { distance: "10 KM", name: "Sumaiya Hasan", time: "90 minutes", img: "/assets/team-sumaiya.jpg", pos: "50% 35%" },
+  { distance: "21.1 KM", name: "MD Masudul Hoque", time: "2:10 hrs", img: "/assets/team-masud.jpg", pos: "50% 32%" },
+  { distance: "21.1 KM", name: "Biplob Barua", time: "2:30 hrs", img: "/assets/team-biplob.jpg", pos: "50% 32%" },
+  { distance: "21.1 KM", name: "Mehedi Hasan Danny", time: "2:30 hrs", img: "/assets/team-mehedi.jpg", pos: "50% 32%" },
+  { distance: "10 KM", name: "Suman Das", time: "1:10 hrs", img: "/assets/team-sumon.jpg", pos: "50% 35%" },
+  { distance: "10 KM", name: "Tamjid Kabbo", time: "1:25 hrs", img: "/assets/team-tamjid.jpg", pos: "50% 32%" },
+  { distance: "10 KM", name: "Sumaiya Hasan", time: "1:30 hrs", img: "/assets/team-sumaiya.jpg", pos: "50% 35%" },
+  { distance: "10 KM", name: "Mohammad Aaqib Feroz", time: "1:40 hrs", img: "/assets/team-aaqib.jpg", pos: "50% 35%" },
 ];
 
 export const previousEvents = [
@@ -326,7 +338,7 @@ export const medals: Medal[] = [
 export const faq = [
   {
     q: "When and where is the race?",
-    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetchar (নতুন রাস্তা), Chattogram — Karnaphuli riverside. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
+    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetchar, behind Noman College (left of Shah Amanat Bridge junction), Chattogram. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
   },
   {
     q: "Which distances can I enter?",
@@ -342,7 +354,7 @@ export const faq = [
   },
   {
     q: "What's the course like?",
-    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start in Bastuhara, pass the Khetchar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
+    a: "Flat, riverside, mostly on the western bank of the Karnaphuli. Start at Bastuhara, Khetchar (behind Noman College), pass the Khetchar Jame Mosque & Forkania Madrasa near the midpoint, turn at Bangladesh Maritime University.",
   },
   {
     q: "What on-course support is there?",
@@ -415,7 +427,7 @@ export const events: EventEntry[] = [
     status: 'current',
     date: event.date,
     dateDisplay: event.dateDisplay,
-    location: 'Bastuhara, Khetchar, Karnaphuli Bank Road, Chattogram',
+    location: 'Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram',
     tagline: event.tagline,
     registerUrl: event.registerUrl,
     heroImage: null,
@@ -472,18 +484,17 @@ export const events: EventEntry[] = [
     note: 'First duathlon in Chattogram, second in Bangladesh. Olympic distance. Categories: Open 18–39 (M/F), Masters 40+ (M/F).',
   },
   {
-    slug: 'kutubdia-2027',
-    name: 'Kutubdia Island Half Marathon 2027',
+    slug: '-2027',
+    name: 'Moheshkhali Island Half Marathon 2027',
     status: 'upcoming',
     date: '2027-01-08',
     dateDisplay: '8 January 2027',
-    location: 'Kutubdia Island, Cox\'s Bazar District',
-    tagline: 'Run for Kutubdia Embankment, Save Kutubdia',
+    location: 'Shaplapur, Moheshkhali, Cox\'s Bazar',
+    tagline: 'Miles for Moheshkhali, Stand for Salt and Betel Farmers',
     registerUrl: '',
     heroImage: null,
-    // NOTE: gallery-1.jpg in this folder appears to be a Moheshkhali 2025 race image — may be misplaced
     gallery: [],
-    summary: 'Return of the Kutubdia Half Marathon — climate-justice race continues into 2027.',
+    summary: 'Return of the Moheshkhali Island Half Marathon — climate-justice race continues into 2027.',
     dist: '21.1K · 10K · 3K Kids',
     note: 'Entitlements: T-shirt, Kit Bag, Photography, Medal (finishers), Chip Timing, Washroom, Prayer Room, Dressing Room.',
   },
@@ -602,14 +613,14 @@ export interface OrgMember {
 }
 
 export const orgTeam: OrgMember[] = [
-  { name: "Nesarul Hoque Suja", img: "/assets/team-suja.jpeg" },
-  { name: "Md. Abdul Matin", img: "/assets/team-matin.jpeg" },
-  { name: "Shamsud Douza Nayan", img: "/assets/team-douza.jpeg" },
-  { name: "Md. Shahidul Islam",   img: "/assets/team-shahid.jpeg" },
-  { name: "Mohammad Ziaul Haque", img: "/assets/team-zia.jpeg" },
-  { name: "Mahbubul Islam",      img: "/assets/team-mahbub.jpeg" },
-  { name: "Mohammad Wasir Salil",      img: "/assets/team-wasir.jpeg" },
-  { name: "Nasiful Alam",        img: "/assets/team-nasif.jpeg" },
+  { name: "Nesarul Hoque Suja",   role: "Founder Admin",       img: "/assets/team-suja.jpeg" },
+  { name: "Md. Abdul Matin",      role: "Founder Admin",       img: "/assets/team-matin.jpeg" },
+  { name: "Shamsud Douza Nayan",  role: "Mentor",              img: "/assets/team-douza.jpeg" },
+  { name: "Md. Shahidul Islam",   role: "Co-ordinator",        img: "/assets/team-shahid.jpeg" },
+  { name: "Mohammad Ziaul Haque", role: "Co-ordinator",        img: "/assets/team-zia.jpeg" },
+  { name: "Mahbubul Islam",       role: "Co-ordinator",        img: "/assets/team-mahbub.jpeg" },
+  { name: "Mohammad Wasir Salil", role: "Co-ordinator",        img: "/assets/team-wasir.jpeg" },
+  { name: "Nasiful Alam",         role: "Social Media Manager", img: "/assets/team-nasif.jpeg" },
 ];
 
 export function getCurrentEvent(): EventEntry | undefined {
