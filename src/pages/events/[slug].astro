@@ -67,7 +67,10 @@ const pageDesc = eventEntry.summary;
           <div class="ev-page-hero-overlay" aria-hidden="true"></div>
           <div class="ev-page-hero-content">
             <div class="eyebrow ev-page-eyebrow">
-              {eventEntry.eventType === 'program' ? 'Training Programme' : (eventEntry.status === 'previous' ? 'Past Event' : 'Upcoming Event')}
+              {eventEntry.eventType === 'program' ? 'Training Programme'
+               : eventEntry.eventType === 'community' ? 'Rescue Partner · Community'
+               : eventEntry.status === 'previous' ? 'Past Event'
+               : 'Upcoming Event'}
               {' · '}{eventEntry.dateDisplay}
             </div>
             <h1 class="ev-page-title">{eventEntry.name}</h1>

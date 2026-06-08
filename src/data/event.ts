@@ -396,7 +396,7 @@ export interface Partner {
 export interface EventEntry {
   slug: string;
   name: string;
-  eventType?: 'race' | 'program';
+  eventType?: 'race' | 'program' | 'community';
   status: 'upcoming' | 'current' | 'previous';
   date: string;
   dateDisplay: string;
@@ -601,6 +601,39 @@ export const events: EventEntry[] = [
     summary: 'Free swimming boot camp — basics through Bangla Channel motivation, organised by Cox\'s Bazar Triathletes.',
     note: 'Time: 6:40 AM. Boot camp leader: Homaed Ishaque Moon (Bangla Channel Conqueror, IRONMAN 70.3 Finisher). Free. Covers basics, technique, floating, hydrotherapy, form coaching, nutrition/recovery, mentor Q&A.',
   },
+
+  // ── community (events we supported, not organised) ────────────────────────
+  {
+    slug: 'kutubdia-channel-swimming-2025',
+    name: 'Kutubdia Channel Swimming 2025',
+    eventType: 'community',
+    status: 'previous',
+    date: '2025-11-01',
+    dateDisplay: '2025',
+    location: 'Kutubdia Channel, Cox\'s Bazar District',
+    tagline: 'Our team in the water. Every swimmer safe.',
+    registerUrl: '',
+    heroImage: '/assets/events/kutubdia-swimming-crew/team-banner.jpeg',
+    gallery: [
+      '/assets/events/kutubdia-swimming-crew/channel-boat-aerial.jpeg',
+      '/assets/events/kutubdia-swimming-crew/rescue-boat-swimmers.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-flag-megaphone.jpeg',
+      '/assets/events/kutubdia-swimming-crew/rescue-full-team-boat.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-bd-flag.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-red-flag.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-with-swimmer-boat.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-directing-channel.jpeg',
+      '/assets/events/kutubdia-swimming-crew/two-crew-waterfront.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-swimmer-finish.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-swimmer-start.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-megaphone-back.jpeg',
+      '/assets/events/kutubdia-swimming-crew/crew-boatman.jpeg',
+    ],
+    summary: 'Cox\'s Bazar Triathletes served as official Rescue Partner for the 3rd Kutubdia Channel Swimming 2025 — manning the rescue boats as 15 brave swimmers tackled one of Bangladesh\'s most turbulent open-water crossings.',
+    runners: 15,
+    dist: 'Open Water Channel',
+    note: '11 of 15 swimmers completed the crossing. The Kutubdia Channel is perpetually rough — currents ran completely opposite to the previous edition. All 15 starters were experienced open-water swimmers. The 4 who did not finish gave everything until the very last moment. Coming up: Moheshkhali Channel Swimming 2026 — start preparing for long-distance open water.',
+  },
 ];
 
 // ─── Org-level team (for /team page) ─────────────────────────────────────────
@@ -632,7 +665,11 @@ export function getUpcomingEvents(): EventEntry[] {
 }
 
 export function getPreviousEvents(): EventEntry[] {
-  return events.filter(e => e.status === 'previous');
+  return events.filter(e => e.status === 'previous' && e.eventType !== 'community');
+}
+
+export function getCommunityEvents(): EventEntry[] {
+  return events.filter(e => e.eventType === 'community');
 }
 
 export function getEventBySlug(slug: string): EventEntry | undefined {

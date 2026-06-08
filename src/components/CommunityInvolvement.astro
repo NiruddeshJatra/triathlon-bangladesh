@@ -1,0 +1,52 @@
+---
+import { getCommunityEvents } from '../data/event';
+const events = getCommunityEvents();
+if (events.length === 0) return;
+---
+
+<section class="cmhm-section cmhm-community">
+  <div class="cmhm-shead">
+    <div class="eyebrow">Community · Open Water</div>
+    <h2 class="stitle">On the water <span class="acc">with others.</span></h2>
+    <p class="skicker">Events we were proud to support — as rescue partners, crew, and community.</p>
+  </div>
+
+  <div class="community-events">
+    {events.map(ev => (
+      <a href={`/events/${ev.slug}`} class="community-card">
+        <div class="cc-img-wrap">
+          {ev.heroImage && (
+            <img class="cc-img" src={ev.heroImage} alt={ev.name} loading="lazy" />
+          )}
+          <div class="cc-img-overlay" aria-hidden="true"></div>
+          <div class="cc-role-badge">Rescue Partner</div>
+        </div>
+
+        <div class="cc-body">
+          <div class="cc-eyebrow">{ev.dateDisplay} · {ev.location}</div>
+          <h3 class="cc-title">{ev.name}</h3>
+          <p class="cc-summary">{ev.summary}</p>
+
+          {ev.runners && (
+            <div class="cc-stats">
+              <div class="cc-stat">
+                <span class="cc-stat-n">{ev.runners}</span>
+                <span class="cc-stat-l">Swimmers</span>
+              </div>
+              <div class="cc-stat">
+                <span class="cc-stat-n">11</span>
+                <span class="cc-stat-l">Finishers</span>
+              </div>
+              <div class="cc-stat">
+                <span class="cc-stat-n">3rd</span>
+                <span class="cc-stat-l">Edition</span>
+              </div>
+            </div>
+          )}
+
+          <span class="cc-link">Read our story <span class="cc-arr">→</span></span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

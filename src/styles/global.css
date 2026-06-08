@@ -919,6 +919,128 @@ details[open] .fchev{transform:rotate(45deg);}
 .join-email,.join-phone{font-size:16px;color:var(--text);text-decoration:none;word-break:break-all;}
 .join-email:hover,.join-phone:hover{color:var(--green-bright);}
 
+/* ─── Community Involvement section ─────────────────────────────────────── */
+.cmhm-community{padding-top:56px;padding-bottom:64px;}
+
+.community-events{display:flex;flex-direction:column;gap:24px;}
+
+.community-card{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid rgba(30,136,229,.2);
+  border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(14,25,38,.7),rgba(8,20,14,.6));
+  text-decoration:none;
+  transition:border-color .3s, box-shadow .3s, transform .25s;
+  position:relative;
+}
+.community-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg, var(--swim-blue), rgba(167,139,250,.8));
+}
+.community-card:hover{
+  border-color:rgba(30,136,229,.5);
+  box-shadow:0 28px 70px -20px rgba(30,136,229,.22);
+  transform:translateY(-3px);
+}
+
+/* Image side */
+.cc-img-wrap{
+  position:relative;
+  overflow:hidden;
+  min-height:320px;
+}
+.cc-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:50% 30%;
+  display:block;
+  filter:saturate(.75) brightness(.85);
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94), filter .4s;
+}
+.community-card:hover .cc-img{
+  transform:scale(1.06);
+  filter:saturate(1) brightness(1);
+}
+.cc-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, transparent 50%, rgba(8,20,14,.45) 100%),
+             linear-gradient(to top, rgba(8,20,14,.4) 0%, transparent 40%);
+}
+.cc-role-badge{
+  position:absolute;top:16px;left:16px;
+  padding:5px 13px;
+  background:rgba(30,136,229,.18);
+  border:1px solid rgba(30,136,229,.55);
+  border-radius:20px;
+  font-family:var(--f-display);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(100,180,255,.9);
+  font-weight:600;
+  backdrop-filter:blur(6px);
+}
+
+/* Content side */
+.cc-body{
+  padding:36px 40px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:0;
+}
+.cc-eyebrow{
+  font-family:var(--f-display);font-size:10.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(100,180,255,.75);margin-bottom:14px;
+}
+.cc-title{
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(24px,2.6vw,36px);
+  text-transform:uppercase;line-height:1.05;letter-spacing:-.01em;
+  color:var(--text);margin:0 0 14px;text-wrap:balance;
+}
+.cc-summary{
+  font-size:15px;color:var(--text-muted);line-height:1.65;max-width:46ch;
+  text-wrap:pretty;margin-bottom:24px;
+}
+.cc-stats{
+  display:flex;gap:28px;margin-bottom:28px;
+  padding:16px 20px;
+  background:rgba(30,136,229,.07);
+  border:1px solid rgba(30,136,229,.15);
+  border-radius:6px;
+}
+.cc-stat{display:flex;flex-direction:column;gap:3px;}
+.cc-stat-n{
+  font-family:var(--f-num);font-weight:700;font-size:28px;color:rgba(100,180,255,.9);
+  line-height:1;letter-spacing:-.01em;
+}
+.cc-stat-l{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);}
+.cc-link{
+  font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(100,180,255,.8);display:inline-flex;align-items:center;gap:8px;
+  transition:color .2s;
+}
+.community-card:hover .cc-link{color:rgba(100,180,255,1);}
+.cc-arr{transition:transform .25s;}
+.community-card:hover .cc-arr{transform:translateX(4px);}
+
+@media (max-width:900px){
+  .community-card{grid-template-columns:1fr;}
+  .cc-img-wrap{min-height:240px;}
+}
+@media (max-width:640px){
+  .cc-body{padding:24px 20px;}
+  .cc-stats{gap:18px;}
+  .cc-stat-n{font-size:22px;}
+}
+
+/* ─── Community event detail page ────────────────────────────────────────── */
+.ev-page-hero .ev-page-eyebrow.community-eyebrow{color:rgba(100,180,255,.85);}
+
 /* ─── Responsive: new components ────────────────────────────────────────── */
 @media (max-width:900px){
   .bh-grid{grid-template-columns:1fr;gap:32px;padding:0 24px;}

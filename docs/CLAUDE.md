@@ -24,6 +24,7 @@ src/
 │   ├── TwoRegisterCTAs.astro  # Two CTA buttons (external register + event detail link)
 │   ├── UpcomingEventsList.astro  # Card grid for upcoming events from events[]
 │   ├── PreviousEventsList.astro  # Card grid for previous events from events[]
+│   ├── CommunityInvolvement.astro  # Homepage section for community/rescue-partner events (eventType:'community')
 │   ├── OrgAbout.astro         # Org mission + pillars (homepage brand section)
 │   ├── PartnersSlideshow.astro   # Per-event partners — infinite marquee, prefers-reduced-motion honored
 │   ├── Hero.astro             # Event-detail hero (full experience, used in [slug].astro only)
@@ -37,15 +38,15 @@ src/
 │   └── event.ts               # SINGLE SOURCE OF TRUTH — all content. Exports: event, categories,
 │                              #   schedule, entitlements, team, pacers, sponsors, faq, about, medals,
 │                              #   org, events[], orgTeam[], chattoMetroPartners[], plus helpers:
-│                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getEventBySlug()
-│                              #   EventEntry fields: slug, name, eventType?('race'|'program'), status,
+│                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getCommunityEvents(), getEventBySlug()
+│                              #   EventEntry fields: slug, name, eventType?('race'|'program'|'community'), status,
 │                              #   date, dateDisplay, location, tagline, registerUrl, heroImage,
 │                              #   gallery?[], summary, runners?, dist?, note?, partners?
 ├── islands/                   # React interactive components (islands pattern)
 ├── layouts/
 │   └── Layout.astro           # HTML shell, meta tags, font imports — do not touch SEO
 ├── pages/
-│   ├── index.astro            # Brand homepage: BrandHero → CTAs → UpcomingEvents → PreviousEvents → OrgAbout
+│   ├── index.astro            # Brand homepage: BrandHero → CTAs → UpcomingEvents → PreviousEvents → CommunityInvolvement → OrgAbout
 │   ├── events/
 │   │   └── [slug].astro       # Dynamic event detail — full rich layout for ALL events (hero, facts, CTAs, gallery)
 │   ├── team.astro             # Public org team page (uses orgTeam[] from event.ts)
@@ -64,7 +65,8 @@ public/
 ├── logo-nobg.png              # bg-removed source (favicon generation)
 ├── assets/
 │   ├── events/
-│   │   └── <slug>/            # Per-event images: poster.jpg, logo.jpg, gallery-*.jpg, eligibility.jpg
+│   │   ├── <slug>/            # Per-event images: poster.jpg, logo.jpg, gallery-*.jpg, eligibility.jpg
+│   │   └── kutubdia-swimming-crew/  # Community event assets — descriptively named (team-banner.jpeg, rescue-*.jpeg, crew-*.jpeg)
 │   ├── team-*.jpg / .jpeg     # Team member photos (event crew + org team)
 │   ├── jersey-*.jpg · medal-*.jpg  # Event merchandise images
 │   └── sponsor-*.jpg          # Partner logos
@@ -83,6 +85,8 @@ public/
 ## Key Constraints
 
 - `src/data/event.ts` — single source of truth. All user-facing strings, event data, team, org, partners come from here. Never hardcode facts in components.
+- `eventType: 'community'` — events we participated in but did not organise (e.g. rescue partner roles). `getPreviousEvents()` excludes these; use `getCommunityEvents()` instead. Community events render via the standard non-current `[slug].astro` template.
+- `orgTeam[]` role field drives color-coded badge on `/team`. Role → CSS class: `Founder Admin`→`org-role-founder`, `Mentor`→`org-role-mentor`, `Co-ordinator`→`org-role-coordinator`, `Social Media Manager`→`org-role-social`. Each class sets `--role-color`.
 - New content shape: `org` (brand), `events[]` (EventEntry — card-level data), `orgTeam[]` (OrgMember — /team page), `chattoMetroPartners[]` (Partner[]). All existing named exports retained for backward compat.
 - `src/layouts/Layout.astro` — do not touch SEO/meta unless asked
 - `astro.config.mjs` — do not touch build config without approval
