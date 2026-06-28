@@ -484,7 +484,7 @@ export const events: EventEntry[] = [
     note: 'First duathlon in Chattogram, second in Bangladesh. Olympic distance. Categories: Open 18–39 (M/F), Masters 40+ (M/F).',
   },
   {
-    slug: '-2027',
+    slug: 'moheshkhali-2027',
     name: 'Moheshkhali Island Half Marathon 2027',
     status: 'upcoming',
     date: '2027-01-08',

@@ -6,3 +6,4 @@ dist/
 .astro/
 .claude/
 .vercel/
+.gstack/

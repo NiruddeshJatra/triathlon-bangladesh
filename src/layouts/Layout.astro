@@ -13,7 +13,8 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
-const currentUrl = Astro.url?.href ?? siteUrl;
+const canonicalUrl = new URL(Astro.url?.pathname ?? '/', Astro.site ?? `${siteUrl}/`).href;
+const currentUrl = canonicalUrl;
 
 const jsonLdEvent = {
   "@context": "https://schema.org",
@@ -100,14 +101,14 @@ const jsonLdBreadcrumb = {
   <meta property="og:image:type" content="image/jpeg" />
   <meta name="twitter:image" content="/og-image.jpg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.site?.toString() ?? 'https://triathlonbangladesh.com'} />
+  <meta property="og:url" content={canonicalUrl} />
   <meta property="og:locale" content="en_US" />
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <!-- Canonical -->
-  <link rel="canonical" href={siteUrl} />
+  <link rel="canonical" href={canonicalUrl} />
   <!-- Geo + locale -->
   <meta name="geo.region" content="BD-B" />
   <meta name="geo.placename" content="Chattogram, Bangladesh" />

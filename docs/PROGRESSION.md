@@ -255,3 +255,13 @@ All 50+ loose Facebook/WhatsApp/numbered images in `public/assets/` could not be
 - Typography: Oswald display + Inter body
 - Section structure defined
 - Two signature motions conceived: ScrollRoute edge + rotating ship's-wheel dividers
+
+## Mobile bugfix + SEO indexation
+**2026-06-28 — CSP unblock, hydration fix, per-page canonical, pacer poster grid**
+
+- **Root cause of all dead JS** (wheel rotation, ScrollRoute, CountdownRing, MedalCarousel, CountUp, hamburger menu): `vercel.json` CSP `script-src 'self'` blocked Astro's inline hydration bootstrap + hoisted `.astro` scripts. Fix: added `'unsafe-inline'` to `script-src`. Bug was invisible in `astro dev` (dev never applies vercel.json headers) — only manifested on Vercel.
+- **CountdownRing hydration mismatch**: `useState(() => target - Date.now())` ran at two instants (SSR vs client) → React threw away server DOM (console errors + load flash). Fix: `CountdownRing.tsx` takes `nowMs` prop; `Hero.astro` + `BrandHero.astro` pass `nowMs={Date.now()}` so first client render matches SSR, then `useEffect` corrects to live time.
+- **SEO — subpages not indexed**: `Layout.astro` canonical + `og:url` were hardcoded to `siteUrl` (homepage) on every page → Google deduped all subpages to `/`. Fix: per-page canonical via `new URL(Astro.url.pathname, Astro.site)`.
+- **SEO — junk URL**: `event.ts` Moheshkhali 2027 slug `-2027` → `moheshkhali-2027` (was producing `/events/-2027/`).
+- **Pacer grid**: `Team.astro` + `global.css` — pacer "photos" are full event posters; old `140px + text` card cropped them to an illegible sliver and repeated name/time. Replaced with full-poster `<figure>` cards (4-col desktop, 3-col ≤880, 2-col mobile); removed orphaned `.pphoto/.pmeta/.pdist/.pname/.ptime` CSS. Pacer `pos:` field now unused (harmless).
+- **Pending user action (not code)**: deploy to apply CSP; set apex as Primary domain in Vercel (www→apex redirect, currently 307); verify in Google Search Console + submit sitemap to trigger indexation.

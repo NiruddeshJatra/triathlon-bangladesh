@@ -421,16 +421,11 @@ svg.cmhm-map, svg.cmhm-map *,
 .tbio li{padding-left:10px;position:relative;}
 .tbio li::before{content:"·";color:var(--gold);position:absolute;left:0;}
 .cmhm-team-subh{font-family:var(--f-display);letter-spacing:.18em;font-size:13px;color:var(--gold);text-transform:uppercase;margin:48px 0 16px;display:flex;align-items:center;}
-.cmhm-pacer-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.pcard{display:grid;grid-template-columns:140px 1fr;border:1px solid rgba(212,175,55,.18);background:var(--bg-card);border-radius:6px;overflow:hidden;}
-.pphoto img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2);}
-.pmeta{padding:18px 20px;}
-.pdist{font-family:var(--f-display);letter-spacing:.18em;font-size:11px;color:var(--gold);text-transform:uppercase;}
-.pname{font-family:var(--f-display);font-weight:600;font-size:24px;letter-spacing:.02em;margin-top:6px;text-transform:uppercase;}
-.ptime{font-size:13px;color:var(--text-muted);margin-top:10px;}
-.ptime b{color:var(--text);}
+.cmhm-pacer-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.pcard{margin:0;border:1px solid rgba(212,175,55,.18);background:var(--bg-card);border-radius:6px;overflow:hidden;}
+.pcard img{width:100%;height:auto;display:block;}
 @media (max-width:1180px){.cmhm-team-grid{grid-template-columns:repeat(3,1fr);}}
-@media (max-width:880px){.cmhm-team-grid{grid-template-columns:repeat(2,1fr);}.cmhm-pacer-row{grid-template-columns:1fr;}}
+@media (max-width:880px){.cmhm-team-grid{grid-template-columns:repeat(2,1fr);}.cmhm-pacer-row{grid-template-columns:repeat(3,1fr);}}
 @media (max-width:520px){.cmhm-team-grid{grid-template-columns:1fr 1fr;}}
 
 /* ─── previous events + stats ─────────────────────────────────────────────── */
@@ -570,7 +565,7 @@ details[open] .fchev{transform:rotate(45deg);}
   .cmhm-team-grid{grid-template-columns:1fr 1fr;gap:12px;}
   .tmeta{padding:12px 14px 14px;}
   .tname{font-size:16px;}
-  .cmhm-pacer-row{grid-template-columns:1fr;}
+  .cmhm-pacer-row{grid-template-columns:repeat(2,1fr);gap:12px;}
   .cmhm-stats{grid-template-columns:1fr 1fr !important;padding:20px;gap:16px;}
   .cmhm-stats .sn{font-size:34px;}
   .pe-year{font-size:20px;}
