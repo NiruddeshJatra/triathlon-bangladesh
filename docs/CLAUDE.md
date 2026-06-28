@@ -76,7 +76,7 @@ public/
 
 | File | Directive | Purpose |
 |---|---|---|
-| `CountdownRing.tsx` | `client:idle` | Live countdown to flag-off (homepage + event detail) |
+| `CountdownRing.tsx` | `client:idle` | Live countdown to flag-off (homepage + event detail). Takes `nowMs={Date.now()}` from the parent `.astro` to seed SSR time and avoid a hydration mismatch on the SVG ring |
 | `ScrollRoute.tsx` | `client:visible` | Fixed right-edge scroll-progress overlay (event detail only) |
 | `MedalCarousel.tsx` | `client:visible` | Medal/jersey carousel with tabs |
 | `WheelSpin.tsx` | `client:idle` | Scroll-based rAF-throttled wheel rotation (4 max per page) |
@@ -88,9 +88,10 @@ public/
 - `eventType: 'community'` — events we participated in but did not organise (e.g. rescue partner roles). `getPreviousEvents()` excludes these; use `getCommunityEvents()` instead. Community events render via the standard non-current `[slug].astro` template.
 - `orgTeam[]` role field drives color-coded badge on `/team`. Role → CSS class: `Founder Admin`→`org-role-founder`, `Mentor`→`org-role-mentor`, `Co-ordinator`→`org-role-coordinator`, `Social Media Manager`→`org-role-social`. Each class sets `--role-color`.
 - New content shape: `org` (brand), `events[]` (EventEntry — card-level data), `orgTeam[]` (OrgMember — /team page), `chattoMetroPartners[]` (Partner[]). All existing named exports retained for backward compat.
-- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked
-- `astro.config.mjs` — do not touch build config without approval
-- `vercel.json` — security headers; do not modify without approval
+- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked. Canonical + `og:url` are **per-page** via `new URL(Astro.url.pathname, Astro.site)` — never hardcode to a single `siteUrl` (that canonicalizes every subpage to the homepage and drops them from Google's index)
+- `astro.config.mjs` — do not touch build config without approval. `site` = apex `https://triathlonbangladesh.com` (non-www); www must redirect to apex
+- `vercel.json` — security headers; do not modify without approval. CSP `script-src` MUST keep `'unsafe-inline'` — Astro emits island-hydration bootstrap and hoisted `.astro` `<script>` inline; bare `'self'` kills all JS (invisible in `astro dev`, only breaks on Vercel)
+- Pacer cards (`Team.astro`) render the full poster image uncropped (poster already contains name/distance/time); no text column. Pacer `img` assets are full event posters, not headshots
 - Do not add packages not already in `package.json`
 - All animations require a `prefers-reduced-motion` static fallback
 - 4 wheel dividers maximum per page (homepage uses 3, event detail uses 4)

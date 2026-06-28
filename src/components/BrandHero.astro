@@ -43,7 +43,7 @@ const currentEvent = getCurrentEvent();
     </div>
     <div class="bh-right">
       {currentEvent && (
-        <CountdownRing dateISO={event.flagOffISO} client:idle />
+        <CountdownRing dateISO={event.flagOffISO} nowMs={Date.now()} client:idle />
       )}
     </div>
   </div>

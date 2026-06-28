@@ -1,13 +1,17 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { prefersReducedMotion } from './prefersReducedMotion';
 
-interface Props { dateISO: string }
+interface Props { dateISO: string; nowMs?: number }
 
-function useCountdown(targetISO: string) {
+function useCountdown(targetISO: string, nowMs?: number) {
   const target = useMemo(() => new Date(targetISO).getTime(), [targetISO]);
-  const [t, setT] = useState(() => Math.max(0, target - Date.now()));
+  // Seed from the server-provided timestamp so the first client render matches
+  // the SSR HTML exactly (avoids a hydration mismatch on the high-precision
+  // SVG attributes). useEffect then corrects to live time and starts ticking.
+  const [t, setT] = useState(() => Math.max(0, target - (nowMs ?? Date.now())));
   const reducedMotion = useRef(prefersReducedMotion());
   useEffect(() => {
+    setT(Math.max(0, target - Date.now()));
     if (reducedMotion.current) return;
     const id = setInterval(() => setT(Math.max(0, target - Date.now())), 1000);
     return () => clearInterval(id);
@@ -47,8 +51,8 @@ function ShipWheel({ size = 88, rotation = 0 }: { size?: number; rotation?: numb
   );
 }
 
-export default function CountdownRing({ dateISO }: Props) {
-  const { days, hours, mins, secs, totalMs } = useCountdown(dateISO);
+export default function CountdownRing({ dateISO, nowMs }: Props) {
+  const { days, hours, mins, secs, totalMs } = useCountdown(dateISO, nowMs);
   const win = 365 * 86400 * 1000;
   const p = 1 - Math.min(1, totalMs / win);
   const D = 128;

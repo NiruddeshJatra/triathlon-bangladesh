@@ -29,16 +29,9 @@ import { team, pacers } from '../data/event';
   <h3 class="cmhm-team-subh"><span class="rule"></span> Pacers on course</h3>
   <div class="cmhm-pacer-row">
     {pacers.map((p) => (
-      <div class="pcard">
-        <div class="pphoto">
-          <img src={p.img} alt={`${p.distance} Pacer — ${p.name}`} loading="lazy" style={`object-position:${p.pos}`} />
-        </div>
-        <div class="pmeta">
-          <div class="pdist">{p.distance} PACER</div>
-          <div class="pname">{p.name}</div>
-          <div class="ptime">Target time · <b>{p.time}</b></div>
-        </div>
-      </div>
+      <figure class="pcard">
+        <img src={p.img} alt={`${p.distance} Pacer — ${p.name}, target time ${p.time}`} loading="lazy" />
+      </figure>
     ))}
   </div>
 </section>
