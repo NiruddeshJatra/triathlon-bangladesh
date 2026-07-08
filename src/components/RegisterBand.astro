@@ -3,10 +3,10 @@ import { event, categories } from '../data/event';
 ---
 <section id="register" class="cmhm-section cmhm-regband">
   <div class="cmhm-regband-inner">
-    <div class="rb-eyebrow">{event.registrationOpen ? `Entries open · 600 spots · ${event.dateDisplay}` : `Registration closed · ${event.dateDisplay}`}</div>
+    <div class="rb-eyebrow">{event.registrationOpen !== false ? `Entries open · 600 spots · ${event.dateDisplay}` : `Registration closed · ${event.dateDisplay}`}</div>
     <h2 class="rb-title">Come run the <span class="acc">port city.</span></h2>
     <p class="rb-sub">Pick a distance. Pick a jersey. Show up at Bastuhara before sunrise.</p>
-    {event.registrationOpen ? (
+    {event.registrationOpen !== false ? (
       <a class="cmhm-btn cmhm-btn-p rb-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
         Register Now <span class="arr">→</span>
       </a>
