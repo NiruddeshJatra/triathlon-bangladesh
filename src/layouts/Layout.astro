@@ -54,7 +54,7 @@ const defaultJsonLdEvent = {
     "@type": "Offer",
     "url": event.registerUrl,
     "validFrom": "2026-01-01",
-    "availability": event.registrationOpen ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+    "availability": event.registrationOpen !== false ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
     "priceCurrency": "BDT"
   },
   "image": `${siteUrl}/og-image.jpg`,

@@ -37,7 +37,7 @@ import { categories, event } from '../data/event';
             ))}
           </ul>
         </details>
-        {event.registrationOpen ? (
+        {event.registrationOpen !== false ? (
           <a class="cat-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
             Enter {c.distance} <span>→</span>
           </a>

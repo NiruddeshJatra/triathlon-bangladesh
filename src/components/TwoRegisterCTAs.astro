@@ -6,7 +6,7 @@ const currentEvent = getCurrentEvent();
 {currentEvent && (
   <div class="two-ctas-wrap">
     <div class="two-ctas">
-      {currentEvent.registrationOpen ? (
+      {currentEvent.registrationOpen !== false ? (
         <a
           class="cmhm-btn cmhm-btn-p two-cta-primary"
           href={currentEvent.registerUrl}

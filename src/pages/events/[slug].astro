@@ -35,6 +35,15 @@ const pageDesc = eventEntry.summary;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
 
+const regFeeDigits = eventEntry.regFee?.replace(/[^\d]/g, '');
+const offers = eventEntry.registerUrl ? {
+  "@type": "Offer",
+  "url": eventEntry.registerUrl,
+  ...(regFeeDigits ? { "price": regFeeDigits } : {}),
+  "priceCurrency": "BDT",
+  "availability": eventEntry.registrationOpen !== false ? "https://schema.org/InStock" : "https://schema.org/SoldOut"
+} : undefined;
+
 const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
@@ -58,13 +67,7 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
     "name": org.name,
     "url": siteUrl
   },
-  "offers": {
-    "@type": "Offer",
-    "url": eventEntry.registerUrl,
-    "price": eventEntry.regFee?.replace(/[^\d]/g, ''),
-    "priceCurrency": "BDT",
-    "availability": eventEntry.registrationOpen ? "https://schema.org/InStock" : "https://schema.org/SoldOut"
-  },
+  ...(offers ? { "offers": offers } : {}),
   "image": `${siteUrl}/og-image.jpg`,
   "description": eventEntry.summary,
   "sport": "Duathlon",
