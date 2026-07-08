@@ -37,9 +37,13 @@ import { categories, event } from '../data/event';
             ))}
           </ul>
         </details>
-        <a class="cat-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
-          Enter {c.distance} <span>→</span>
-        </a>
+        {event.registrationOpen ? (
+          <a class="cat-cta" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
+            Enter {c.distance} <span>→</span>
+          </a>
+        ) : (
+          <span class="cat-cta cmhm-btn-closed" aria-disabled="true">Registration Closed</span>
+        )}
       </article>
     ))}
   </div>

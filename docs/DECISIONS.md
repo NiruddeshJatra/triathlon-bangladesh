@@ -75,12 +75,17 @@ Two intentionally distinct elements — do not merge them:
 - **Frosted-glass navbar** — `rgba(255,255,255,0.07)` + `backdrop-filter:blur(14px)`. Pending client review (applied 2026-06-04). Revert: change background to `rgba(8,20,14,.6)` and remove `@media (prefers-reduced-transparency)` block.
 - **Bootcamps as `eventType: 'program'`** — Non-race events (bootcamps, training sessions) use `eventType: 'program'` on `EventEntry`. Race-only fields remain optional; program cards render a distinct variant.
 
+## Locked Decisions (added 2026-07-08)
+
+- **Duathlon 2026 tagline exception to "Bike not Ride"** — `duathlon-2026` EventEntry `tagline` is "Run. Ride. Run. Conquer Chattogram." — the client's official marketing tagline for this event. This is a scoped, intentional exception to the "Bike not Ride" rule above (which governs discipline *labels*, e.g. `org.tagline`, category names). Do not "correct" this tagline back to "Bike" in a future pass.
+- **Chatto Metro rescheduled** — 10 July 2026 → 21 August 2026 (bad weather). Registration closed. `event.registrationOpen = false`; `event.previousDate = "2026-07-10"` retained for the JSON-LD `previousStartDate` / `EventRescheduled` status. Do not reopen registration or revert the date without race-director confirmation.
+
 ## Open Items (not yet decided)
 
 - ✅ **Flag-off time: 05:00 AM BST** — confirmed by race director (2026-06-01). `event.ts` value correct.
 - ⚠️ **Total Active Sports logo** — not yet available; placeholder text used
 - ⚠️ **Action photography** — no race-day photos yet; team photos are in place
-- ⚠️ **Duathlon 2026** — date, venue, tagline all `// TODO` in `event.ts`. Confirm with race director.
+- ✅ **Duathlon 2026** — date (13 Nov 2026), venue (Bakolia Stadium, Noman College Road), tagline, register URL, and Facebook event confirmed (2026-07-08). `event.ts` `duathlon-2026` entry updated; decorated event page still pending (separate Fable design effort).
 - ⚠️ **Terms & Conditions** — draft in `src/pages/terms.astro`; all sections marked `<!-- CLIENT REVIEW -->`. Must be legally reviewed before publishing.
 - ⚠️ **Join Our Team roles** — placeholder list in `join.astro`. Move to `event.ts` as `rolesAvailable[]` once confirmed.
 - ⚠️ **Orphaned components** — `About.astro`, `PreviousEvents.astro`, `Sponsors.astro` no longer imported. Delete only with explicit approval.

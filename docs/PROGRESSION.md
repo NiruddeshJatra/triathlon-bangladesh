@@ -4,6 +4,22 @@ Most recent first.
 
 ---
 
+## 2026-07-08 — Chatto Metro reschedule, favicon swap, Facebook links, duathlon facts confirmed
+
+### What changed
+- **`src/data/event.ts`** — Chatto Metro rescheduled 10 Jul → 21 Aug 2026 (bad weather); added `event.registrationOpen = false` and `event.previousDate` for the reschedule record. Added `registrationOpen?`, `facebookEvent?`, `regFee?` to `EventEntry`. `duathlon-2026` filled with confirmed facts: tagline "Run. Ride. Run. Conquer Chattogram." (client-confirmed exception to "Bike not Ride" — see DECISIONS.md), Bakolia Stadium venue, register subdomain URL, Facebook event link, ৳3,500 fee. Added `org.socials.facebook`.
+- **Registration-closed state** — Hero, RegisterBand, Categories, Nav, TwoRegisterCTAs, and `[slug].astro` all now gate their Register CTA on `registrationOpen`, rendering a disabled "Registration Closed" pill (new `.cmhm-btn-closed` style in `global.css`) instead of an active link.
+- **`src/layouts/Layout.astro`** — default JSON-LD `eventStatus` → `EventRescheduled` with `previousStartDate`; gained optional `eventJsonLd`/`breadcrumbName` props so per-event pages can supply their own SportsEvent schema without touching the default.
+- **`src/pages/events/[slug].astro`** — builds a duathlon-specific JSON-LD SportsEvent (startDate, venue, offers, register URL) and passes it to `Layout`.
+- **Favicon** — swapped from the Chatto-Metro "চ" mark to the Triathlon Bangladesh shield (`triathlon-bd-shield-white.png` composited on `#08140E`), regenerated `favicon.ico`/`favicon-16.png`/`favicon-32.png`/`apple-touch-icon.png`.
+- **`Footer.astro`** — added Facebook link (org page) to the Contact column.
+- **`docs/DECISIONS.md`** — recorded the duathlon-tagline exception and the Chatto Metro reschedule/closure as locked decisions; resolved the old "Duathlon 2026 TODO" open item.
+
+### Build
+- 14 pages built · zero errors · sitemap index created
+
+---
+
 ## 2026-06-06 — Center align text in mobile CTA buttons & fix mobile frosted navbar
 
 ### What changed

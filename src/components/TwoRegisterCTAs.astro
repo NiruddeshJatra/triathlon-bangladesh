@@ -6,15 +6,19 @@ const currentEvent = getCurrentEvent();
 {currentEvent && (
   <div class="two-ctas-wrap">
     <div class="two-ctas">
-      <a
-        class="cmhm-btn cmhm-btn-p two-cta-primary"
-        href={currentEvent.registerUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Register for ${currentEvent.name} on coxsbazartriathletes.com`}
-      >
-        Register Now <span class="arr">→</span>
-      </a>
+      {currentEvent.registrationOpen ? (
+        <a
+          class="cmhm-btn cmhm-btn-p two-cta-primary"
+          href={currentEvent.registerUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Register for ${currentEvent.name}`}
+        >
+          Register Now <span class="arr">→</span>
+        </a>
+      ) : (
+        <span class="cmhm-btn cmhm-btn-p cmhm-btn-closed two-cta-primary" aria-disabled="true">Registration Closed</span>
+      )}
       <a
         class="cmhm-btn cmhm-btn-s two-cta-secondary"
         href={`/events/${currentEvent.slug}`}
