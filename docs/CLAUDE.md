@@ -4,7 +4,7 @@ Read `AGENTS.md` (repo root) for the full working contract and scope rules. Read
 
 ## Project
 
-**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chatto Metro Half Marathon 2026, 10 July 2026, Karnaphuli Riverside, Chattogram.
+**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chatto Metro Half Marathon 2026, 21 August 2026 (rescheduled from 10 July 2026; registration closed), Karnaphuli Riverside, Chattogram.
 
 ## Commands
 
@@ -40,8 +40,9 @@ src/
 │                              #   org, events[], orgTeam[], chattoMetroPartners[], plus helpers:
 │                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getCommunityEvents(), getEventBySlug()
 │                              #   EventEntry fields: slug, name, eventType?('race'|'program'|'community'), status,
-│                              #   date, dateDisplay, location, tagline, registerUrl, heroImage,
-│                              #   gallery?[], summary, runners?, dist?, note?, partners?
+│                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?,
+│                              #   facebookEvent?, regFee?, heroImage, gallery?[], summary, runners?,
+│                              #   dist?, note?, partners?
 ├── islands/                   # React interactive components (islands pattern)
 ├── layouts/
 │   └── Layout.astro           # HTML shell, meta tags, font imports — do not touch SEO
@@ -87,8 +88,9 @@ public/
 - `src/data/event.ts` — single source of truth. All user-facing strings, event data, team, org, partners come from here. Never hardcode facts in components.
 - `eventType: 'community'` — events we participated in but did not organise (e.g. rescue partner roles). `getPreviousEvents()` excludes these; use `getCommunityEvents()` instead. Community events render via the standard non-current `[slug].astro` template.
 - `orgTeam[]` role field drives color-coded badge on `/team`. Role → CSS class: `Founder Admin`→`org-role-founder`, `Mentor`→`org-role-mentor`, `Co-ordinator`→`org-role-coordinator`, `Social Media Manager`→`org-role-social`. Each class sets `--role-color`.
-- New content shape: `org` (brand), `events[]` (EventEntry — card-level data), `orgTeam[]` (OrgMember — /team page), `chattoMetroPartners[]` (Partner[]). All existing named exports retained for backward compat.
-- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked. Canonical + `og:url` are **per-page** via `new URL(Astro.url.pathname, Astro.site)` — never hardcode to a single `siteUrl` (that canonicalizes every subpage to the homepage and drops them from Google's index)
+- New content shape: `org` (brand, includes `org.socials.facebook`), `events[]` (EventEntry — card-level data), `orgTeam[]` (OrgMember — /team page), `chattoMetroPartners[]` (Partner[]). All existing named exports retained for backward compat.
+- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked. Canonical + `og:url` are **per-page** via `new URL(Astro.url.pathname, Astro.site)` — never hardcode to a single `siteUrl` (that canonicalizes every subpage to the homepage and drops them from Google's index). Accepts optional `eventJsonLd`/`breadcrumbName` props to override the default SportsEvent JSON-LD (used by `/events/duathlon-2026` — see `[slug].astro`); omit them to keep the default Chatto Metro schema.
+- `EventEntry.registrationOpen` (default true when omitted) gates every Register CTA (Hero, RegisterBand, Categories, Nav, TwoRegisterCTAs, `[slug].astro`) — set `false` to render a "Registration Closed" state instead of adding ad-hoc conditionals per component.
 - `astro.config.mjs` — do not touch build config without approval. `site` = apex `https://triathlonbangladesh.com` (non-www); www must redirect to apex
 - `vercel.json` — security headers; do not modify without approval. CSP `script-src` MUST keep `'unsafe-inline'` — Astro emits island-hydration bootstrap and hoisted `.astro` `<script>` inline; bare `'self'` kills all JS (invisible in `astro dev`, only breaks on Vercel)
 - Pacer cards (`Team.astro`) render the full poster image uncropped (poster already contains name/distance/time); no text column. Pacer `img` assets are full event posters, not headshots

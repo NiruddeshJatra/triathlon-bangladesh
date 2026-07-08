@@ -178,6 +178,8 @@ body{
 .cmhm-btn-p:hover .arr{transform:translateX(3px);}
 .cmhm-btn-s{background:transparent;border-color:rgba(212,175,55,.55);color:var(--gold);}
 .cmhm-btn-s:hover{background:rgba(212,175,55,.1);transform:translateY(-2px);}
+.cmhm-btn-closed{background:rgba(169,194,180,.12);color:var(--text-muted);border-color:rgba(169,194,180,.25);cursor:not-allowed;}
+.cmhm-btn-closed:hover{transform:none;box-shadow:none;}
 
 .cmhm-meta-line{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;
   color:var(--text-dim);text-transform:uppercase;margin:20px 0 0;

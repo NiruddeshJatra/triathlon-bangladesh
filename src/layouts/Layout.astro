@@ -5,24 +5,29 @@ import { event } from '../data/event';
 interface Props {
   title?: string;
   description?: string;
+  eventJsonLd?: Record<string, unknown>;
+  breadcrumbName?: string;
 }
 
 const {
   title = `${event.name} ${event.year} · ${event.organizer}`,
-  description = `Half marathon in Chittagong (Chattogram), 10 July 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Registration open. Organised by Triathlon Bangladesh.`,
+  description = `Half marathon in Chittagong (Chattogram), 21 August 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Organised by Triathlon Bangladesh.`,
+  eventJsonLd,
+  breadcrumbName,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
 const canonicalUrl = new URL(Astro.url?.pathname ?? '/', Astro.site ?? `${siteUrl}/`).href;
 const currentUrl = canonicalUrl;
 
-const jsonLdEvent = {
+const defaultJsonLdEvent = {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
   "name": `${event.name} ${event.year}`,
   "startDate": event.flagOffISO,
   "endDate": event.endISO,
-  "eventStatus": "https://schema.org/EventScheduled",
+  "eventStatus": "https://schema.org/EventRescheduled",
+  "previousStartDate": event.previousDate,
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
     "@type": "Place",
@@ -49,7 +54,7 @@ const jsonLdEvent = {
     "@type": "Offer",
     "url": event.registerUrl,
     "validFrom": "2026-01-01",
-    "availability": "https://schema.org/InStock",
+    "availability": event.registrationOpen ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
     "priceCurrency": "BDT"
   },
   "image": `${siteUrl}/og-image.jpg`,
@@ -57,6 +62,8 @@ const jsonLdEvent = {
   "sport": "Running",
   "url": siteUrl
 };
+
+const jsonLdEvent = eventJsonLd ?? defaultJsonLdEvent;
 
 const jsonLdOrg = {
   "@context": "https://schema.org",
@@ -79,7 +86,7 @@ const jsonLdBreadcrumb = {
     {
       "@type": "ListItem",
       "position": 1,
-      "name": `${event.name} ${event.year}`,
+      "name": breadcrumbName ?? `${event.name} ${event.year}`,
       "item": currentUrl
     }
   ]

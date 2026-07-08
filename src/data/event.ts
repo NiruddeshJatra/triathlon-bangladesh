@@ -2,18 +2,20 @@ export const event = {
   name: "Chatto Metro Half Marathon",
   year: 2026,
   tagline: "Feel the pulse of the port city.",
-  date: "2026-07-10",
-  dateDisplay: "10 July 2026",
-  dateShort: "10 JUL 2026",
+  date: "2026-08-21",
+  dateDisplay: "21 August 2026",
+  dateShort: "21 AUG 2026",
   weekday: "Friday",
-  flagOffISO: "2026-07-10T05:00:00+06:00",
-  endISO: "2026-07-10T10:00:00+06:00",
+  flagOffISO: "2026-08-21T05:00:00+06:00",
+  endISO: "2026-08-21T10:00:00+06:00",
   flagOffDisplay: "05:00 AM BST",
   venueShort: "Karnaphuli Riverside, Chattogram",
   venueLong: "Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram",
   organizer: "Triathlon Bangladesh",
   targetRunners: 600,
   registerUrl: "https://coxsbazartriathletes.com",
+  registrationOpen: false,
+  previousDate: "2026-07-10",
   contact: {
     phone: "01303358202",
     email: "triathlonbangladesh.swimbikerun@gmail.com",
@@ -22,7 +24,7 @@ export const event = {
 } as const;
 
 export const quickFacts = [
-  { k: "10 July 2026", s: "Friday · Race Day" },
+  { k: "21 August 2026", s: "Friday · Race Day" },
   { k: "Bastuhara, Khetchar", s: "Behind Noman College · Shah Amanat Bridge" },
   { k: "21.1 / 10 / 5", s: "Kilometres" },
   { k: "≈600", s: "Runners" },
@@ -338,7 +340,7 @@ export const medals: Medal[] = [
 export const faq = [
   {
     q: "When and where is the race?",
-    a: "Friday, 10 July 2026. The start village is at Bastuhara, Khetchar, behind Noman College (left of Shah Amanat Bridge junction), Chattogram. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
+    a: "Friday, 21 August 2026 (rescheduled from 10 July 2026 due to bad weather). The start village is at Bastuhara, Khetchar, behind Noman College (left of Shah Amanat Bridge junction), Chattogram. Reporting opens 04:30 BST; 21.1K flag-off is at 05:00.",
   },
   {
     q: "Which distances can I enter?",
@@ -350,7 +352,7 @@ export const faq = [
   },
   {
     q: "How do I register?",
-    a: "Registration runs on coxsbazartriathletes.com — the Register Now button takes you straight there. Online payment in the coming cycle.",
+    a: "Registration for Chatto Metro Half Marathon 2026 is currently closed. Follow Triathlon Bangladesh's channels for reopening announcements.",
   },
   {
     q: "What's the course like?",
@@ -384,6 +386,9 @@ export const org = {
   mission: about.mission,
   pillars: about.pillars,
   contact: event.contact,
+  socials: {
+    facebook: "https://www.facebook.com/profile.php?id=61570694557616",
+  },
 } as const;
 
 export interface Partner {
@@ -403,6 +408,9 @@ export interface EventEntry {
   location: string;
   tagline: string;
   registerUrl: string;
+  registrationOpen?: boolean;
+  facebookEvent?: string;
+  regFee?: string;
   heroImage: string | null;
   gallery?: string[];
   summary: string;
@@ -430,8 +438,9 @@ export const events: EventEntry[] = [
     location: 'Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram',
     tagline: event.tagline,
     registerUrl: event.registerUrl,
+    registrationOpen: false,
     heroImage: null,
-    summary: '21.1K, 10K, and 5K along the Karnaphuli riverside — a port-city dawn run on 10 July 2026.',
+    summary: '21.1K, 10K, and 5K along the Karnaphuli riverside — a port-city dawn run on 21 August 2026.',
     dist: '21.1K · 10K · 5K',
     partners: chattoMetroPartners,
   },
@@ -474,12 +483,15 @@ export const events: EventEntry[] = [
     status: 'upcoming',
     date: '2026-11-13',
     dateDisplay: '13 November 2026',
-    location: 'Karnaphuli Riverside, Chattogram',
-    tagline: 'Run. Bike. Run. Chattogram.',
-    registerUrl: '',
-    heroImage: '/assets/events/duathlon-2026/poster.jpg',
+    location: 'Bakolia Stadium, Noman College Road, Chattogram',
+    tagline: 'Run. Ride. Run. Conquer Chattogram.',
+    registerUrl: 'https://register.triathlonbangladesh.com',
+    registrationOpen: true,
+    facebookEvent: 'https://www.facebook.com/events/1559539922251109',
+    regFee: '3,500 BDT',
+    heroImage: null,
     gallery: [],
-    summary: 'Chattogram\'s first standard-distance duathlon — 10K run, 40K bike, 5K run.',
+    summary: 'Chattogram\'s first duathlon — Olympic distance. Run. Ride. Run. along the Karnaphuli. Registration open.',
     dist: '10K Run · 40K Bike · 5K Run',
     note: 'First duathlon in Chattogram, second in Bangladesh. Olympic distance. Categories: Open 18–39 (M/F), Masters 40+ (M/F).',
   },

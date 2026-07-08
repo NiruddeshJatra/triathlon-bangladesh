@@ -56,12 +56,16 @@ const RIVER_PATH = "M -40 320 C 140 270 260 245 380 255 C 500 268 580 230 700 17
       </h1>
       <p class="cmhm-tag">
         <em>Feel the pulse of the port city.</em><br />
-        21.1 K along the Karnaphuli. <span class="muted">A port-city dawn run on 10 July 2026.</span>
+        21.1 K along the Karnaphuli. <span class="muted">A port-city dawn run on {event.dateDisplay}.</span>
       </p>
       <div class="cmhm-cta">
-        <a class="cmhm-btn cmhm-btn-p" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
-          Register Now <span class="arr">→</span>
-        </a>
+        {event.registrationOpen ? (
+          <a class="cmhm-btn cmhm-btn-p" href={event.registerUrl} target="_blank" rel="noopener noreferrer">
+            Register Now <span class="arr">→</span>
+          </a>
+        ) : (
+          <span class="cmhm-btn cmhm-btn-p cmhm-btn-closed" aria-disabled="true">Registration Closed</span>
+        )}
         <a class="cmhm-btn cmhm-btn-s" href="#route">View the Route</a>
       </div>
     </div>

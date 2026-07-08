@@ -1,5 +1,5 @@
 ---
-import { event, getCurrentEvent } from '../data/event';
+import { event, org, getCurrentEvent } from '../data/event';
 
 const currentEvent = getCurrentEvent();
 const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
@@ -14,6 +14,7 @@ const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
       <div class="ft-h">Contact</div>
       <a href={`tel:${event.contact.phone}`}>+880 1303-358202</a>
       <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a>
+      <a href={org.socials.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
     </div>
     {eventBase && (
       <div>

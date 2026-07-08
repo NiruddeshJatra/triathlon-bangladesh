@@ -14,7 +14,7 @@ const currentEvent = getCurrentEvent();
     <a href="/team">Our Team</a>
     <a href="/join">Join Our Team</a>
     <a href="/terms">Terms</a>
-    {currentEvent?.registerUrl && <a class="cmhm-nav-cta" href={currentEvent.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>}
+    {currentEvent?.registerUrl && currentEvent.registrationOpen && <a class="cmhm-nav-cta" href={currentEvent.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>}
   </div>
   <button id="nav-toggle" class="cmhm-nav-toggle"
           aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">

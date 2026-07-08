@@ -15,7 +15,7 @@ import RegisterBand from '../../components/RegisterBand.astro';
 import Footer from '../../components/Footer.astro';
 import ScrollRoute from '../../islands/ScrollRoute';
 import WheelSpin from '../../islands/WheelSpin';
-import { events, getEventBySlug } from '../../data/event';
+import { events, getEventBySlug, org } from '../../data/event';
 
 export function getStaticPaths() {
   return events.map(e => ({ params: { slug: e.slug } }));
@@ -32,8 +32,46 @@ const isFullEvent = eventEntry.status === 'current';
 
 const pageTitle = `${eventEntry.name} · Triathlon Bangladesh`;
 const pageDesc = eventEntry.summary;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
+
+const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": eventEntry.name,
+  "startDate": eventEntry.date,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": eventEntry.location,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Noman College Road",
+      "addressLocality": "Chattogram",
+      "addressRegion": "Chattogram Division",
+      "addressCountry": "BD"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": org.name,
+    "url": siteUrl
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": eventEntry.registerUrl,
+    "price": eventEntry.regFee?.replace(/[^\d]/g, ''),
+    "priceCurrency": "BDT",
+    "availability": eventEntry.registrationOpen ? "https://schema.org/InStock" : "https://schema.org/SoldOut"
+  },
+  "image": `${siteUrl}/og-image.jpg`,
+  "description": eventEntry.summary,
+  "sport": "Duathlon",
+  "url": `${siteUrl}/events/${eventEntry.slug}`
+} : undefined;
 ---
-<Layout title={pageTitle} description={pageDesc}>
+<Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd} breadcrumbName={eventEntry.name}>
   {isFullEvent && <ScrollRoute client:visible />}
   {isFullEvent && <WheelSpin client:idle />}
   <Nav />
@@ -112,10 +150,13 @@ const pageDesc = eventEntry.summary;
 
           {/* CTAs */}
           <div class="ev-page-ctas">
-            {eventEntry.registerUrl && eventEntry.status !== 'previous' && (
+            {eventEntry.registerUrl && eventEntry.status !== 'previous' && eventEntry.registrationOpen !== false && (
               <a class="cmhm-btn cmhm-btn-p" href={eventEntry.registerUrl} target="_blank" rel="noopener noreferrer">
                 Register Now <span class="arr">→</span>
               </a>
+            )}
+            {eventEntry.registerUrl && eventEntry.status !== 'previous' && eventEntry.registrationOpen === false && (
+              <span class="cmhm-btn cmhm-btn-p cmhm-btn-closed" aria-disabled="true">Registration Closed</span>
             )}
             <a class="cmhm-btn cmhm-btn-s" href="/">← All Events</a>
           </div>
