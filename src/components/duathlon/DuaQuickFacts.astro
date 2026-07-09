@@ -1,0 +1,13 @@
+---
+import { duaQuickFacts } from '../../data/event';
+---
+<section id="facts" class="dua-facts">
+  <div class="dua-facts-inner">
+    {duaQuickFacts.map((f) => (
+      <div class="fact">
+        <div class="k">{f.k}</div>
+        <div class="s">{f.s}</div>
+      </div>
+    ))}
+  </div>
+</section>

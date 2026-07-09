@@ -1,0 +1,27 @@
+---
+import ComingSoon from './ComingSoon.astro';
+import { duaEntitlements } from '../../data/event';
+---
+<section id="get" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">04 · What You Get</div>
+    <h2 class="stitle">Kit worth the <span class="acc">two transitions.</span></h2>
+    <p class="skicker">A pro cycling jersey — not a runner's tee — headlines the race pack. Medal and jersey designs drop before race week.</p>
+  </div>
+  <div class="dua-get-feature">
+    <div class="dua-get-tile">
+      <ComingSoon frame note="Premium finisher medal — design reveal" />
+    </div>
+    <div class="dua-get-tile">
+      <ComingSoon frame note="Official cycling pro jersey — design reveal" />
+    </div>
+  </div>
+  <ul class="dua-get-list">
+    {duaEntitlements.map((it) => (
+      <li>
+        <div class="g-k">{it.k} {it.soon && <span class="g-soon" lang="bn">শীঘ্রই</span>}</div>
+        <div class="g-s">{it.s}</div>
+      </li>
+    ))}
+  </ul>
+</section>

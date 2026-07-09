@@ -1,0 +1,21 @@
+---
+import { duaFacilities } from '../../data/event';
+---
+<section id="facilities" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">05 · Race-Day Facilities</div>
+    <h2 class="stitle">Everything but <span class="acc">the watts.</span></h2>
+    <p class="skicker">Show up with a bike and your legs. The rest is on us.</p>
+  </div>
+  <ul class="dua-fac-grid">
+    {duaFacilities.map((f) => (
+      <li>
+        <span class="fac-dot" aria-hidden="true"></span>
+        <div>
+          <div class="fac-k">{f.k}</div>
+          <div class="fac-s">{f.s}</div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

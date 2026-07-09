@@ -1,0 +1,19 @@
+---
+// The intentional placeholder: chartreuse dashed outline + slow-spinning chainring.
+// Layout stays reserved so real content swaps in later without relayout.
+import Chainring from './Chainring.astro';
+interface Props {
+  note?: string;
+  compact?: boolean;
+  frame?: boolean;
+}
+const { note, compact = false, frame = false } = Astro.props;
+---
+<div class:list={['dua-soon', compact && 'compact', frame && 'frame']}>
+  <div class="cs-gear"><Chainring size={compact ? 34 : 52} /></div>
+  <div class="cs-text">
+    <div class="cs-en">Coming Soon</div>
+    <div class="cs-bn" lang="bn">শীঘ্রই আসছে</div>
+    {note && <div class="cs-note">{note}</div>}
+  </div>
+</div>

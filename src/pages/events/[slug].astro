@@ -15,6 +15,22 @@ import RegisterBand from '../../components/RegisterBand.astro';
 import Footer from '../../components/Footer.astro';
 import ScrollRoute from '../../islands/ScrollRoute';
 import WheelSpin from '../../islands/WheelSpin';
+import ChainringSpin from '../../islands/ChainringSpin';
+import DuaHero from '../../components/duathlon/DuaHero.astro';
+import DuaQuickFacts from '../../components/duathlon/DuaQuickFacts.astro';
+import DuaDistances from '../../components/duathlon/DuaDistances.astro';
+import DuaCategories from '../../components/duathlon/DuaCategories.astro';
+import DuaPrizes from '../../components/duathlon/DuaPrizes.astro';
+import DuaEntitlements from '../../components/duathlon/DuaEntitlements.astro';
+import DuaFacilities from '../../components/duathlon/DuaFacilities.astro';
+import DuaSchedule from '../../components/duathlon/DuaSchedule.astro';
+import DuaRules from '../../components/duathlon/DuaRules.astro';
+import DuaPacers from '../../components/duathlon/DuaPacers.astro';
+import DuaFAQ from '../../components/duathlon/DuaFAQ.astro';
+import DuaRegisterBand from '../../components/duathlon/DuaRegisterBand.astro';
+import DuaFooter from '../../components/duathlon/DuaFooter.astro';
+import GearDivider from '../../components/duathlon/GearDivider.astro';
+import DiagonalTape from '../../components/duathlon/DiagonalTape.astro';
 import { events, getEventBySlug, org } from '../../data/event';
 
 export function getStaticPaths() {
@@ -29,6 +45,7 @@ if (!eventEntry) {
 }
 
 const isFullEvent = eventEntry.status === 'current';
+const isDuathlon = eventEntry.slug === 'duathlon-2026';
 
 const pageTitle = `${eventEntry.name} · Triathlon Bangladesh`;
 const pageDesc = eventEntry.summary;
@@ -77,6 +94,7 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
 <Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd} breadcrumbName={eventEntry.name}>
   {isFullEvent && <ScrollRoute client:visible />}
   {isFullEvent && <WheelSpin client:idle />}
+  {isDuathlon && <ChainringSpin client:idle />}
   <Nav />
   <main>
     {isFullEvent ? (
@@ -98,6 +116,32 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
         <WheelDivider label="REGISTER" />
         <RegisterBand />
       </>
+    ) : isDuathlon ? (
+      <div class="dua-page">
+        <DuaHero />
+        <DuaQuickFacts />
+        <DiagonalTape />
+        <GearDivider label="THE DISTANCES" />
+        <DuaDistances />
+        <GearDivider label="CATEGORIES" />
+        <DuaCategories />
+        <GearDivider label="PRIZE POOL" />
+        <DuaPrizes />
+        <GearDivider label="WHAT YOU GET" />
+        <DuaEntitlements />
+        <GearDivider label="RACE DAY" />
+        <DuaFacilities />
+        <GearDivider label="SCHEDULE" />
+        <DuaSchedule />
+        <DiagonalTape text="NON-DRAFTING · 12M DRAFT ZONE · 4HR CUT-OFF" />
+        <GearDivider label="RULES & STANDARDS" />
+        <DuaRules />
+        <GearDivider label="PACERS" />
+        <DuaPacers />
+        <GearDivider label="FAQ" />
+        <DuaFAQ />
+        <DuaRegisterBand />
+      </div>
     ) : (
       <div class="ev-page">
         {/* Hero */}
@@ -181,5 +225,5 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
       </div>
     )}
   </main>
-  <Footer />
+  {isDuathlon ? <DuaFooter /> : <Footer />}
 </Layout>

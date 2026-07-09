@@ -1,0 +1,42 @@
+---
+// Toothed bike-cog SVG — 22 teeth, rim, dashed chain-link inner ring,
+// 5-arm spider with bolt holes, hub. Replaces the ship's wheel on this page.
+interface Props {
+  size?: number;
+  stroke?: string;
+  teeth?: number;
+  class?: string;
+}
+const { size = 116, stroke = 'var(--chart)', teeth = 22, class: className } = Astro.props;
+const cx = size / 2;
+const r = size / 2 - 8;
+const tArr = Array.from({ length: teeth }, (_, i) => (i * 360) / teeth);
+const arms = Array.from({ length: 5 }, (_, i) => i * 72 - 90);
+const armLine = arms.map((a) => ({
+  x2: cx + (r - size * 0.09) * Math.cos((a * Math.PI) / 180),
+  y2: cx + (r - size * 0.09) * Math.sin((a * Math.PI) / 180),
+}));
+const boltHoles = arms.map((a) => ({
+  cx: cx + r * 0.55 * Math.cos((a * Math.PI) / 180),
+  cy: cx + r * 0.55 * Math.sin((a * Math.PI) / 180),
+}));
+---
+<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} class={className} style="display:block;overflow:visible" aria-hidden="true">
+  <g>
+    {tArr.map((a) => (
+      <rect x={cx - size * 0.018} y={cx - r - size * 0.055} width={size * 0.036} height={size * 0.062}
+        rx={size * 0.012} fill={stroke} opacity="0.95" transform={`rotate(${a} ${cx} ${cx})`} />
+    ))}
+    <circle cx={cx} cy={cx} r={r} fill="none" stroke={stroke} stroke-width={size * 0.022} />
+    <circle cx={cx} cy={cx} r={r - size * 0.07} fill="none" stroke={stroke}
+      stroke-width={size * 0.009} stroke-dasharray={`${size * 0.026} ${size * 0.026}`} opacity="0.7" />
+    {armLine.map((l) => (
+      <line x1={cx} y1={cx} x2={l.x2} y2={l.y2} stroke={stroke} stroke-width={size * 0.018} opacity="0.55" />
+    ))}
+    {boltHoles.map((b) => (
+      <circle cx={b.cx} cy={b.cy} r={size * 0.022} fill="none" stroke={stroke} stroke-width={size * 0.011} opacity="0.8" />
+    ))}
+    <circle cx={cx} cy={cx} r={Math.max(6, size * 0.075)} fill="var(--bg-base)" stroke={stroke} stroke-width={size * 0.018} />
+    <circle cx={cx} cy={cx} r={Math.max(2, size * 0.022)} fill={stroke} />
+  </g>
+</svg>

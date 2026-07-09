@@ -668,6 +668,181 @@ export const orgTeam: OrgMember[] = [
   { name: "Nasiful Alam",         role: "Social Media Manager", img: "/assets/team-nasif.jpeg" },
 ];
 
+// ─── Chattogram Duathlon 2026 — structured content ───────────────────────────
+
+export const duaMeta = {
+  raceDayISO: "2026-11-13T06:00:00+06:00",
+  bikeCheckIn: "12 November 2026",
+  cutOff: "4 hours",
+} as const;
+
+export const duaQuickFacts = [
+  { k: "13 Nov 2026", s: "Friday · Race Day" },
+  { k: "Bakolia Stadium", s: "Noman College Road" },
+  { k: "10 · 40 · 5", s: "Run · Bike · Run (KM)" },
+  { k: "৳3,500", s: "Entry Fee" },
+  { k: "250 Slots", s: "First come, first served" },
+  { k: "12 Nov", s: "Bike Check-in · Kit Expo" },
+] as const;
+
+export interface DuaLeg {
+  id: string;
+  km: number;
+  label: string;
+  laps: string;
+  kind: 'run' | 'bike';
+  blurb: string;
+}
+
+export const duaLegs: DuaLeg[] = [
+  { id: "run1", km: 10, label: "10K RUN", laps: "1 lap", kind: "run",
+    blurb: "The opener. One 10-kilometre lap on fresh legs — settle in, hold your pace, save the bike legs." },
+  { id: "bike", km: 40, label: "40K BIKE", laps: "3 laps", kind: "bike",
+    blurb: "The engine room. Three laps, non-drafting — 12 m draft zone, your watts only." },
+  { id: "run2", km: 5, label: "5K RUN", laps: "1 lap", kind: "run",
+    blurb: "The reckoning. One final 5-kilometre lap off the bike. This is where the race is decided." },
+];
+
+export interface DuaCategory {
+  id: string;
+  name: string;
+  note: string;
+}
+
+export const duaCategories: DuaCategory[] = [
+  { id: "mo", name: "Male Open", note: "Ages 18–39" },
+  { id: "fo", name: "Female Open", note: "Ages 18–39" },
+  { id: "mm", name: "Male Masters", note: "40 years and above" },
+  { id: "fm", name: "Female Masters", note: "40 years and above" },
+];
+
+export const duaPrizeNote =
+  "A minimum of 10 participants per category unlocks the full 1st–3rd prize tiers. Below 10, only the champion is awarded.";
+
+export interface DuaEntitlement {
+  k: string;
+  s: string;
+  soon?: boolean;
+}
+
+export const duaEntitlements: DuaEntitlement[] = [
+  { k: "Official Cycling Pro Jersey", s: "Race-fit sublimated pro jersey — design reveal pending.", soon: true },
+  { k: "Premium Finisher Medal", s: "Premium China-made hardware — design reveal pending.", soon: true },
+  { k: "Finisher T-Shirt", s: "Yours at the line." },
+  { k: "Chip Timing", s: "Full chip-timed splits across both runs and the bike." },
+  { k: "Special Kit Bag", s: "Event kit bag at the expo." },
+  { k: "Personalized Bib + Race Pack", s: "Your name on the bib. Front for the runs, back for the bike." },
+  { k: "E-Certificate", s: "Issued post-race with your chip time." },
+];
+
+export const duaFacilities = [
+  { k: "Hydration Stations", s: "On course and in transition" },
+  { k: "Pre-race Warm-up", s: "Led by the race crew" },
+  { k: "Cycle Tuning & Mechanic", s: "Support at the venue" },
+  { k: "Baggage Drop", s: "Secure, tagged" },
+  { k: "Prayer Room", s: "At the venue" },
+  { k: "Snacks & Breakfast", s: "Post-race" },
+  { k: "Washrooms", s: "At the venue" },
+  { k: "Professional Photography", s: "On course" },
+  { k: "Photo Booths", s: "At the finish village" },
+  { k: "Medical Teams & Ambulances", s: "On standby throughout" },
+  { k: "Kit Expo Access", s: "Before event day" },
+] as const;
+
+export interface DuaScheduleItem {
+  time: string;
+  title: string;
+  note: string;
+}
+
+export const duaScheduleKnown: DuaScheduleItem[] = [
+  { time: "12 NOV", title: "Bike Check-in", note: "Rack your bike at Bakolia Stadium the day before the race." },
+  { time: "12 NOV", title: "Kit Expo", note: "Collect your bib, chip, jersey and kit bag before event day." },
+];
+
+export interface DuaRuleGroup {
+  k: string;
+  allowed?: string[];
+  notAllowed?: string[];
+  items: string[];
+}
+
+export const duaRules: { cutOff: string; cutOffNote: string; groups: DuaRuleGroup[] } = {
+  cutOff: "4:00",
+  cutOffNote: "Total cut-off for all three legs, T1 and T2 included.",
+  groups: [
+    {
+      k: "Race Format",
+      items: [
+        "International duathlon rules — strictly non-drafting.",
+        "Keep a 12 m draft zone behind the cyclist ahead; pass decisively or drop back.",
+        "10K run → T1 → 40K bike (3 laps) → T2 → 5K run.",
+      ],
+    },
+    {
+      k: "Bikes",
+      allowed: ["Road", "MTB", "TT", "Triathlon"],
+      notAllowed: ["Fixed-gear", "Electric", "Fat bike", "Folding"],
+      items: ["Your bike must be race-worthy — free tuning and mechanic support available at the venue."],
+    },
+    {
+      k: "Bib & Helmet",
+      items: [
+        "Bib on your FRONT for both runs, on your BACK for the bike leg.",
+        "Helmet on and buckled before un-racking your bike in T1.",
+        "Helmet stays on until the bike is re-racked in T2.",
+      ],
+    },
+    {
+      k: "Transition (T1 / T2)",
+      items: [
+        "Mount only after the mount line; dismount before the dismount line.",
+        "No riding inside the transition zone.",
+        "Rack your bike in your numbered slot only — interference with other athletes' gear means disqualification.",
+      ],
+    },
+    {
+      k: "Conduct",
+      items: [
+        "No earphones or headphones anywhere on course.",
+        "No outside assistance — pacing, feeding or mechanical help from non-participants.",
+        "No littering. Use bins at hydration stations.",
+      ],
+    },
+  ],
+};
+
+export const duaFaq = [
+  {
+    q: "Who can take part?",
+    a: "Four categories: Male Open (18–39), Female Open (18–39), Male Masters (40+) and Female Masters (40+). Age is taken as of race day. You'll need a race-worthy bike of an approved type — Road, MTB, TT or Triathlon.",
+  },
+  {
+    q: "What's included with my entry?",
+    a: "Official cycling pro jersey, premium finisher medal, finisher t-shirt, chip timing, special kit bag, personalized bib + race pack, and an e-certificate with your chip time.",
+  },
+  {
+    q: "How do I register?",
+    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,500 with 250 slots, first come first served.",
+  },
+  {
+    q: "Which bikes are allowed?",
+    a: "Road, MTB, TT and Triathlon bikes are allowed. Fixed-gear, electric, fat and folding bikes are not. Cycle tuning and mechanic support is available at the venue.",
+  },
+  {
+    q: "Is there a cut-off?",
+    a: "Yes — 4 hours total for the full 10K run, 40K bike and 5K run, including transitions. The bike leg is strictly non-drafting with a 12 m draft zone.",
+  },
+  {
+    q: "Where is the venue and how do I get there?",
+    a: "Bakolia Stadium on Noman College Road, Chattogram. It's inside the city — reachable by rickshaw, CNG or car from anywhere in Chattogram. Parking details will come with your race pack.",
+  },
+  {
+    q: "When do I bring my bike?",
+    a: "Bike check-in is on 12 November, the day before the race, at Bakolia Stadium. The kit expo — bib, chip, jersey, kit bag — also runs before event day.",
+  },
+];
+
 export function getCurrentEvent(): EventEntry | undefined {
   return events.find(e => e.status === 'current');
 }

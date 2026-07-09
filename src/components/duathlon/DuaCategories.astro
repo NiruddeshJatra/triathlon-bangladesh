@@ -1,0 +1,21 @@
+---
+import { duaCategories, getEventBySlug } from '../../data/event';
+const ev = getEventBySlug('duathlon-2026')!;
+---
+<section id="categories" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">02 · Categories</div>
+    <h2 class="stitle">Four fields, <span class="acc">one course.</span></h2>
+    <p class="skicker">Everyone races the same 10–40–5. Awards are drawn per category.</p>
+  </div>
+  <div class="dua-cat-grid">
+    {duaCategories.map((c, i) => (
+      <article class="dua-cat">
+        <div class="cat-num">{String(i + 1).padStart(2, '0')}</div>
+        <div class="dcat-name">{c.name}</div>
+        <div class="cat-note">{c.note}</div>
+        <a class="dcat-cta" href={ev.registerUrl} target="_blank" rel="noopener noreferrer">Enter <span>→</span></a>
+      </article>
+    ))}
+  </div>
+</section>
