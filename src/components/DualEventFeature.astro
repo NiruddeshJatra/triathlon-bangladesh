@@ -1,5 +1,5 @@
 ---
-import { getEventBySlug, getUpcomingEvents, duaLegs } from '../data/event';
+import { getEventBySlug, getUpcomingEvents, duaLegs, duaMeta, event as cmhmEvent } from '../data/event';
 
 const dua = getEventBySlug('duathlon-2026')!;
 const cmhm = getEventBySlug('chatto-metro')!;
@@ -8,8 +8,8 @@ function daysTo(iso: string) {
   return Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 86400000));
 }
 
-const duaDays = daysTo('2026-11-13T06:00:00+06:00');
-const cmhmDays = daysTo('2026-08-21T05:00:00+06:00');
+const duaDays = daysTo(duaMeta.raceDayISO);
+const cmhmDays = daysTo(cmhmEvent.flagOffISO);
 
 const more = getUpcomingEvents().filter((e) => e.slug !== dua.slug);
 ---

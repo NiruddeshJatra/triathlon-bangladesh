@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { prefersReducedMotion } from './prefersReducedMotion';
+import { getChainringGeometry } from '../lib/chainring';
 
 interface Props { dateISO: string; nowMs?: number }
 
@@ -24,35 +25,27 @@ function useCountdown(targetISO: string, nowMs?: number) {
 }
 
 function Chainring({ size = 88, rotation = 0 }: { size?: number; rotation?: number }) {
-  const cx = size / 2;
-  const r = size / 2 - 8;
-  const teeth = 22;
-  const tArr = Array.from({ length: teeth }, (_, i) => (i * 360) / teeth);
-  const arms = Array.from({ length: 5 }, (_, i) => i * 72 - 90);
+  const g = getChainringGeometry(size);
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: 'block', overflow: 'visible' }} aria-hidden="true">
       <g style={{ transformOrigin: 'center', transform: `rotate(${rotation}deg)` }}>
-        {tArr.map((a, i) => (
-          <rect key={i} x={cx - size * 0.018} y={cx - r - size * 0.055} width={size * 0.036} height={size * 0.062}
-            rx={size * 0.012} fill="var(--chart)" opacity="0.95" transform={`rotate(${a} ${cx} ${cx})`} />
+        {g.teeth.map((t, i) => (
+          <rect key={i} x={t.x} y={t.y} width={t.width} height={t.height}
+            rx={t.rx} fill="var(--chart)" opacity="0.95" transform={`rotate(${t.rotate} ${g.cx} ${g.cy})`} />
         ))}
-        <circle cx={cx} cy={cx} r={r} fill="none" stroke="var(--chart)" strokeWidth={size * 0.022} />
-        <circle cx={cx} cy={cx} r={r - size * 0.07} fill="none" stroke="var(--chart)"
-          strokeWidth={size * 0.009} strokeDasharray={`${size * 0.026} ${size * 0.026}`} opacity="0.7" />
-        {arms.map((a, i) => (
-          <line key={i} x1={cx} y1={cx}
-            x2={cx + (r - size * 0.09) * Math.cos((a * Math.PI) / 180)}
-            y2={cx + (r - size * 0.09) * Math.sin((a * Math.PI) / 180)}
-            stroke="var(--chart)" strokeWidth={size * 0.018} opacity="0.55" />
+        <circle cx={g.cx} cy={g.cy} r={g.rimR} fill="none" stroke="var(--chart)" strokeWidth={g.rimStrokeWidth} />
+        <circle cx={g.cx} cy={g.cy} r={g.innerR} fill="none" stroke="var(--chart)"
+          strokeWidth={g.innerStrokeWidth} strokeDasharray={g.innerDash} opacity="0.7" />
+        {g.arms.map((l, i) => (
+          <line key={i} x1={g.cx} y1={g.cy} x2={l.x2} y2={l.y2}
+            stroke="var(--chart)" strokeWidth={g.armStrokeWidth} opacity="0.55" />
         ))}
-        {arms.map((a, i) => (
-          <circle key={'b' + i}
-            cx={cx + r * 0.55 * Math.cos((a * Math.PI) / 180)}
-            cy={cx + r * 0.55 * Math.sin((a * Math.PI) / 180)}
-            r={size * 0.022} fill="none" stroke="var(--chart)" strokeWidth={size * 0.011} opacity="0.8" />
+        {g.bolts.map((b, i) => (
+          <circle key={'b' + i} cx={b.cx} cy={b.cy} r={b.r}
+            fill="none" stroke="var(--chart)" strokeWidth={b.strokeWidth} opacity="0.8" />
         ))}
-        <circle cx={cx} cy={cx} r={Math.max(6, size * 0.075)} fill="var(--bg-base)" stroke="var(--chart)" strokeWidth={size * 0.018} />
-        <circle cx={cx} cy={cx} r={Math.max(2, size * 0.022)} fill="var(--chart)" />
+        <circle cx={g.cx} cy={g.cy} r={g.hubR} fill="var(--bg-base)" stroke="var(--chart)" strokeWidth={g.hubStrokeWidth} />
+        <circle cx={g.cx} cy={g.cy} r={g.hubDotR} fill="var(--chart)" />
       </g>
     </svg>
   );
