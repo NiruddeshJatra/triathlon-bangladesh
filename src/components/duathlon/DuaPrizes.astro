@@ -1,0 +1,27 @@
+---
+import ComingSoon from './ComingSoon.astro';
+import { duaCategories, duaPrizeNote } from '../../data/event';
+---
+<section id="prizes" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">03 · Prize Pool</div>
+    <h2 class="stitle">Podium <span class="acc">× four.</span></h2>
+    <p class="skicker">Champion, runner-up and third place in every category. Amounts are being finalized.</p>
+  </div>
+  <div class="dua-prize-grid">
+    {duaCategories.map((c) => (
+      <div class="dua-prize-card">
+        <div class="pz-cat">{c.name}</div>
+        <ol class="pz-tiers">
+          {['1st', '2nd', '3rd'].map((t) => (
+            <li>
+              <span class="pz-place">{t}</span>
+              <span class="pz-amt"><ComingSoon compact /></span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </div>
+  <p class="dua-prize-note"><b>Note</b> — {duaPrizeNote}</p>
+</section>

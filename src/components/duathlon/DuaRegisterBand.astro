@@ -1,0 +1,27 @@
+---
+import { getEventBySlug, duaMeta } from '../../data/event';
+const ev = getEventBySlug('duathlon-2026')!;
+---
+<section id="register" class="dua-regband">
+  <div class="dua-regband-diag" aria-hidden="true"></div>
+  <div class="dua-regband-inner">
+    <div class="rb-eyebrow">Registration open · 250 slots · first come, first served</div>
+    <h2 class="rb-title">Run. Ride. Run.<br />Conquer <em>Chattogram.</em></h2>
+    <p class="rb-sub">{ev.dateDisplay} · {ev.location} · Entry {ev.regFee}</p>
+    <div class="rb-ctas">
+      <a class="dua-btn dua-btn-inv" href={ev.registerUrl} target="_blank" rel="noopener noreferrer">
+        Register Now <span class="arr">→</span>
+      </a>
+      {ev.facebookEvent && (
+        <a class="dua-btn dua-btn-inv-s" href={ev.facebookEvent} target="_blank" rel="noopener noreferrer">
+          Facebook Event
+        </a>
+      )}
+    </div>
+    <div class="rb-meta">
+      <div><div class="k">13 NOV 2026</div><div class="s">Friday</div></div>
+      <div><div class="k">10 · 40 · 5</div><div class="s">Run · Bike · Run</div></div>
+      <div><div class="k">{duaMeta.cutOff}</div><div class="s">Total cut-off</div></div>
+    </div>
+  </div>
+</section>

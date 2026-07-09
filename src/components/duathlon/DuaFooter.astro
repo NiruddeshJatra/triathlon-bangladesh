@@ -1,0 +1,39 @@
+---
+import { getEventBySlug, org, event as cmhmEvent } from '../../data/event';
+const ev = getEventBySlug('duathlon-2026')!;
+---
+<footer class="dua-footer">
+  <div class="dua-footer-grid">
+    <div>
+      <img src="/assets/triathlon-bd-shield-white.png" alt="Triathlon Bangladesh" class="ft-shield" />
+      <p class="ft-org">Organised by <b>Triathlon Bangladesh</b>.<br />Swim · Bike · Run — Chattogram.</p>
+    </div>
+    <div>
+      <div class="ft-h">Contact</div>
+      <a href={`tel:${cmhmEvent.contact.phone}`}>+880 1303-358202</a>
+      <a href={`mailto:${cmhmEvent.contact.email}`}>{cmhmEvent.contact.email}</a>
+    </div>
+    <div>
+      <div class="ft-h">Race</div>
+      <a href="#distances">Distances</a>
+      <a href="#categories">Categories</a>
+      <a href="#rules">Rules</a>
+      <a href="#schedule">Schedule</a>
+    </div>
+    <div>
+      <div class="ft-h">Follow</div>
+      <a href={org.socials.facebook} target="_blank" rel="noopener noreferrer">Triathlon Bangladesh · Facebook</a>
+      {ev.facebookEvent && <a href={ev.facebookEvent} target="_blank" rel="noopener noreferrer">Duathlon event page</a>}
+    </div>
+    <div>
+      <div class="ft-h">More</div>
+      <a href="/">Triathlon Bangladesh</a>
+      <a href="/events/chatto-metro">Chatto Metro Half Marathon</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+  <div class="dua-footer-bot">
+    <div>© 2026 Triathlon Bangladesh · All rights reserved</div>
+    <div class="ft-tagline">Run. Ride. Run. Conquer Chattogram.</div>
+  </div>
+</footer>

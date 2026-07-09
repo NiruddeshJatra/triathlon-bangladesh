@@ -1,0 +1,13 @@
+---
+import Chainring from './Chainring.astro';
+interface Props {
+  label?: string;
+}
+const { label } = Astro.props;
+---
+<div class:list={['dua-divider', label && 'with-label']} aria-hidden="true">
+  {label && <div class="chain-rule"></div>}
+  <Chainring size={label ? 52 : 44} />
+  {label && <div class="div-label">{label}</div>}
+  {label && <div class="chain-rule"></div>}
+</div>

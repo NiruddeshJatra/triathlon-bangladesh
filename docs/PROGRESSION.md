@@ -4,6 +4,27 @@ Most recent first.
 
 ---
 
+## 2026-07-09 — Chattogram Duathlon 2026 decorated page + homepage dual-event merge
+
+### What changed
+- **New duathlon page** — `/events/duathlon-2026` now renders a full decorated page (branch in `[slug].astro`, `isDuathlon`) instead of the generic info template: Hero, Quick Facts, Distances, Categories, Prize Pool, What You Get, Race-Day Facilities, Schedule, Rules & Standards, Pacers, FAQ, Register band, Footer. Chartreuse `#C6F53F` skin scoped under `.dua-page`, chainring motif (`Chainring.astro`, `GearDivider.astro`, `ChainringCountdown.tsx`, `ChainringSpin.tsx`) replaces the ship's wheel on this page only. `ComingSoon.astro` reserves layout for five not-yet-final items (prize amounts, medal/jersey images, full race-day timeline, pacers). New `dua*`-prefixed content exports added to `event.ts`.
+- **Homepage dual-event merge** — `BrandHero.astro` rewritten as a 2-column `tb-hero` (mission text + wide shield logo, no more countdown/event card). `TwoRegisterCTAs.astro` and `UpcomingEventsList.astro` deleted, replaced by `DualEventFeature.astro`: duathlon card (chartreuse, registration open) + Chatto Metro card (gold, rescheduled/closed) + "Also on the calendar" strip. Homepage wheel dividers dropped from 3 to 2.
+- **Fonts** — added `@fontsource/noto-sans-bengali` for the duathlon page's Bengali strings.
+- **Favicon regenerated from the org shield** — `favicon.ico`/`favicon-16.png`/`favicon-32.png`/`apple-touch-icon.png` rebuilt from `triathlon-bd-shield-white.png` (badges-only crop, square-padded), replacing the old Chatto-Metro-specific `logo-nobg.png` source. Same logo now used everywhere: Nav, BrandHero, Footer, OrgAbout, DuaFooter, favicon.
+- **`design_handoff_duathlon/`** (Fable prototype bundle used as the build reference) added to `.gitignore` — never shipped.
+
+### Fixes from first-pass review
+- Removed a blanket `.dua-page a{color:var(--chart)}` rule that out-specificity'd button color rules and made "Register Now"/"Facebook Event" button text invisible (chartreuse-on-chartreuse). Every link already had its own explicit color, so the blanket rule was just deleted.
+- Added the missing `.tb-section`/`.tb-shead` CSS (never ported from the prototype) — this was the actual cause of the homepage "Upcoming Events" header rendering unstyled AND the dual-event cards stretching full-bleed edge-to-edge with no page padding.
+- Tightened `.tb-hero-grid` gap/max-width so hero text and logo read as one centered group instead of two edges of a wide row.
+- Both `DualEventFeature` cards now show full venue strings ("Bakolia Stadium, Noman College Road, Chattogram" / "Karnaphuli Riverside, Chattogram") instead of short names.
+- Removed the Bengali tagline line from the duathlon hero per client feedback.
+
+### Build
+- 14 pages built · zero errors · sitemap regenerated
+
+---
+
 ## 2026-07-08 — Chatto Metro reschedule, favicon swap, Facebook links, duathlon facts confirmed
 
 ### What changed

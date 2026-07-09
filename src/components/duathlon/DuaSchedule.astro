@@ -1,0 +1,24 @@
+---
+import ComingSoon from './ComingSoon.astro';
+import { duaScheduleKnown } from '../../data/event';
+---
+<section id="schedule" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">06 · Race Schedule</div>
+    <h2 class="stitle">The clock starts <span class="acc">the day before.</span></h2>
+    <p class="skicker">Bike check-in and kit expo run on 12 November. The hour-by-hour race-day timeline is being finalized.</p>
+  </div>
+  <ol class="dua-timeline">
+    {duaScheduleKnown.map((it) => (
+      <li class="tl-item">
+        <div class="tl-time">{it.time}</div>
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-title">{it.title}</div>
+          <div class="tl-note">{it.note}</div>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <ComingSoon note="Full race-day timeline — flag-off, waves, cut-off checkpoints" />
+</section>

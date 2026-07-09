@@ -1,0 +1,21 @@
+---
+// Three proportional segments (10 / 40 / 5) with T1/T2 junction chips.
+import { duaLegs } from '../../data/event';
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+<div class:list={['dua-rbr', compact && 'compact']} role="img"
+  aria-label="Race format: 10 kilometre run, then 40 kilometre bike, then 5 kilometre run">
+  {duaLegs.map((leg, i) => (
+    <>
+      <div class={`rbr-seg ${leg.kind}`} style={`flex-grow:${Math.max(leg.km, 8)}`}>
+        <div class="rbr-k">{leg.km}<span>K</span></div>
+        <div class="rbr-bar"></div>
+        <div class="rbr-l">{leg.kind === 'bike' ? 'BIKE' : 'RUN'}{!compact && <em> · {leg.laps}</em>}</div>
+      </div>
+      {i < duaLegs.length - 1 && <div class="rbr-t" aria-hidden="true">T{i + 1}</div>}
+    </>
+  ))}
+</div>

@@ -1,0 +1,54 @@
+---
+import Chainring from './Chainring.astro';
+import RBRStrip from './RBRStrip.astro';
+import ChainringCountdown from '../../islands/ChainringCountdown';
+import { getEventBySlug, duaMeta } from '../../data/event';
+
+const ev = getEventBySlug('duathlon-2026')!;
+---
+<header id="top" class="dua-hero">
+  <div class="dua-hero-wedge" aria-hidden="true"></div>
+  <div class="dua-hero-gear" aria-hidden="true">
+    <Chainring size={720} stroke="rgba(198,245,63,.09)" />
+  </div>
+  <div class="dua-grain" aria-hidden="true"></div>
+
+  <div class="dua-hero-grid">
+    <div class="dua-hero-left">
+      <div class="dua-eyebrow"><span class="rule"></span> Olympic Distance · Triathlon Bangladesh</div>
+      <h1 class="dua-title">
+        <span class="l1">Chattogram</span>
+        <span class="l2">Duathlon <em>2026</em></span>
+      </h1>
+      <p class="dua-tag">
+        <em>{ev.tagline}</em><br />
+        <span class="muted">{ev.dateDisplay} · {ev.location}.</span>
+      </p>
+      <RBRStrip />
+      <div class="dua-meta">
+        <div><div class="k">13 NOV 2026</div><div class="s">Friday</div></div>
+        <div><div class="k">Bakolia Stadium</div><div class="s">Noman College Rd</div></div>
+        <div><div class="k">{ev.regFee}</div><div class="s">Entry Fee</div></div>
+        <div><div class="k">250 Slots</div><div class="s">First Come</div></div>
+      </div>
+      <div class="dua-cta">
+        <a class="dua-btn dua-btn-p" href={ev.registerUrl} target="_blank" rel="noopener noreferrer">
+          Register Now <span class="arr">→</span>
+        </a>
+        <a class="dua-btn dua-btn-s" href="#distances">The Distances</a>
+      </div>
+    </div>
+
+    <div class="dua-hero-right">
+      <ChainringCountdown dateISO={duaMeta.raceDayISO} nowMs={Date.now()} client:idle />
+      <a class="dua-flag-note" href="#schedule">
+        <span class="dot"></span> Bike check-in 12 Nov · flag-off time coming soon
+      </a>
+    </div>
+  </div>
+
+  <a href="#facts" class="dua-scrollhint" aria-label="Scroll to begin">
+    <span>Roll the page</span>
+    <svg viewBox="0 0 24 28" width="14" height="20"><path d="M12 0 v22 M5 16 L12 24 L19 16" stroke="currentColor" stroke-width="1.5" fill="none" /></svg>
+  </a>
+</header>

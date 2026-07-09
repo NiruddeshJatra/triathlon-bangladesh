@@ -1,0 +1,23 @@
+---
+import RBRStrip from './RBRStrip.astro';
+import { duaLegs } from '../../data/event';
+---
+<section id="distances" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">01 · The Distances</div>
+    <h2 class="stitle">Run. <span class="acc">Ride.</span> Run.</h2>
+    <p class="skicker">Olympic-distance duathlon: 10K on foot, 40K on the bike, 5K to settle it. One continuous clock, two transitions.</p>
+  </div>
+  <div class="dua-legs">
+    {duaLegs.map((leg, i) => (
+      <article class={`dua-leg ${leg.kind}`}>
+        <div class="leg-idx">{String(i + 1).padStart(2, '0')}</div>
+        <div class="leg-km">{leg.km}<span>KM</span></div>
+        <div class="leg-name">{leg.kind === 'bike' ? 'Bike' : 'Run'} <em>· {leg.laps}</em></div>
+        <p class="leg-blurb">{leg.blurb}</p>
+        {i < duaLegs.length - 1 && <div class="leg-t" aria-hidden="true">T{i + 1}</div>}
+      </article>
+    ))}
+  </div>
+  <RBRStrip compact />
+</section>

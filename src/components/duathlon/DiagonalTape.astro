@@ -1,0 +1,12 @@
+---
+interface Props {
+  text?: string;
+}
+const { text = 'RUN · RIDE · RUN · CONQUER CHATTOGRAM' } = Astro.props;
+const reps = Array.from({ length: 10 });
+---
+<div class="dua-tape" aria-hidden="true">
+  <div class="tape-inner">
+    {reps.map(() => <span>{text}&nbsp;&nbsp;·&nbsp;&nbsp;</span>)}
+  </div>
+</div>

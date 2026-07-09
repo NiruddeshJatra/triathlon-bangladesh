@@ -4,7 +4,7 @@ Read `AGENTS.md` (repo root) for the full working contract and scope rules. Read
 
 ## Project
 
-**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chatto Metro Half Marathon 2026, 21 August 2026 (rescheduled from 10 July 2026; registration closed), Karnaphuli Riverside, Chattogram.
+**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chatto Metro Half Marathon 2026, 21 August 2026 (rescheduled from 10 July 2026; registration closed), Karnaphuli Riverside, Chattogram. Second event with its own decorated page + skin: Chattogram Duathlon 2026, `/events/duathlon-2026`, registration open — see "Duathlon skin" below.
 
 ## Commands
 
@@ -20,20 +20,29 @@ npm run preview      # preview built output
 ```
 src/
 ├── components/
-│   ├── BrandHero.astro        # Homepage brand hero — org identity + current event card + countdown
-│   ├── TwoRegisterCTAs.astro  # Two CTA buttons (external register + event detail link)
-│   ├── UpcomingEventsList.astro  # Card grid for upcoming events from events[]
+│   ├── BrandHero.astro        # Homepage brand hero (`tb-hero`) — river SVG bg, org identity, wide shield logo. No countdown/event card (see DualEventFeature)
+│   ├── DualEventFeature.astro # Homepage — replaces old TwoRegisterCTAs+UpcomingEventsList. Two feature cards (duathlon chartreuse/open, chatto-metro gold/closed) + "Also on the calendar" strip from getUpcomingEvents()
 │   ├── PreviousEventsList.astro  # Card grid for previous events from events[]
 │   ├── CommunityInvolvement.astro  # Homepage section for community/rescue-partner events (eventType:'community')
 │   ├── OrgAbout.astro         # Org mission + pillars (homepage brand section)
 │   ├── PartnersSlideshow.astro   # Per-event partners — infinite marquee, prefers-reduced-motion honored
-│   ├── Hero.astro             # Event-detail hero (full experience, used in [slug].astro only)
-│   ├── QuickFacts.astro · Categories.astro · Schedule.astro  # Event detail sections
-│   ├── TheCourse.astro · Entitlements.astro · Team.astro     # Event detail sections
-│   ├── FAQ.astro · RegisterBand.astro                        # Event detail sections
+│   ├── Hero.astro             # Event-detail hero (Chatto Metro full experience, used in [slug].astro only)
+│   ├── QuickFacts.astro · Categories.astro · Schedule.astro  # Chatto Metro event detail sections
+│   ├── TheCourse.astro · Entitlements.astro · Team.astro     # Chatto Metro event detail sections
+│   ├── FAQ.astro · RegisterBand.astro                        # Chatto Metro event detail sections
 │   ├── Nav.astro              # Site nav — page-level links (Home, Events, Our Team, Join, Terms, Register)
-│   ├── WheelDivider.astro     # Ship's-wheel section divider (4 max per page)
-│   └── Footer.astro           # Site footer — links to /events/chatto-metro anchors + page links
+│   ├── WheelDivider.astro     # Gold ship's-wheel section divider (4 max per page; chainring is the duathlon-page equivalent, see below)
+│   ├── Footer.astro           # Site footer — links to /events/chatto-metro anchors + page links
+│   └── duathlon/              # Chattogram Duathlon 2026 page — chartreuse skin, scoped via `.dua-page` wrapper, NOT used elsewhere
+│       ├── Chainring.astro    # Toothed-cog SVG primitive (replaces ship's wheel on this page)
+│       ├── GearDivider.astro  # Section divider using Chainring — same slot as WheelDivider
+│       ├── RBRStrip.astro     # Run-Bike-Run proportional strip (10/40/5 km), used in hero + distances
+│       ├── ComingSoon.astro   # Placeholder block (dashed border, spinning chainring, EN/BN "Coming Soon") — block/compact/frame variants
+│       ├── DiagonalTape.astro # Rotated marquee tape band
+│       ├── DuaHero.astro · DuaQuickFacts.astro · DuaDistances.astro · DuaCategories.astro
+│       ├── DuaPrizes.astro · DuaEntitlements.astro · DuaFacilities.astro · DuaSchedule.astro
+│       ├── DuaRules.astro · DuaPacers.astro · DuaFAQ.astro · DuaRegisterBand.astro
+│       └── DuaFooter.astro    # Chartreuse-skinned footer for this page only (site Footer.astro unaffected)
 ├── data/
 │   └── event.ts               # SINGLE SOURCE OF TRUTH — all content. Exports: event, categories,
 │                              #   schedule, entitlements, team, pacers, sponsors, faq, about, medals,
@@ -43,6 +52,9 @@ src/
 │                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?,
 │                              #   facebookEvent?, regFee?, heroImage, gallery?[], summary, runners?,
 │                              #   dist?, note?, partners?
+│                              #   Duathlon-specific content (all `dua`-prefixed, mirrors the CMHM exports above):
+│                              #   duaMeta, duaQuickFacts, duaLegs, duaCategories, duaPrizeNote,
+│                              #   duaEntitlements, duaFacilities, duaScheduleKnown, duaRules, duaFaq
 ├── islands/                   # React interactive components (islands pattern)
 ├── layouts/
 │   └── Layout.astro           # HTML shell, meta tags, font imports — do not touch SEO
@@ -62,9 +74,14 @@ src/
 ```
 public/
 ├── og-image.jpg · favicon.ico · favicon-32.png · favicon-16.png · apple-touch-icon.png
-├── cmhm-logo-for-dark.png     # dark-bg nav logo
-├── logo-nobg.png              # bg-removed source (favicon generation)
+│                              # All 4 favicon files generated from assets/triathlon-bd-shield-white.png
+│                              #   (badges-only crop, padded to square). logo-nobg.png below is the OLD
+│                              #   Chatto-Metro-specific favicon source — no longer used, kept for history.
+├── cmhm-logo-for-dark.png     # dark-bg nav logo (unused — superseded by assets/triathlon-bd-shield-white.png)
+├── logo-nobg.png              # OLD bg-removed favicon source — superseded, see note above
 ├── assets/
+│   ├── triathlon-bd-shield-white.png  # THE org logo/icon — used everywhere: Nav, BrandHero, Footer, OrgAbout, DuaFooter, favicon
+│   ├── triathlon-bd-shield.png        # Dark-on-light variant of the same mark (same badge artwork, black wordmark)
 │   ├── events/
 │   │   ├── <slug>/            # Per-event images: poster.jpg, logo.jpg, gallery-*.jpg, eligibility.jpg
 │   │   └── kutubdia-swimming-crew/  # Community event assets — descriptively named (team-banner.jpeg, rescue-*.jpeg, crew-*.jpeg)
@@ -82,6 +99,9 @@ public/
 | `MedalCarousel.tsx` | `client:visible` | Medal/jersey carousel with tabs |
 | `WheelSpin.tsx` | `client:idle` | Scroll-based rAF-throttled wheel rotation (4 max per page) |
 | `CountUp.tsx` | `client:visible` | Animated stat counters |
+| `ChainringCountdown.tsx` | `client:idle` | Duathlon-page hero countdown — same pattern as `CountdownRing.tsx` but chartreuse + chainring visual, `/events/duathlon-2026` only |
+| `ChainringSpin.tsx` | `client:idle` | Scroll-based rotation for `.dua-divider` chainrings — duathlon-page equivalent of `WheelSpin.tsx` |
+| `DuaFAQAccordion.tsx` | `client:idle` | Duathlon FAQ — one-open-at-a-time accordion (unlike the CMHM FAQ's native `<details>`, which allows multiple open) |
 
 ## Key Constraints
 
@@ -98,3 +118,5 @@ public/
 - All animations require a `prefers-reduced-motion` static fallback
 - 4 wheel dividers maximum per page (homepage uses 3, event detail uses 4)
 - `ScrollRoute` island lives on event detail page only — not homepage
+- **Duathlon skin is fully scoped** — every duathlon-specific CSS rule lives under `.dua-page` / `dua-*` class names in `global.css`, and `[slug].astro` wraps the whole `duathlon-2026` branch in `<div class="dua-page">`. Never let `--chart`/`--chart-dim`/`--ink` tokens or `dua-*` classes leak onto the homepage or Chatto Metro page. Class names that collide with existing CMHM names were deliberately renamed (`cat-name`→`dcat-name`, `cat-cta`→`dcat-cta`, `fq`/`fnum`/`fchev`/`fa`→`dfq`/`dfnum`/`dfchev`/`dfa`) — do not rename them back, it restores a specificity collision.
+- Homepage wheel dividers: 2 (`TRACK RECORD`, `THE MISSION`) — the old `UPCOMING` divider was removed when `DualEventFeature` replaced `TwoRegisterCTAs`+`UpcomingEventsList` (the Fable dual-event section has no divider before it). Event detail page (Chatto Metro) still uses 4.

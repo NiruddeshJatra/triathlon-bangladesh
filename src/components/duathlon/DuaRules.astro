@@ -1,0 +1,34 @@
+---
+import { duaRules } from '../../data/event';
+const r = duaRules;
+---
+<section id="rules" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">07 · Rules & Standards</div>
+    <h2 class="stitle">Raced to <span class="acc">international rules.</span></h2>
+    <p class="skicker">Non-drafting duathlon under standard international rules. Read these before check-in — marshals enforce them.</p>
+  </div>
+  <div class="dua-cutoff">
+    <div class="co-num">{r.cutOff}<span>HRS</span></div>
+    <div class="co-body">
+      <div class="co-k">Total cut-off</div>
+      <div class="co-s">{r.cutOffNote}</div>
+    </div>
+  </div>
+  <div class="dua-rules-grid">
+    {r.groups.map((g, i) => (
+      <div class="dua-rule-card">
+        <div class="rc-k"><span class="rc-i">{String(i + 1).padStart(2, '0')}</span>{g.k}</div>
+        {g.allowed && g.notAllowed && (
+          <div class="rc-bikes">
+            <div class="rc-chips ok">{g.allowed.map((b) => <span>{b}</span>)}</div>
+            <div class="rc-chips no">{g.notAllowed.map((b) => <span>{b}</span>)}</div>
+          </div>
+        )}
+        <ul class="rc-list">
+          {g.items.map((it) => <li>{it}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,85 @@
+---
+import { getEventBySlug, getUpcomingEvents, duaLegs } from '../data/event';
+
+const dua = getEventBySlug('duathlon-2026')!;
+const cmhm = getEventBySlug('chatto-metro')!;
+
+function daysTo(iso: string) {
+  return Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 86400000));
+}
+
+const duaDays = daysTo('2026-11-13T06:00:00+06:00');
+const cmhmDays = daysTo('2026-08-21T05:00:00+06:00');
+
+const more = getUpcomingEvents().filter((e) => e.slug !== dua.slug);
+---
+<section id="events" class="tb-section">
+  <div class="tb-shead">
+    <div class="eyebrow">Upcoming Events</div>
+    <h2 class="stitle">Two start lines <span class="acc">ahead.</span></h2>
+  </div>
+
+  <div class="dual-events">
+    <article class="dual-card dual-dua">
+      <div class="dual-wedge" aria-hidden="true"></div>
+      <div class="dual-top">
+        <span class="dual-badge open"><span class="dot"></span> Registration Open</span>
+        <span class="dual-days">{duaDays} <em>days</em></span>
+      </div>
+      <h3 class="dual-title">Chattogram<br /><span class="acc">Duathlon 2026</span></h3>
+      <p class="dual-tag">{dua.tagline}</p>
+      <div class="dual-rbr" aria-label="10K run, 40K bike, 5K run">
+        {duaLegs.map((leg) => (
+          <span class={`seg ${leg.kind}`} style={`flex-grow:${leg.km}`}>
+            <b>{leg.km}K</b> {leg.kind === 'bike' ? 'BIKE' : 'RUN'}
+          </span>
+        ))}
+      </div>
+      <dl class="dual-meta">
+        <div><dt>Date</dt><dd>13 Nov 2026 · Friday</dd></div>
+        <div><dt>Venue</dt><dd>{dua.location}</dd></div>
+        <div><dt>Entry</dt><dd>{dua.regFee} · 250 slots</dd></div>
+      </dl>
+      <div class="dual-ctas">
+        <a class="dual-btn p" href={dua.registerUrl} target="_blank" rel="noopener noreferrer">Register Now <span>→</span></a>
+        <a class="dual-btn s" href={`/events/${dua.slug}`}>Event Page</a>
+      </div>
+    </article>
+
+    <article class="dual-card dual-cmhm">
+      <div class="dual-wedge" aria-hidden="true"></div>
+      <div class="dual-top">
+        <span class="dual-badge resched">Rescheduled — 21 Aug 2026</span>
+        <span class="dual-days">{cmhmDays} <em>days</em></span>
+      </div>
+      <h3 class="dual-title">Chatto Metro<br /><span class="acc">Half Marathon</span></h3>
+      <p class="dual-tag">{cmhm.tagline}</p>
+      <div class="dual-dists" aria-label="21.1, 10 and 5 kilometre runs">
+        <span>21.1K</span><span>10K</span><span>5K</span>
+      </div>
+      <dl class="dual-meta">
+        <div><dt>New date</dt><dd>21 Aug 2026 · Friday</dd></div>
+        <div><dt>Venue</dt><dd>Karnaphuli Riverside, Chattogram</dd></div>
+        <div><dt>Registration</dt><dd class="closed">Closed</dd></div>
+      </dl>
+      <div class="dual-ctas">
+        <a class="dual-btn s gold" href={`/events/${cmhm.slug}`}>Event Info <span>→</span></a>
+      </div>
+    </article>
+  </div>
+
+  {more.length > 0 && (
+    <div class="dual-more">
+      <div class="dual-more-h">Also on the calendar</div>
+      <ul>
+        {more.map((e) => (
+          <li>
+            <div class="dm-date">{e.dateDisplay}</div>
+            <div class="dm-name">{e.name}</div>
+            {e.dist && <div class="dm-dist">{e.dist}</div>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</section>
