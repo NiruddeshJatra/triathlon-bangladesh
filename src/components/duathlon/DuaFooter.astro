@@ -1,6 +1,10 @@
 ---
 import { getEventBySlug, org, event as cmhmEvent } from '../../data/event';
 const ev = getEventBySlug('duathlon-2026')!;
+// Derive the display format ("+880 1303-358202") from the same data the
+// tel: link uses, so they can never drift out of sync.
+const phoneDigits = cmhmEvent.contact.phone.replace(/^0/, '');
+const phoneDisplay = `+880 ${phoneDigits.slice(0, 4)}-${phoneDigits.slice(4)}`;
 ---
 <footer class="dua-footer">
   <div class="dua-footer-grid">
@@ -10,7 +14,7 @@ const ev = getEventBySlug('duathlon-2026')!;
     </div>
     <div>
       <div class="ft-h">Contact</div>
-      <a href={`tel:${cmhmEvent.contact.phone}`}>+880 1303-358202</a>
+      <a href={`tel:${cmhmEvent.contact.phone}`}>{phoneDisplay}</a>
       <a href={`mailto:${cmhmEvent.contact.email}`}>{cmhmEvent.contact.email}</a>
     </div>
     <div>

@@ -1,6 +1,9 @@
 ---
 // Toothed bike-cog SVG — 22 teeth, rim, dashed chain-link inner ring,
 // 5-arm spider with bolt holes, hub. Replaces the ship's wheel on this page.
+// Geometry lives in src/lib/chainring.ts, shared with ChainringCountdown.tsx.
+import { getChainringGeometry } from '../../lib/chainring';
+
 interface Props {
   size?: number;
   stroke?: string;
@@ -8,35 +11,24 @@ interface Props {
   class?: string;
 }
 const { size = 116, stroke = 'var(--chart)', teeth = 22, class: className } = Astro.props;
-const cx = size / 2;
-const r = size / 2 - 8;
-const tArr = Array.from({ length: teeth }, (_, i) => (i * 360) / teeth);
-const arms = Array.from({ length: 5 }, (_, i) => i * 72 - 90);
-const armLine = arms.map((a) => ({
-  x2: cx + (r - size * 0.09) * Math.cos((a * Math.PI) / 180),
-  y2: cx + (r - size * 0.09) * Math.sin((a * Math.PI) / 180),
-}));
-const boltHoles = arms.map((a) => ({
-  cx: cx + r * 0.55 * Math.cos((a * Math.PI) / 180),
-  cy: cx + r * 0.55 * Math.sin((a * Math.PI) / 180),
-}));
+const g = getChainringGeometry(size, teeth);
 ---
 <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} class={className} style="display:block;overflow:visible" aria-hidden="true">
   <g>
-    {tArr.map((a) => (
-      <rect x={cx - size * 0.018} y={cx - r - size * 0.055} width={size * 0.036} height={size * 0.062}
-        rx={size * 0.012} fill={stroke} opacity="0.95" transform={`rotate(${a} ${cx} ${cx})`} />
+    {g.teeth.map((t) => (
+      <rect x={t.x} y={t.y} width={t.width} height={t.height}
+        rx={t.rx} fill={stroke} opacity="0.95" transform={`rotate(${t.rotate} ${g.cx} ${g.cy})`} />
     ))}
-    <circle cx={cx} cy={cx} r={r} fill="none" stroke={stroke} stroke-width={size * 0.022} />
-    <circle cx={cx} cy={cx} r={r - size * 0.07} fill="none" stroke={stroke}
-      stroke-width={size * 0.009} stroke-dasharray={`${size * 0.026} ${size * 0.026}`} opacity="0.7" />
-    {armLine.map((l) => (
-      <line x1={cx} y1={cx} x2={l.x2} y2={l.y2} stroke={stroke} stroke-width={size * 0.018} opacity="0.55" />
+    <circle cx={g.cx} cy={g.cy} r={g.rimR} fill="none" stroke={stroke} stroke-width={g.rimStrokeWidth} />
+    <circle cx={g.cx} cy={g.cy} r={g.innerR} fill="none" stroke={stroke}
+      stroke-width={g.innerStrokeWidth} stroke-dasharray={g.innerDash} opacity="0.7" />
+    {g.arms.map((l) => (
+      <line x1={g.cx} y1={g.cy} x2={l.x2} y2={l.y2} stroke={stroke} stroke-width={g.armStrokeWidth} opacity="0.55" />
     ))}
-    {boltHoles.map((b) => (
-      <circle cx={b.cx} cy={b.cy} r={size * 0.022} fill="none" stroke={stroke} stroke-width={size * 0.011} opacity="0.8" />
+    {g.bolts.map((b) => (
+      <circle cx={b.cx} cy={b.cy} r={b.r} fill="none" stroke={stroke} stroke-width={b.strokeWidth} opacity="0.8" />
     ))}
-    <circle cx={cx} cy={cx} r={Math.max(6, size * 0.075)} fill="var(--bg-base)" stroke={stroke} stroke-width={size * 0.018} />
-    <circle cx={cx} cy={cx} r={Math.max(2, size * 0.022)} fill={stroke} />
+    <circle cx={g.cx} cy={g.cy} r={g.hubR} fill="var(--bg-base)" stroke={stroke} stroke-width={g.hubStrokeWidth} />
+    <circle cx={g.cx} cy={g.cy} r={g.hubDotR} fill={stroke} />
   </g>
 </svg>
