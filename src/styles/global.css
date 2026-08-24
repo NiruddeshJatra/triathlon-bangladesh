@@ -656,7 +656,7 @@ details[open] .fchev{transform:rotate(45deg);}
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-style:italic;padding-right:.12em;}
 
 /* ─── DualEventFeature ───────────────────────────────────────────────────── */
-.dual-events{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;align-items:stretch;}
+.dual-events{display:grid;grid-template-columns:minmax(0,760px);justify-content:center;gap:24px;align-items:stretch;}
 .dual-card{position:relative;border-radius:8px;overflow:hidden;padding:30px 32px 32px;display:flex;flex-direction:column;gap:16px;
   background:linear-gradient(180deg,var(--bg-card),var(--bg-elev));border:1px solid rgba(255,255,255,.05);
   transition:transform .25s,border-color .25s,box-shadow .25s;}

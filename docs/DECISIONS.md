@@ -93,7 +93,7 @@ Two intentionally distinct elements — do not merge them:
 - ✅ **Flag-off time: 05:00 AM BST** — confirmed by race director (2026-06-01). `event.ts` value correct.
 - ⚠️ **Total Active Sports logo** — not yet available; placeholder text used
 - ⚠️ **Action photography** — no race-day photos yet; team photos are in place
-- ✅ **Duathlon 2026** — date (13 Nov 2026), venue (Bakolia Stadium, Noman College Road), tagline, register URL, and Facebook event confirmed (2026-07-08). `event.ts` `duathlon-2026` entry updated; decorated event page still pending (separate Fable design effort).
+- ✅ **Duathlon 2026** — date moved to 6 Nov 2026 and entry fee revised to 3,200 BDT (2026-08-24; was 13 Nov 2026 / 3,500 BDT confirmed 2026-07-08). Venue (Bakolia Stadium, Noman College Road), tagline, register URL, and Facebook event unchanged. `event.ts` `duathlon-2026` entry updated; decorated event page still pending (separate Fable design effort).
 - ⚠️ **Terms & Conditions** — draft in `src/pages/terms.astro`; all sections marked `<!-- CLIENT REVIEW -->`. Must be legally reviewed before publishing.
 - ⚠️ **Join Our Team roles** — placeholder list in `join.astro`. Move to `event.ts` as `rolesAvailable[]` once confirmed.
 - ⚠️ **Orphaned components** — `About.astro`, `PreviousEvents.astro`, `Sponsors.astro` no longer imported. Delete only with explicit approval.

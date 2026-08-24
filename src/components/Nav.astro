@@ -1,7 +1,7 @@
 ---
-import { getCurrentEvent } from '../data/event';
+import { getEventBySlug } from '../data/event';
 
-const currentEvent = getCurrentEvent();
+const featuredEvent = getEventBySlug('duathlon-2026');
 ---
 <nav class="cmhm-nav">
   <a href="/" class="cmhm-brand">
@@ -10,11 +10,11 @@ const currentEvent = getCurrentEvent();
   </a>
   <div id="nav-menu" class="cmhm-navlinks">
     <a href="/">Home</a>
-    {currentEvent && <a href={`/events/${currentEvent.slug}`}>Events</a>}
+    {featuredEvent && <a href={`/events/${featuredEvent.slug}`}>Events</a>}
     <a href="/team">Our Team</a>
     <a href="/join">Join Our Team</a>
     <a href="/terms">Terms</a>
-    {currentEvent?.registerUrl && currentEvent.registrationOpen !== false && <a class="cmhm-nav-cta" href={currentEvent.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>}
+    {featuredEvent?.registerUrl && featuredEvent.registrationOpen !== false && <a class="cmhm-nav-cta" href={featuredEvent.registerUrl} target="_blank" rel="noopener noreferrer">Register</a>}
   </div>
   <button id="nav-toggle" class="cmhm-nav-toggle"
           aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">

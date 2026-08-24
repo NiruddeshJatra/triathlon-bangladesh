@@ -42,7 +42,7 @@ const ev = getEventBySlug('duathlon-2026')!;
     <div class="dua-hero-right">
       <ChainringCountdown dateISO={duaMeta.raceDayISO} nowMs={Date.now()} client:idle />
       <a class="dua-flag-note" href="#schedule">
-        <span class="dot"></span> Bike check-in 12 Nov · flag-off time coming soon
+        <span class="dot"></span> Bike check-in {duaMeta.bikeCheckIn} · flag-off time coming soon
       </a>
     </div>
   </div>

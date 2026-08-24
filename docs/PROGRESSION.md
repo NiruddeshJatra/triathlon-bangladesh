@@ -302,3 +302,12 @@ All 50+ loose Facebook/WhatsApp/numbered images in `public/assets/` could not be
 - **SEO — junk URL**: `event.ts` Moheshkhali 2027 slug `-2027` → `moheshkhali-2027` (was producing `/events/-2027/`).
 - **Pacer grid**: `Team.astro` + `global.css` — pacer "photos" are full event posters; old `140px + text` card cropped them to an illegible sliver and repeated name/time. Replaced with full-poster `<figure>` cards (4-col desktop, 3-col ≤880, 2-col mobile); removed orphaned `.pphoto/.pmeta/.pdist/.pname/.ptime` CSS. Pacer `pos:` field now unused (harmless).
 - **Pending user action (not code)**: deploy to apply CSP; set apex as Primary domain in Vercel (www→apex redirect, currently 307); verify in Google Search Console + submit sitemap to trigger indexation.
+
+## Duathlon becomes the lead event
+**2026-08-24 — Duathlon moved to 6 Nov / ৳3,200; Chatto Metro retired from the homepage and nav**
+
+- `src/data/event.ts` — `duathlon-2026` date `2026-11-13` → `2026-11-06` (`dateDisplay` "6 November 2026"), `duaMeta.raceDayISO` → `2026-11-06T06:00:00+06:00`, `regFee` 3,500 → 3,200 BDT. Bike check-in / kit expo shifts with it: `duaMeta.bikeCheckIn` "5 November 2026", plus `duaQuickFacts`, `duaScheduleKnown` ("5 NOV") and the two FAQ answers.
+- `DuaHero.astro` + `DuaSchedule.astro` now render `duaMeta.bikeCheckIn` instead of a hardcoded "12 Nov" — continues the derive-dates-from-data rule from the earlier duathlon review pass.
+- `Nav.astro` — Events link and Register CTA switched from `getCurrentEvent()` to `getEventBySlug('duathlon-2026')` (local var renamed `featuredEvent`). Chatto Metro has run, so nav now points at the live event; Register appears again because duathlon registration is open.
+- `DualEventFeature.astro` — Chatto Metro card removed (heading "Two start lines" → "The next start line"), date cell derives from `dua.dateDisplay`. `.dual-events` grid in `global.css` goes from `1.08fr .92fr` to a single centered `minmax(0,760px)` column so the lone card isn't half-width. Homepage meta description in `index.astro` updated to the duathlon only.
+- Still pending (deliberately out of scope): `events[]` keeps `chatto-metro` as `status: 'current'`, and `Layout.astro`'s `defaultJsonLdEvent` still emits the Chatto Metro `SportsEvent` schema on the homepage. Both wait on the Chatto Metro archive page.

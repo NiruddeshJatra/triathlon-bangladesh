@@ -481,14 +481,14 @@ export const events: EventEntry[] = [
     slug: 'duathlon-2026',
     name: 'Chattogram Duathlon 2026',
     status: 'upcoming',
-    date: '2026-11-13',
-    dateDisplay: '13 November 2026',
+    date: '2026-11-06',
+    dateDisplay: '6 November 2026',
     location: 'Bakolia Stadium, Noman College Road, Chattogram',
     tagline: 'Run. Ride. Run. Conquer Chattogram.',
     registerUrl: 'https://register.triathlonbangladesh.com',
     registrationOpen: true,
     facebookEvent: 'https://www.facebook.com/events/1559539922251109',
-    regFee: '3,500 BDT',
+    regFee: '3,200 BDT',
     heroImage: null,
     gallery: [],
     summary: 'Chattogram\'s first duathlon — Olympic distance. Run. Ride. Run. along the Karnaphuli. Registration open.',
@@ -671,18 +671,18 @@ export const orgTeam: OrgMember[] = [
 // ─── Chattogram Duathlon 2026 — structured content ───────────────────────────
 
 export const duaMeta = {
-  raceDayISO: "2026-11-13T06:00:00+06:00",
-  bikeCheckIn: "12 November 2026",
+  raceDayISO: "2026-11-06T06:00:00+06:00",
+  bikeCheckIn: "5 November 2026",
   cutOff: "4 hours",
 } as const;
 
 export const duaQuickFacts = [
-  { k: "13 Nov 2026", s: "Friday · Race Day" },
+  { k: "6 Nov 2026", s: "Friday · Race Day" },
   { k: "Bakolia Stadium", s: "Noman College Road" },
   { k: "10 · 40 · 5", s: "Run · Bike · Run (KM)" },
-  { k: "৳3,500", s: "Entry Fee" },
+  { k: "৳3,200", s: "Entry Fee" },
   { k: "250 Slots", s: "First come, first served" },
-  { k: "12 Nov", s: "Bike Check-in · Kit Expo" },
+  { k: "5 Nov", s: "Bike Check-in · Kit Expo" },
 ] as const;
 
 export interface DuaLeg {
@@ -756,8 +756,8 @@ export interface DuaScheduleItem {
 }
 
 export const duaScheduleKnown: DuaScheduleItem[] = [
-  { time: "12 NOV", title: "Bike Check-in", note: "Rack your bike at Bakolia Stadium the day before the race." },
-  { time: "12 NOV", title: "Kit Expo", note: "Collect your bib, chip, jersey and kit bag before event day." },
+  { time: "5 NOV", title: "Bike Check-in", note: "Rack your bike at Bakolia Stadium the day before the race." },
+  { time: "5 NOV", title: "Kit Expo", note: "Collect your bib, chip, jersey and kit bag before event day." },
 ];
 
 export interface DuaRuleGroup {
@@ -823,7 +823,7 @@ export const duaFaq = [
   },
   {
     q: "How do I register?",
-    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,500 with 250 slots, first come first served.",
+    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,200 with 250 slots, first come first served.",
   },
   {
     q: "Which bikes are allowed?",
@@ -839,7 +839,7 @@ export const duaFaq = [
   },
   {
     q: "When do I bring my bike?",
-    a: "Bike check-in is on 12 November, the day before the race, at Bakolia Stadium. The kit expo — bib, chip, jersey, kit bag — also runs before event day.",
+    a: "Bike check-in is on 5 November, the day before the race, at Bakolia Stadium. The kit expo — bib, chip, jersey, kit bag — also runs before event day.",
   },
 ];
 

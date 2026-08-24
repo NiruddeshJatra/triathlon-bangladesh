@@ -133,7 +133,7 @@ Notes: Kutubdia 2026 title sponsor Infinity Mega Mall. Boot camps: 2nd largest i
 | `chatto-metro` | Chatto Metro Half Marathon 2026 | current | 10 Jul 2026 |
 | `chatto-metro-relay-2026` | Chatto Metro Relay Race 2026 | upcoming | 25 Sep 2026 |
 | `moheshkhali-ultra-2026` | Moheshkhali Island Ultra 2026 | upcoming | 26 Sep 2026 |
-| `duathlon-2026` | Chattogram Duathlon 2026 | upcoming | 13 Nov 2026 |
+| `duathlon-2026` | Chattogram Duathlon 2026 | upcoming | 6 Nov 2026 |
 | `kutubdia-2027` | Kutubdia Island Half Marathon 2027 | upcoming | 8 Jan 2027 |
 | `kutubdia-2026` | Kutubdia Island Half Marathon 2026 | previous | 27 Mar 2026 |
 | `moheshkhali-2025` | Moheshkhali Island Half Marathon 2025 | previous | 12 Sep 2025 |
@@ -188,7 +188,8 @@ Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents
 - Entitlements: T-shirt, Medal (finisher), Certificate (finisher), Medical (Ambulance + First Aid + Physio), Home Delivery Race Kit, Lunch, Hydration, Pre-Race Light Breakfast, Chip Timing
 
 ### Chattogram Duathlon 2026 (`duathlon-2026`, upcoming)
-- Date: 13 November 2026 · Location: Chattogram (venue TBC)
+- Date: 6 November 2026 (moved from 13 November) · Location: Bakolia Stadium, Noman College Road, Chattogram
+- Entry fee: 3,200 BDT (revised from 3,500) · 250 slots · Bike check-in + kit expo 5 November 2026
 - First duathlon in Chattogram, second in Bangladesh
 - Distance: Standard/Olympic — 10K Run · 40K Bike · 5K Run
 - Categories: Open 18–39 (Male/Female), Masters 40+ (Male/Female)

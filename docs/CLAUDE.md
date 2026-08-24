@@ -4,7 +4,7 @@ Read `AGENTS.md` (repo root) for the full working contract and scope rules. Read
 
 ## Project
 
-**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chatto Metro Half Marathon 2026, 21 August 2026 (rescheduled from 10 July 2026; registration closed), Karnaphuli Riverside, Chattogram. Second event with its own decorated page + skin: Chattogram Duathlon 2026, `/events/duathlon-2026`, registration open — see "Duathlon skin" below.
+**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chattogram Duathlon 2026, 6 November 2026, Bakolia Stadium, Chattogram — registration open, own decorated page + skin at `/events/duathlon-2026` (see "Duathlon skin" below). Chatto Metro Half Marathon 2026 (21 August 2026) has ended; its `events[]` entry is still `status: 'current'` and an archive page is pending.
 
 ## Commands
 
@@ -21,7 +21,7 @@ npm run preview      # preview built output
 src/
 ├── components/
 │   ├── BrandHero.astro        # Homepage brand hero (`tb-hero`) — river SVG bg, org identity, wide shield logo. No countdown/event card (see DualEventFeature)
-│   ├── DualEventFeature.astro # Homepage — replaces old TwoRegisterCTAs+UpcomingEventsList. Two feature cards (duathlon chartreuse/open, chatto-metro gold/closed) + "Also on the calendar" strip from getUpcomingEvents()
+│   ├── DualEventFeature.astro # Homepage — replaces old TwoRegisterCTAs+UpcomingEventsList. One feature card (duathlon chartreuse/open; chatto-metro card removed after the race ended) + "Also on the calendar" strip from getUpcomingEvents()
 │   ├── PreviousEventsList.astro  # Card grid for previous events from events[]
 │   ├── CommunityInvolvement.astro  # Homepage section for community/rescue-partner events (eventType:'community')
 │   ├── OrgAbout.astro         # Org mission + pillars (homepage brand section)
@@ -30,7 +30,7 @@ src/
 │   ├── QuickFacts.astro · Categories.astro · Schedule.astro  # Chatto Metro event detail sections
 │   ├── TheCourse.astro · Entitlements.astro · Team.astro     # Chatto Metro event detail sections
 │   ├── FAQ.astro · RegisterBand.astro                        # Chatto Metro event detail sections
-│   ├── Nav.astro              # Site nav — page-level links (Home, Events, Our Team, Join, Terms, Register)
+│   ├── Nav.astro              # Site nav — page-level links (Home, Events, Our Team, Join, Terms, Register). Events + Register point at the featured event via getEventBySlug('duathlon-2026'), not getCurrentEvent()
 │   ├── WheelDivider.astro     # Gold ship's-wheel section divider (4 max per page; chainring is the duathlon-page equivalent, see below)
 │   ├── Footer.astro           # Site footer — links to /events/chatto-metro anchors + page links
 │   └── duathlon/              # Chattogram Duathlon 2026 page — chartreuse skin, scoped via `.dua-page` wrapper, NOT used elsewhere
