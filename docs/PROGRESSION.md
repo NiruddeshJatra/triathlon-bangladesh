@@ -4,6 +4,17 @@ Most recent first.
 
 ---
 
+## 2026-09-12 — Chatto Metro archived, duathlon slots to 150, Nasif off the team
+
+### What changed
+- **Chatto Metro Half Marathon 2026 archived** — `events[]` entry flipped `status: 'current'` → `'previous'` in `event.ts`. 22 event-day photos (start line, on-course, finish, medal/prize ceremony) organised into `public/assets/events/chatto-metro-2026/` with descriptive filenames (`hero.jpg`, `mass-start.jpg`, `prize-giving.jpg`, etc.), wired up as `heroImage` + a 21-photo `gallery`. Renders at `/events/chatto-metro` via the same generic `[slug].astro` archive template used by Kutubdia/Moheshkhali — no new template code. `note` field credits Chattogram City Corporation and CDA Chairman Belayet Hossain as Chief Guest, sourced from what the photos show (no separate results doc existed).
+- **Closed the loop flagged in the 2026-08-24 entry below** — `Footer.astro`'s "Race" links switched from `getCurrentEvent()` (now returns `undefined`, would've silently dropped the whole section) to `getEventBySlug('duathlon-2026')`, mirroring `Nav.astro`. `Layout.astro`'s default SportsEvent JSON-LD switched from the static `event` object (still describing Chatto Metro as upcoming/scheduled) to build from `getEventBySlug('duathlon-2026')` instead, so pages that don't pass their own `eventJsonLd` no longer emit stale structured data for a race that already happened.
+- **Duathlon slots 250 → 150** — `duaQuickFacts`, the duathlon FAQ answer, `DuaHero.astro`, `DuaRegisterBand.astro`, and `DualEventFeature.astro` all updated together (no single source of truth for this one — it was hardcoded in four places).
+- **`orgTeam[]`** — removed Nasiful Alam (Social Media Manager) at his own request. Photo asset (`team-nasif.jpeg`) left on disk, unreferenced.
+- **Known pre-existing bug, not touched**: `DuaHero.astro` hardcodes "13 NOV 2026" in the meta row while every other date reference on the page correctly derives "6 NOV 2026" from `duaMeta`/`dua.dateDisplay`. Flagged, out of scope for this change.
+
+---
+
 ## 2026-07-09 — Chattogram Duathlon 2026 decorated page + homepage dual-event merge
 
 ### What changed

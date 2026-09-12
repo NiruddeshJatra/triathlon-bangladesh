@@ -4,7 +4,7 @@ Read `AGENTS.md` (repo root) for the full working contract and scope rules. Read
 
 ## Project
 
-**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chattogram Duathlon 2026, 6 November 2026, Bakolia Stadium, Chattogram — registration open, own decorated page + skin at `/events/duathlon-2026` (see "Duathlon skin" below). Chatto Metro Half Marathon 2026 (21 August 2026) has ended; its `events[]` entry is still `status: 'current'` and an archive page is pending.
+**Triathlon Bangladesh** — dark-premium multi-page Astro site. Brand homepage at `/`; per-event detail pages at `/events/[slug]`; static pages `/team`, `/terms`, `/join`. Current flagship event: Chattogram Duathlon 2026, 6 November 2026, Bakolia Stadium, Chattogram — registration open, own decorated page + skin at `/events/duathlon-2026` (see "Duathlon skin" below). Chatto Metro Half Marathon 2026 (21 August 2026) has ended; its `events[]` entry is now `status: 'previous'` with a photo archive at `/events/chatto-metro` (renders via the generic `[slug].astro` archive template, same as Kutubdia/Moheshkhali).
 
 ## Commands
 
@@ -32,7 +32,7 @@ src/
 │   ├── FAQ.astro · RegisterBand.astro                        # Chatto Metro event detail sections
 │   ├── Nav.astro              # Site nav — page-level links (Home, Events, Our Team, Join, Terms, Register). Events + Register point at the featured event via getEventBySlug('duathlon-2026'), not getCurrentEvent()
 │   ├── WheelDivider.astro     # Gold ship's-wheel section divider (4 max per page; chainring is the duathlon-page equivalent, see below)
-│   ├── Footer.astro           # Site footer — links to /events/chatto-metro anchors + page links
+│   ├── Footer.astro           # Site footer — links to /events/duathlon-2026 anchors (via getEventBySlug, mirrors Nav.astro) + page links
 │   └── duathlon/              # Chattogram Duathlon 2026 page — chartreuse skin, scoped via `.dua-page` wrapper, NOT used elsewhere
 │       ├── Chainring.astro    # Toothed-cog SVG primitive (replaces ship's wheel on this page)
 │       ├── GearDivider.astro  # Section divider using Chainring — same slot as WheelDivider
@@ -84,6 +84,8 @@ public/
 │   ├── triathlon-bd-shield.png        # Dark-on-light variant of the same mark (same badge artwork, black wordmark)
 │   ├── events/
 │   │   ├── <slug>/            # Per-event images: poster.jpg, logo.jpg, gallery-*.jpg, eligibility.jpg
+│   │   │                      #   (chatto-metro-2026/ instead uses descriptive names — hero.jpg + start-line.jpg,
+│   │   │                      #   finish-celebration.jpg, prize-giving.jpg, etc. — pick whichever style fits the shot)
 │   │   └── kutubdia-swimming-crew/  # Community event assets — descriptively named (team-banner.jpeg, rescue-*.jpeg, crew-*.jpeg)
 │   ├── team-*.jpg / .jpeg     # Team member photos (event crew + org team)
 │   ├── jersey-*.jpg · medal-*.jpg  # Event merchandise images
@@ -109,7 +111,7 @@ public/
 - `eventType: 'community'` — events we participated in but did not organise (e.g. rescue partner roles). `getPreviousEvents()` excludes these; use `getCommunityEvents()` instead. Community events render via the standard non-current `[slug].astro` template.
 - `orgTeam[]` role field drives color-coded badge on `/team`. Role → CSS class: `Founder Admin`→`org-role-founder`, `Mentor`→`org-role-mentor`, `Co-ordinator`→`org-role-coordinator`, `Social Media Manager`→`org-role-social`. Each class sets `--role-color`.
 - New content shape: `org` (brand, includes `org.socials.facebook`), `events[]` (EventEntry — card-level data), `orgTeam[]` (OrgMember — /team page), `chattoMetroPartners[]` (Partner[]). All existing named exports retained for backward compat.
-- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked. Canonical + `og:url` are **per-page** via `new URL(Astro.url.pathname, Astro.site)` — never hardcode to a single `siteUrl` (that canonicalizes every subpage to the homepage and drops them from Google's index). Accepts optional `eventJsonLd`/`breadcrumbName` props to override the default SportsEvent JSON-LD (used by `/events/duathlon-2026` — see `[slug].astro`); omit them to keep the default Chatto Metro schema.
+- `src/layouts/Layout.astro` — do not touch SEO/meta unless asked. Canonical + `og:url` are **per-page** via `new URL(Astro.url.pathname, Astro.site)` — never hardcode to a single `siteUrl` (that canonicalizes every subpage to the homepage and drops them from Google's index). Accepts optional `eventJsonLd`/`breadcrumbName` props to override the default SportsEvent JSON-LD (used by `/events/duathlon-2026` — see `[slug].astro`); omit them to keep the default, which now describes the duathlon (via `getEventBySlug('duathlon-2026')`) since it's the featured event — not Chatto Metro, which is archived.
 - `EventEntry.registrationOpen` (default true when omitted) gates every Register CTA (Hero, RegisterBand, Categories, Nav, TwoRegisterCTAs, `[slug].astro`) — set `false` to render a "Registration Closed" state instead of adding ad-hoc conditionals per component.
 - `astro.config.mjs` — do not touch build config without approval. `site` = apex `https://triathlonbangladesh.com` (non-www); www must redirect to apex
 - `vercel.json` — security headers; do not modify without approval. CSP `script-src` MUST keep `'unsafe-inline'` — Astro emits island-hydration bootstrap and hoisted `.astro` `<script>` inline; bare `'self'` kills all JS (invisible in `astro dev`, only breaks on Vercel)

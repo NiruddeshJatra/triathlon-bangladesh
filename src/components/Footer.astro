@@ -1,8 +1,8 @@
 ---
-import { event, org, getCurrentEvent } from '../data/event';
+import { event, org, getEventBySlug } from '../data/event';
 
-const currentEvent = getCurrentEvent();
-const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
+const featuredEvent = getEventBySlug('duathlon-2026');
+const eventBase = featuredEvent ? `/events/${featuredEvent.slug}` : null;
 ---
 <footer class="cmhm-footer">
   <div class="cmhm-footer-grid">
@@ -19,9 +19,9 @@ const eventBase = currentEvent ? `/events/${currentEvent.slug}` : null;
     {eventBase && (
       <div>
         <div class="ft-h">Race</div>
-        <a href={`${eventBase}#race`}>Categories</a>
+        <a href={`${eventBase}#distances`}>Distances</a>
+        <a href={`${eventBase}#categories`}>Categories</a>
         <a href={`${eventBase}#schedule`}>Schedule</a>
-        <a href={`${eventBase}#route`}>Route</a>
         <a href={`${eventBase}#get`}>What you get</a>
       </div>
     )}

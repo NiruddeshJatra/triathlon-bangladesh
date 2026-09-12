@@ -428,23 +428,6 @@ export const chattoMetroPartners: Partner[] = [
 ];
 
 export const events: EventEntry[] = [
-  // ── current ──────────────────────────────────────────────────────────────
-  {
-    slug: 'chatto-metro',
-    name: 'Chatto Metro Half Marathon 2026',
-    status: 'current',
-    date: event.date,
-    dateDisplay: event.dateDisplay,
-    location: 'Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram',
-    tagline: event.tagline,
-    registerUrl: event.registerUrl,
-    registrationOpen: false,
-    heroImage: null,
-    summary: '21.1K, 10K, and 5K along the Karnaphuli riverside — a port-city dawn run on 21 August 2026.',
-    dist: '21.1K · 10K · 5K',
-    partners: chattoMetroPartners,
-  },
-
   // ── upcoming ─────────────────────────────────────────────────────────────
   {
     slug: 'chatto-metro-relay-2026',
@@ -512,6 +495,44 @@ export const events: EventEntry[] = [
   },
 
   // ── previous ─────────────────────────────────────────────────────────────
+  {
+    slug: 'chatto-metro',
+    name: 'Chatto Metro Half Marathon 2026',
+    status: 'previous',
+    date: event.date,
+    dateDisplay: event.dateDisplay,
+    location: 'Bastuhara, Khetchar, Behind Noman College, Left of Shah Amanat Bridge Junction, Chattogram',
+    tagline: event.tagline,
+    registerUrl: event.registerUrl,
+    heroImage: '/assets/events/chatto-metro-2026/hero.jpg',
+    gallery: [
+      '/assets/events/chatto-metro-2026/mass-start.jpg',
+      '/assets/events/chatto-metro-2026/start-line.jpg',
+      '/assets/events/chatto-metro-2026/kids-start-banner.jpg',
+      '/assets/events/chatto-metro-2026/kit-collection.jpg',
+      '/assets/events/chatto-metro-2026/bib-pinning.jpg',
+      '/assets/events/chatto-metro-2026/media-interview.jpg',
+      '/assets/events/chatto-metro-2026/on-course.jpg',
+      '/assets/events/chatto-metro-2026/young-runner.jpg',
+      '/assets/events/chatto-metro-2026/kids-finish.jpg',
+      '/assets/events/chatto-metro-2026/finish-celebration.jpg',
+      '/assets/events/chatto-metro-2026/finisher-jerseys.jpg',
+      '/assets/events/chatto-metro-2026/finishers-group.jpg',
+      '/assets/events/chatto-metro-2026/friends-finish.jpg',
+      '/assets/events/chatto-metro-2026/medal-friends.jpg',
+      '/assets/events/chatto-metro-2026/finisher-medals.jpg',
+      '/assets/events/chatto-metro-2026/runner-up.jpg',
+      '/assets/events/chatto-metro-2026/group-medals-1.jpg',
+      '/assets/events/chatto-metro-2026/group-medals-2.jpg',
+      '/assets/events/chatto-metro-2026/flag-celebration.jpg',
+      '/assets/events/chatto-metro-2026/stage-award.jpg',
+      '/assets/events/chatto-metro-2026/prize-giving.jpg',
+    ],
+    summary: 'Chattogram\'s first city-backed half marathon — 21.1K, 10K, and 5K along the Karnaphuli riverside, flagged off at dawn on 21 August 2026.',
+    dist: '21.1K · 10K · 5K',
+    note: 'Organised by Triathlon Bangladesh, supported by Chattogram City Corporation. Chief Guest: Mr. Belayet Hossain, Chairman, Chattogram Development Authority (CDA). Timing by Total Active Sports.',
+    partners: chattoMetroPartners,
+  },
   {
     slug: 'kutubdia-2026',
     name: 'Kutubdia Island Half Marathon 2026',
@@ -665,7 +686,6 @@ export const orgTeam: OrgMember[] = [
   { name: "Mohammad Ziaul Haque", role: "Co-ordinator",        img: "/assets/team-zia.jpeg" },
   { name: "Mahbubul Islam",       role: "Co-ordinator",        img: "/assets/team-mahbub.jpeg" },
   { name: "Mohammad Wasir Salil", role: "Co-ordinator",        img: "/assets/team-wasir.jpeg" },
-  { name: "Nasiful Alam",         role: "Social Media Manager", img: "/assets/team-nasif.jpeg" },
 ];
 
 // ─── Chattogram Duathlon 2026 — structured content ───────────────────────────
@@ -681,7 +701,7 @@ export const duaQuickFacts = [
   { k: "Bakolia Stadium", s: "Noman College Road" },
   { k: "10 · 40 · 5", s: "Run · Bike · Run (KM)" },
   { k: "৳3,200", s: "Entry Fee" },
-  { k: "250 Slots", s: "First come, first served" },
+  { k: "150 Slots", s: "First come, first served" },
   { k: "5 Nov", s: "Bike Check-in · Kit Expo" },
 ] as const;
 
@@ -823,7 +843,7 @@ export const duaFaq = [
   },
   {
     q: "How do I register?",
-    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,200 with 250 slots, first come first served.",
+    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,200 with 150 slots, first come first served.",
   },
   {
     q: "Which bikes are allowed?",

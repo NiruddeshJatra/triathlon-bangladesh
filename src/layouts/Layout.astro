@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
-import { event } from '../data/event';
+import { event, getEventBySlug } from '../data/event';
+
+const featuredEvent = getEventBySlug('duathlon-2026');
 
 interface Props {
   title?: string;
@@ -10,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = `${event.name} ${event.year} · ${event.organizer}`,
-  description = `Half marathon in Chittagong (Chattogram), 21 August 2026 — 21.1K, 10K, 5K along the Karnaphuli riverside. Organised by Triathlon Bangladesh.`,
+  title = featuredEvent ? `${featuredEvent.name} · ${event.organizer}` : `${event.name} ${event.year} · ${event.organizer}`,
+  description = `Triathlon Bangladesh organises endurance events — half marathons, duathlons, open-water swims — across Chattogram and coastal Bangladesh.`,
   eventJsonLd,
   breadcrumbName,
 } = Astro.props;
@@ -20,29 +22,23 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonb
 const canonicalUrl = new URL(Astro.url?.pathname ?? '/', Astro.site ?? `${siteUrl}/`).href;
 const currentUrl = canonicalUrl;
 
-const defaultJsonLdEvent = {
+const regFeeDigits = featuredEvent?.regFee?.replace(/[^\d]/g, '');
+
+const defaultJsonLdEvent = featuredEvent ? {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
-  "name": `${event.name} ${event.year}`,
-  "startDate": event.flagOffISO,
-  "endDate": event.endISO,
-  "eventStatus": "https://schema.org/EventRescheduled",
-  "previousStartDate": event.previousDate,
+  "name": featuredEvent.name,
+  "startDate": featuredEvent.date,
+  "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
     "@type": "Place",
-    "name": event.venueLong,
+    "name": featuredEvent.location,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Bastuhara, Khetchar, Karnaphuli Bank Road",
       "addressLocality": "Chattogram",
       "addressRegion": "Chattogram Division",
       "addressCountry": "BD"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": event.venueGeo.lat,
-      "longitude": event.venueGeo.lng
     }
   },
   "organizer": {
@@ -50,17 +46,25 @@ const defaultJsonLdEvent = {
     "name": event.organizer,
     "url": siteUrl
   },
-  "offers": {
-    "@type": "Offer",
-    "url": event.registerUrl,
-    "validFrom": "2026-01-01",
-    "availability": event.registrationOpen !== false ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
-    "priceCurrency": "BDT"
-  },
+  ...(featuredEvent.registerUrl ? {
+    "offers": {
+      "@type": "Offer",
+      "url": featuredEvent.registerUrl,
+      ...(regFeeDigits ? { "price": regFeeDigits } : {}),
+      "priceCurrency": "BDT",
+      "availability": featuredEvent.registrationOpen !== false ? "https://schema.org/InStock" : "https://schema.org/SoldOut"
+    }
+  } : {}),
   "image": `${siteUrl}/og-image.jpg`,
   "description": description,
-  "sport": "Running",
+  "sport": "Duathlon",
   "url": siteUrl
+} : {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": event.organizer,
+  "url": siteUrl,
+  "description": description
 };
 
 const jsonLdEvent = eventJsonLd ?? defaultJsonLdEvent;
