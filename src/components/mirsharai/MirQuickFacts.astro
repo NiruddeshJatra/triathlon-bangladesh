@@ -1,0 +1,13 @@
+---
+import { mirQuickFacts } from '../../data/event';
+---
+<section id="facts" class="cmhm-facts">
+  <div class="cmhm-facts-inner">
+    {mirQuickFacts.map((f) => (
+      <div class="fact">
+        <div class="k">{f.k}</div>
+        <div class="s">{f.s}</div>
+      </div>
+    ))}
+  </div>
+</section>

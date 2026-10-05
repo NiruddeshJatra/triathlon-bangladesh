@@ -1,0 +1,60 @@
+---
+import { getEventBySlug, mirCategories, mirMeta, isMirRegistrationOpen } from '../../data/event';
+
+const ev = getEventBySlug('mirsharai-coastal-marathon-2027')!;
+const regOpen = isMirRegistrationOpen();
+---
+<section id="race" class="cmhm-section cmhm-cats">
+  <div class="cmhm-shead">
+    <div class="eyebrow">03 · Distances</div>
+    <h2 class="stitle">Three distances. <span class="acc">One coast.</span><span class="sr-only"> — Full Marathon, Half Marathon, and 10K races in Mirsharai, Chattogram</span></h2>
+    <p class="skicker">Whether you are an experienced marathoner, a passionate half-marathon runner, or taking on your first 10K — run, explore, and experience Mirsharai from a whole new perspective.</p>
+  </div>
+
+  <div class="cmhm-cat-grid">
+    {mirCategories.map((c) => (
+      <article class={`cmhm-cat cat-${c.id}`} style={`--cat-color:${c.colorHex}`}>
+        <div class="cat-header">
+          <div class="cat-dist">{c.distance}</div>
+          <div class="cat-name">{c.name}</div>
+        </div>
+        <p class="cat-blurb mir-cat-blurb">{c.blurb} {c.turn}.</p>
+        <dl class="cat-meta">
+          <div>
+            <dt>Registration Fee</dt>
+            <dd>৳ {c.regFee.replace(' BDT', '')}</dd>
+          </div>
+          <div>
+            <dt>Slots</dt>
+            <dd>{c.slots}</dd>
+          </div>
+        </dl>
+        <dl class="cat-meta mir-cat-meta">
+          <div>
+            <dt>Flag-off</dt>
+            <dd>{c.flagOff} BST</dd>
+          </div>
+          <div>
+            <dt>Prize Pool</dt>
+            <dd class="prize">৳ {c.prizePool.replace(' BDT', '')}</dd>
+          </div>
+        </dl>
+        <details class="cat-prizes">
+          <summary>Podium prizes · 1st · 2nd · 3rd</summary>
+          <ul>
+            {c.prizeBreakdown.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+        </details>
+        {regOpen ? (
+          <a class="cat-cta" href={ev.registerUrl} target="_blank" rel="noopener noreferrer">
+            Enter {c.distance} <span>→</span>
+          </a>
+        ) : (
+          <span class="cat-cta cmhm-btn-closed" aria-disabled="true">Opens {mirMeta.registrationOpensDisplay}</span>
+        )}
+      </article>
+    ))}
+  </div>
+</section>

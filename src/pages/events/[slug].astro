@@ -31,7 +31,16 @@ import DuaRegisterBand from '../../components/duathlon/DuaRegisterBand.astro';
 import DuaFooter from '../../components/duathlon/DuaFooter.astro';
 import GearDivider from '../../components/duathlon/GearDivider.astro';
 import DiagonalTape from '../../components/duathlon/DiagonalTape.astro';
-import { events, getEventBySlug, org } from '../../data/event';
+import MirHero from '../../components/mirsharai/MirHero.astro';
+import MirQuickFacts from '../../components/mirsharai/MirQuickFacts.astro';
+import MirCategories from '../../components/mirsharai/MirCategories.astro';
+import MirSchedule from '../../components/mirsharai/MirSchedule.astro';
+import MirCourse from '../../components/mirsharai/MirCourse.astro';
+import MirEntitlements from '../../components/mirsharai/MirEntitlements.astro';
+import MirTeam from '../../components/mirsharai/MirTeam.astro';
+import MirFAQ from '../../components/mirsharai/MirFAQ.astro';
+import MirRegisterBand from '../../components/mirsharai/MirRegisterBand.astro';
+import { events, getEventBySlug, org, mirMeta, mirCategories, mirScrollPins, isMirRegistrationOpen } from '../../data/event';
 
 export function getStaticPaths() {
   return events.map(e => ({ params: { slug: e.slug } }));
@@ -46,9 +55,15 @@ if (!eventEntry) {
 
 const isFullEvent = eventEntry.status === 'current';
 const isDuathlon = eventEntry.slug === 'duathlon-2026';
+const isMirsharai = eventEntry.slug === 'mirsharai-coastal-marathon-2027';
 
-const pageTitle = `${eventEntry.name} · Triathlon Bangladesh`;
-const pageDesc = eventEntry.summary;
+const pageTitle = isMirsharai
+  ? `${eventEntry.name} · 42.2K, 21.1K & 10K · Triathlon Bangladesh`
+  : `${eventEntry.name} · Triathlon Bangladesh`;
+const pageDesc = isMirsharai
+  ? `${eventEntry.name} — full marathon (42.2K), half marathon (21.1K) and 10K run on ${eventEntry.dateDisplay} at ${eventEntry.location}. Registration opens ${mirMeta.registrationOpensDisplay}. Organised by Triathlon Bangladesh.`
+  : eventEntry.summary;
+const pageImage = isDuathlon ? '/og/duathlon-2026.jpg' : isMirsharai ? mirMeta.ogImage : undefined;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
 
@@ -85,15 +100,59 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
     "url": siteUrl
   },
   ...(offers ? { "offers": offers } : {}),
-  "image": `${siteUrl}/og-image.jpg`,
+  "image": `${siteUrl}/og/duathlon-2026.jpg`,
   "description": eventEntry.summary,
   "sport": "Duathlon",
   "url": `${siteUrl}/events/${eventEntry.slug}`
 } : undefined;
+
+const mirsharaiJsonLd = isMirsharai ? {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": eventEntry.name,
+  "startDate": mirMeta.flagOffISO,
+  "endDate": mirMeta.endISO,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": mirMeta.venueShort,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": eventEntry.location,
+      "addressLocality": "Mirsharai",
+      "addressRegion": "Chattogram Division",
+      "addressCountry": "BD"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": org.name,
+    "url": siteUrl
+  },
+  "sponsor": {
+    "@type": "Organization",
+    "name": mirMeta.supportedBy
+  },
+  "offers": mirCategories.map((c) => ({
+    "@type": "Offer",
+    "name": `${c.name} — ${c.distance}`,
+    "url": eventEntry.registerUrl,
+    "price": c.regFee.replace(/[^\d]/g, ''),
+    "priceCurrency": "BDT",
+    "validFrom": mirMeta.registrationOpensISO,
+    "availability": isMirRegistrationOpen() ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+  })),
+  "image": `${siteUrl}${mirMeta.ogImage}`,
+  "description": pageDesc,
+  "sport": "Running",
+  "url": `${siteUrl}/events/${eventEntry.slug}`
+} : undefined;
 ---
-<Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd} breadcrumbName={eventEntry.name}>
+<Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd ?? mirsharaiJsonLd} breadcrumbName={eventEntry.name} image={pageImage}>
   {isFullEvent && <ScrollRoute client:visible />}
-  {isFullEvent && <WheelSpin client:idle />}
+  {isMirsharai && <ScrollRoute pins={mirScrollPins} client:visible />}
+  {(isFullEvent || isMirsharai) && <WheelSpin client:idle />}
   {isDuathlon && <ChainringSpin client:idle />}
   <Nav />
   <main>
@@ -142,6 +201,25 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
         <DuaFAQ />
         <DuaRegisterBand />
       </div>
+    ) : isMirsharai ? (
+      <>
+        <MirHero />
+        <MirQuickFacts />
+        <WheelDivider label="THE DISTANCES" />
+        <MirCategories />
+        <MirSchedule />
+        <WheelDivider label="THE COURSE" />
+        <MirCourse />
+        <MirEntitlements />
+        <WheelDivider label="THE CREW" />
+        <MirTeam />
+        {eventEntry.partners && eventEntry.partners.length > 0 && (
+          <PartnersSlideshow partners={eventEntry.partners} />
+        )}
+        <MirFAQ />
+        <WheelDivider label="REGISTER" />
+        <MirRegisterBand />
+      </>
     ) : (
       <div class="ev-page">
         {/* Hero */}

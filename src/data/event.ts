@@ -65,8 +65,8 @@ export const categories: Category[] = [
       "Veteran Male — 12,500",
       "Veteran Female — 10,500",
     ],
-    jersey: "/assets/jersey-21k.jpg",
-    medal: "/assets/medal-gold-front.jpg",
+    jersey: "/assets/events/chatto-metro-2026/jersey-21k.jpg",
+    medal: "/assets/events/chatto-metro-2026/medal-gold-front.jpg",
     blurb: "The full Karnaphuli — flag-off in port-city pre-dawn, riverside out to Bangladesh Maritime University and back.",
   },
   {
@@ -86,8 +86,8 @@ export const categories: Category[] = [
       "Veteran Male — 14,500",
       "Veteran Female — 10,500",
     ],
-    jersey: "/assets/jersey-10k.jpg",
-    medal: "/assets/medal-silver-front.jpg",
+    jersey: "/assets/events/chatto-metro-2026/jersey-10k.jpg",
+    medal: "/assets/events/chatto-metro-2026/medal-silver-front.jpg",
     blurb: "The riverside loop. Same air, same light — half the distance, all of the city.",
   },
   {
@@ -102,8 +102,8 @@ export const categories: Category[] = [
     slots: 50,
     prizePool: "3,000 BDT",
     prizeBreakdown: ["Top-3 finisher gift"],
-    jersey: "/assets/jersey-5k.jpg",
-    medal: "/assets/medal-bronze-front.jpg",
+    jersey: "/assets/events/chatto-metro-2026/jersey-5k.jpg",
+    medal: "/assets/events/chatto-metro-2026/medal-bronze-front.jpg",
     blurb: "First start line. A short, friendly opener along the river — for new runners, families, and the Port-City curious.",
   },
 ];
@@ -134,8 +134,8 @@ export interface Entitlement {
 }
 
 export const entitlements: Entitlement[] = [
-  { k: "Finisher Medal", s: "Ship's-wheel hardware — gold, silver, bronze by distance.", img: "/assets/medal-gold-front.jpg" },
-  { k: "Event Jersey", s: "Per-distance colourway in sublimated fabric.", img: "/assets/jersey-21k.jpg" },
+  { k: "Finisher Medal", s: "Ship's-wheel hardware — gold, silver, bronze by distance.", img: "/assets/events/chatto-metro-2026/medal-gold-front.jpg" },
+  { k: "Event Jersey", s: "Per-distance colourway in sublimated fabric.", img: "/assets/events/chatto-metro-2026/jersey-21k.jpg" },
   { k: "Bib + Timing Chip", s: "Subject to availability via Total Active Sports.", img: null },
   { k: "E-Certificate", s: "Issued post-race with chip time.", img: null },
   { k: "Refreshments", s: "On-course & at the finish.", img: null },
@@ -175,77 +175,77 @@ export const team: TeamMember[] = [
     role: "Race Director",
     name: "Md. Abdul Matin",
     bio: ["Triathlete", "Long-distance swimmer", "Ultra marathoner"],
-    img: "/assets/team-matin.jpg",
+    img: "/assets/team/team-matin.jpg",
     pos: "50% 28%",
   },
   {
     role: "Race Marshal",
     name: "Shak Nahid Uddin",
     bio: ["National athlete", "IRONMAN 70.3 finisher", "Bangladesh Railway gold medalist", "68+ medals"],
-    img: "/assets/team-nahid.jpg",
+    img: "/assets/team/team-nahid.jpg",
     pos: "62% 28%",
   },
   {
     role: "Race Co-ordinator",
     name: "Rajesh Chakma",
     bio: ["Triathlete", "IRONMAN 70.3 finisher", "Ultra marathon runner"],
-    img: "/assets/team-rajesh.jpg",
+    img: "/assets/team/team-rajesh.jpg",
     pos: "62% 30%",
   },
   {
     role: "Ambassador",
     name: "Md. Sultan Mahmud",
     bio: ["Pacer", "Cyclist · Runner"],
-    img: "/assets/team-sultan.jpg",
+    img: "/assets/team/team-sultan.jpg",
     pos: "50% 42%",
   },
   {
     role: "Ambassador",
     name: "Dr. Nasrin Akter Shimu",
     bio: ["Dhaka Medical College doctor", "Pacer"],
-    img: "/assets/team-nasrin.jpg",
+    img: "/assets/team/team-nasrin.jpg",
     pos: "50% 56%",
   },
   {
     role: "Influencer",
     name: "Tridip Bahadur Roy",
     bio: ["IRONMAN", "Ultra marathoner"],
-    img: "/assets/team-tridip.jpg",
+    img: "/assets/team/team-tridip.jpg",
     pos: "50% 42%",
   },
   {
     role: "Influencer",
     name: "Emranul Haque",
     bio: ["Wellness advocate"],
-    img: "/assets/team-emranul.jpg",
+    img: "/assets/team/team-emranul.jpg",
     pos: "50% 50%",
   },
   {
     role: "Influencer",
     name: "Shaila Kabir",
     bio: ["Trail runner", "Community lead"],
-    img: "/assets/team-shaila.jpg",
+    img: "/assets/team/team-shaila.jpg",
     pos: "50% 50%",
   },
   {
     role: "Guest of Honor",
     name: "Nripen Chowdhury",
     bio: ["Marathoner", "Master athlete"],
-    img: "/assets/team-nripen.jpg",
+    img: "/assets/team/team-nripen.jpg",
     pos: "62% 38%",
   },
   {
     role: "Mentor",
     name: "Shamsud Douza Nayan",
     bio: ["Ultra Marathon Runner", "Cyclist"],
-    img: "/assets/team-doha.jpeg",
+    img: "/assets/team/team-doha.jpeg",
     pos: "50% 20%",
   },
   {
     role: "Mentor",
     name: "Shahriar Morshed Siddiqui",
     bio: ["Fitness Enthusiast"],
-    img: "/assets/team-shahriar.jpeg",
+    img: "/assets/team/team-shahriar.jpeg",
     pos: "50% 20%",
   },
 ];
@@ -259,13 +259,13 @@ export interface Pacer {
 }
 
 export const pacers: Pacer[] = [
-  { distance: "21.1 KM", name: "MD Masudul Hoque", time: "2:10 hrs", img: "/assets/team-masud.jpg", pos: "50% 32%" },
-  { distance: "21.1 KM", name: "Biplob Barua", time: "2:30 hrs", img: "/assets/team-biplob.jpg", pos: "50% 32%" },
-  { distance: "21.1 KM", name: "Mehedi Hasan Danny", time: "2:30 hrs", img: "/assets/team-mehedi.jpg", pos: "50% 32%" },
-  { distance: "10 KM", name: "Suman Das", time: "1:10 hrs", img: "/assets/team-sumon.jpg", pos: "50% 35%" },
-  { distance: "10 KM", name: "Tamjid Kabbo", time: "1:25 hrs", img: "/assets/team-tamjid.jpg", pos: "50% 32%" },
-  { distance: "10 KM", name: "Sumaiya Hasan", time: "1:30 hrs", img: "/assets/team-sumaiya.jpg", pos: "50% 35%" },
-  { distance: "10 KM", name: "Mohammad Aaqib Feroz", time: "1:40 hrs", img: "/assets/team-aaqib.jpg", pos: "50% 35%" },
+  { distance: "21.1 KM", name: "MD Masudul Hoque", time: "2:10 hrs", img: "/assets/team/team-masud.jpg", pos: "50% 32%" },
+  { distance: "21.1 KM", name: "Biplob Barua", time: "2:30 hrs", img: "/assets/team/team-biplob.jpg", pos: "50% 32%" },
+  { distance: "21.1 KM", name: "Mehedi Hasan Danny", time: "2:30 hrs", img: "/assets/team/team-mehedi.jpg", pos: "50% 32%" },
+  { distance: "10 KM", name: "Suman Das", time: "1:10 hrs", img: "/assets/team/team-sumon.jpg", pos: "50% 35%" },
+  { distance: "10 KM", name: "Tamjid Kabbo", time: "1:25 hrs", img: "/assets/team/team-tamjid.jpg", pos: "50% 32%" },
+  { distance: "10 KM", name: "Sumaiya Hasan", time: "1:30 hrs", img: "/assets/team/team-sumaiya.jpg", pos: "50% 35%" },
+  { distance: "10 KM", name: "Mohammad Aaqib Feroz", time: "1:40 hrs", img: "/assets/team/team-aaqib.jpg", pos: "50% 35%" },
 ];
 
 export const previousEvents = [
@@ -284,8 +284,8 @@ export const stats = [
 
 export const sponsors = {
   timing: { name: "Total Active Sports", role: "Timing Solution Partner", logo: null as string | null },
-  crew: { name: "D-Chokrozan", role: "Race Crew Partner", logo: "/assets/sponsor-chokrozan.jpg" },
-  promo: { name: "NextGen Doctors", role: "Promotional Partner", logo: "/assets/sponsor-nextgen.jpg" },
+  crew: { name: "D-Chokrozan", role: "Race Crew Partner", logo: "/assets/events/chatto-metro-2026/sponsor-chokrozan.jpg" },
+  promo: { name: "NextGen Doctors", role: "Promotional Partner", logo: "/assets/events/chatto-metro-2026/sponsor-nextgen.jpg" },
   media: ["Jamuna TV", "Cplus TV", "Somoy News", "News24", "Chattogram24", "Ekhon TV"],
 };
 
@@ -307,8 +307,8 @@ export const medals: Medal[] = [
     name: 'Half Marathon',
     distance: '21.1 KM',
     finish: 'GOLD',
-    front: '/assets/medal-gold-front.jpg',
-    back: '/assets/medal-gold-back.jpg',
+    front: '/assets/events/chatto-metro-2026/medal-gold-front.jpg',
+    back: '/assets/events/chatto-metro-2026/medal-gold-back.jpg',
     color: '#D4AF37',
     glow: 'rgba(212,175,55,.32)',
     blurb: 'The full Karnaphuli. Antique gold with high-relief enamel — Shah Amanat bridge, container terminal, the city clocktower, and the runner cresting the wave.',
@@ -318,8 +318,8 @@ export const medals: Medal[] = [
     name: '10K Run',
     distance: '10 KM',
     finish: 'SILVER',
-    front: '/assets/medal-silver-front.jpg',
-    back: '/assets/medal-silver-back.jpg',
+    front: '/assets/events/chatto-metro-2026/medal-silver-front.jpg',
+    back: '/assets/events/chatto-metro-2026/medal-silver-back.jpg',
     color: '#C6CDD0',
     glow: 'rgba(198,205,208,.32)',
     blurb: 'Riverside loop. Antique silver with the same hand-painted enamel scene — half the distance, the full hardware.',
@@ -329,8 +329,8 @@ export const medals: Medal[] = [
     name: 'Beginners Run',
     distance: '5 KM',
     finish: 'BRONZE',
-    front: '/assets/medal-bronze-front.jpg',
-    back: '/assets/medal-bronze-back.jpg',
+    front: '/assets/events/chatto-metro-2026/medal-bronze-front.jpg',
+    back: '/assets/events/chatto-metro-2026/medal-bronze-back.jpg',
     color: '#B5743A',
     glow: 'rgba(181,116,58,.32)',
     blurb: "Your first start line. Antique bronze — same ship's-wheel rim, same enamel river. Cross the finish, take the helm.",
@@ -427,39 +427,13 @@ export const chattoMetroPartners: Partner[] = [
   ...sponsors.media.map((m): Partner => ({ name: m, role: 'Media Partner', logo: null, tier: 'media' })),
 ];
 
+export const mirPartners: Partner[] = [
+  { name: 'Young Power in Social Action (YPSA)', role: 'Supported by', logo: '/assets/events/mirsharai-coastal-marathon-2027/ypsa-logo.jpg', tier: 'gold' },
+  ...sponsors.media.map((m): Partner => ({ name: m, role: 'Media Partner', logo: null, tier: 'media' })),
+];
+
 export const events: EventEntry[] = [
   // ── upcoming ─────────────────────────────────────────────────────────────
-  {
-    slug: 'chatto-metro-relay-2026',
-    name: 'Chatto Metro Relay Race 2026',
-    status: 'upcoming',
-    date: '2026-09-25',
-    dateDisplay: '25 September 2026',
-    location: 'Karnaphuli Riverside (2nd outer ring road), Chattogram',
-    tagline: 'Four runners. One river. One team.',
-    registerUrl: '',
-    heroImage: '/assets/events/chatto-metro-relay-2026/logo.jpg',
-    gallery: [],
-    summary: 'Four-runner relay along the Karnaphuli — a fast 4×800m team challenge.',
-    dist: '4 × 800 m = 3200 m',
-    note: 'Relay format. 10 teams. 5000 BDT per team. Reporting 5:00 AM · Start 5:30 AM.',
-  },
-  {
-    slug: 'moheshkhali-ultra-2026',
-    name: 'Moheshkhali Island Ultra 2026',
-    status: 'upcoming',
-    date: '2026-09-26',
-    dateDisplay: '26 September 2026',
-    location: 'Moheshkhali Island, Cox\'s Bazar District',
-    tagline: 'Run to Save Moheshkhali\'s Mangrove Forest',
-    registerUrl: '',
-    heroImage: '/assets/events/moheshkhali-ultra-2026/poster.jpg',
-    gallery: ['/assets/events/moheshkhali-ultra-2026/eligibility.jpg'],
-    summary: '55-kilometre ultra protecting Moheshkhali\'s mangrove forest — 100 slots, eligibility-based.',
-    dist: '55K',
-    // NOTE: early poster showed Feb 7 2026; Sep 26 2026 is the confirmed race date per DATA SPEC
-    note: 'Eligibility (last 6 months): 1 ultra marathon (50K+ sub-8h) OR 2 marathons (sub-6h each) OR 3 half marathons sub-2:30 (including Moheshkhali HM 2025). 100 slots. Reporting 4:00 AM · Start 4:30 AM · Cut-off 9 hours.',
-  },
   {
     slug: 'duathlon-2026',
     name: 'Chattogram Duathlon 2026',
@@ -492,6 +466,22 @@ export const events: EventEntry[] = [
     summary: 'Return of the Moheshkhali Island Half Marathon — climate-justice race continues into 2027.',
     dist: '21.1K · 10K · 3K Kids',
     note: 'Entitlements: T-shirt, Kit Bag, Photography, Medal (finishers), Chip Timing, Washroom, Prayer Room, Dressing Room.',
+  },
+  {
+    slug: 'mirsharai-coastal-marathon-2027',
+    name: 'Mirsharai Coastal Marathon 2027',
+    status: 'upcoming',
+    date: '2027-02-05',
+    dateDisplay: '5 February 2027',
+    location: 'Bhuiarhat Beribandh, Katachara, Mirsharai Economic Zone, Chattogram',
+    tagline: 'Beyond the Miles. Beyond the Horizon. Where Nature Meets the Future.',
+    registerUrl: 'https://register.triathlonbangladesh.com/register/mirsharai-coastal-marathon-2027',
+    heroImage: '/assets/events/mirsharai-coastal-marathon-2027/poster.jpg',
+    gallery: [],
+    summary: 'Full marathon, half marathon and 10K on the Mirsharai coast, Chattogram — where the sea, hills, waterfalls and the Mirsharai Economic Zone meet. 5 February 2027.',
+    dist: '42.2K · 21.1K · 10K',
+    note: 'Organised by Triathlon Bangladesh. Supported by Young Power in Social Action (YPSA).',
+    partners: mirPartners,
   },
 
   // ── previous ─────────────────────────────────────────────────────────────
@@ -679,19 +669,20 @@ export interface OrgMember {
 }
 
 export const orgTeam: OrgMember[] = [
-  { name: "Nesarul Hoque Suja",   role: "Founder Admin",       img: "/assets/team-suja.jpeg" },
-  { name: "Md. Abdul Matin",      role: "Founder Admin",       img: "/assets/team-matin.jpeg" },
-  { name: "Shamsud Douza Nayan",  role: "Mentor",              img: "/assets/team-douza.jpeg" },
-  { name: "Md. Shahidul Islam",   role: "Co-ordinator",        img: "/assets/team-shahid.jpeg" },
-  { name: "Mohammad Ziaul Haque", role: "Co-ordinator",        img: "/assets/team-zia.jpeg" },
-  { name: "Mahbubul Islam",       role: "Co-ordinator",        img: "/assets/team-mahbub.jpeg" },
-  { name: "Mohammad Wasir Salil", role: "Co-ordinator",        img: "/assets/team-wasir.jpeg" },
+  { name: "Nesarul Hoque Suja",   role: "Founder Admin",       img: "/assets/team/team-suja.jpeg" },
+  { name: "Md. Abdul Matin",      role: "Founder Admin",       img: "/assets/team/team-matin.jpeg" },
+  { name: "Shamsud Douza Nayan",  role: "Mentor",              img: "/assets/team/team-douza.jpeg" },
+  { name: "Md. Shahidul Islam",   role: "Co-ordinator",        img: "/assets/team/team-shahid.jpeg" },
+  { name: "Mohammad Ziaul Haque", role: "Co-ordinator",        img: "/assets/team/team-zia.jpeg" },
+  { name: "Mahbubul Islam",       role: "Co-ordinator",        img: "/assets/team/team-mahbub.jpeg" },
+  { name: "Mohammad Wasir Salil", role: "Co-ordinator",        img: "/assets/team/team-wasir.jpeg" },
 ];
 
 // ─── Chattogram Duathlon 2026 — structured content ───────────────────────────
 
 export const duaMeta = {
   raceDayISO: "2026-11-06T06:00:00+06:00",
+  dateShort: "6 NOV 2026",
   bikeCheckIn: "5 November 2026",
   cutOff: "4 hours",
 } as const;
@@ -860,6 +851,265 @@ export const duaFaq = [
   {
     q: "When do I bring my bike?",
     a: "Bike check-in is on 5 November, the day before the race, at Bakolia Stadium. The kit expo — bib, chip, jersey, kit bag — also runs before event day.",
+  },
+];
+
+// ─── Mirsharai Coastal Marathon 2027 — structured content ────────────────────
+// Rendered by src/components/mirsharai/* with the Chatto Metro (`cmhm-*`) layout.
+
+export const mirMeta = {
+  motto: "Beyond the Miles. Beyond the Horizon. Where Nature Meets the Future.",
+  intro: "Where the sea meets the mountains, waterfalls meet the wild coast, and nature meets the future of Bangladesh.",
+  dateShort: "5 FEB 2027",
+  weekday: "Friday",
+  flagOffISO: "2027-02-05T05:00:00+06:00",
+  endISO: "2027-02-05T10:00:00+06:00",
+  flagOffDisplay: "05:00 AM BST",
+  venueShort: "Bhuiarhat Beribandh",
+  supportedBy: "Young Power in Social Action (YPSA)",
+  totalSlots: "1,000",
+  registrationOpensISO: "2026-10-10T00:00:00+06:00",
+  registrationOpensDisplay: "10 October 2026",
+  heroPhoto: "/assets/events/mirsharai-coastal-marathon-2027/hero.jpg",
+  detailsPoster: "/assets/events/mirsharai-coastal-marathon-2027/event-details.jpg",
+  ogImage: "/og/mirsharai-coastal-marathon-2027.jpg",
+  closing: {
+    body: "Mirsharai Coastal Marathon 2027 is more than a race. It is an opportunity to discover a place where the waves of the sea, the green of the hills, the sound of waterfalls, and the ambition of a growing economic zone exist side by side.",
+    lines: ["Come for the challenge.", "Run for the experience.", "Stay for the memories."],
+  },
+} as const;
+
+// Evaluated at render time — on Vercel (server output) the Register CTAs switch on by themselves on the opening date.
+export function isMirRegistrationOpen(nowMs: number = Date.now()): boolean {
+  return nowMs >= new Date(mirMeta.registrationOpensISO).getTime();
+}
+
+export const mirQuickFacts = [
+  { k: "5 February 2027", s: "Friday · Race Day" },
+  { k: "Bhuiarhat Beribandh", s: "Katachara · Mirsharai Economic Zone" },
+  { k: "42.2 / 21.1 / 10", s: "Kilometres" },
+  { k: "1,000", s: "Runner slots" },
+] as const;
+
+export interface MirCategory {
+  id: "42k" | "21k" | "10k";
+  distance: string;
+  name: string;
+  colorHex: string;
+  flagOff: string;
+  regFee: string;
+  slots: number;
+  turn: string;
+  prizePool: string;
+  prizeBreakdown: string[];
+  blurb: string;
+}
+
+export const mirCategories: MirCategory[] = [
+  {
+    id: "42k",
+    distance: "42.2 KM",
+    name: "Full Marathon",
+    colorHex: "#D4AF37",
+    flagOff: "05:00",
+    regFee: "1,700 BDT",
+    slots: 250,
+    turn: "21.1 KM out and back · 1 lap",
+    prizePool: "54,000 BDT",
+    prizeBreakdown: [
+      "General Male — 8,000 · 6,000 · 3,000",
+      "General Female — 6,000 · 4,000 · 3,000",
+      "Veteran Male (50+) — 5,000 · 4,000 · 3,000",
+      "Veteran Female (50+) — 5,000 · 4,000 · 3,000",
+      "4th & 5th in each category — crest",
+    ],
+    blurb: "Challenge yourself across a demanding and scenic coastal route.",
+  },
+  {
+    id: "21k",
+    distance: "21.1 KM",
+    name: "Half Marathon",
+    colorHex: "#2E9E54",
+    flagOff: "05:30",
+    regFee: "1,500 BDT",
+    slots: 350,
+    turn: "10.55 KM out and back · 1 lap",
+    prizePool: "42,000 BDT",
+    prizeBreakdown: [
+      "General Male — 5,000 · 4,000 · 2,500",
+      "General Female — 5,000 · 4,000 · 2,500",
+      "Veteran Male (50+) — 4,000 · 3,000 · 2,500",
+      "Veteran Female (50+) — 4,000 · 3,000 · 2,500",
+      "4th & 5th in each category — crest",
+    ],
+    blurb: "A perfect balance of endurance, challenge, and coastal adventure.",
+  },
+  {
+    id: "10k",
+    distance: "10 KM",
+    name: "10K Run",
+    colorHex: "#1E88E5",
+    flagOff: "06:00",
+    regFee: "1,400 BDT",
+    slots: 400,
+    turn: "5 KM out and back · 1 lap",
+    prizePool: "38,000 BDT",
+    prizeBreakdown: [
+      "General Male — 5,000 · 3,500 · 2,000",
+      "General Female — 4,500 · 3,000 · 2,000",
+      "Veteran Male (50+) — 4,000 · 3,000 · 2,000",
+      "Veteran Female (50+) — 4,000 · 3,000 · 2,000",
+      "4th in each category — crest",
+    ],
+    blurb: "A fast, energetic race for runners of all levels.",
+  },
+];
+
+export interface MirScheduleItem {
+  time: string;
+  title: string;
+  note: string;
+  accent?: "42k" | "21k" | "10k";
+}
+
+export const mirSchedule: MirScheduleItem[] = [
+  { time: "04:00", title: "Reporting & Bib Collection", note: "Gate opens at the start village." },
+  { time: "04:50", title: "Warm-up Session", note: "Group warm-up before the first flag-off." },
+  { time: "05:00", title: "Opening Remarks", note: "Welcome from Triathlon Bangladesh." },
+  { time: "05:00", title: "42.2 KM Flag-Off", note: "Full marathon starts.", accent: "42k" },
+  { time: "05:30", title: "21.1 KM Flag-Off", note: "Half marathon starts.", accent: "21k" },
+  { time: "06:00", title: "10 KM Flag-Off", note: "10K runners released.", accent: "10k" },
+  { time: "09:00", title: "Finishers Arrival", note: "Runners welcomed at the line." },
+  { time: "09:20", title: "Prize Giving & Cultural Program", note: "Podium awards and cultural program." },
+  { time: "10:00", title: "Closing Ceremony", note: "Race wraps." },
+];
+
+export const mirEntitlements: Entitlement[] = [
+  { k: "Chip Timing", s: "World-class chip timing facilities.", img: null },
+  { k: "Both-Way Shuttle Bus", s: "Transportation to and from the event venue.", img: null },
+  { k: "Race Jersey", s: "Official event race jersey (T-shirt).", img: null },
+  { k: "Finisher Medal", s: "For participants who complete their registered distance within the prescribed cut-off time.", img: null },
+  { k: "Post-Race Food", s: "Refreshments and food after the race.", img: null },
+  { k: "Finisher Certificate", s: "Digital / printed finisher certificate for eligible finishers.", img: null },
+  { k: "Professional Race Photography", s: "Race-day photography coverage.", img: null },
+  { k: "Hydration Support", s: "Water and hydration stations along the race route.", img: null },
+  { k: "Medical Support", s: "Medical assistance and emergency support during the event.", img: null },
+  { k: "Washroom Facilities", s: "Convenient washroom facilities at the event venue.", img: null },
+  { k: "Kit Bag & Gift", s: "Official race kit bag along with event gifts.", img: null },
+  { k: "Raffle Draw at Kit Expo", s: "Raffle draw opportunities during the Kit Expo.", img: null },
+];
+
+export const mirOnCourse = [
+  { k: "Every 2 KM", s: "Water station" },
+  { k: "Every 1 KM", s: "Distance marker" },
+  { k: "Every 5 KM", s: "First aid" },
+] as const;
+
+export const mirWorlds = [
+  { k: "The Sea", s: "Feel the coastal breeze and experience the beauty of Mirsharai's shoreline as you run alongside the Bay of Bengal." },
+  { k: "The Hills", s: "Mirsharai's landscape is surrounded by green hills, adding a dramatic natural backdrop to the race." },
+  { k: "The Waterfalls", s: "Mirsharai is home to some of Chattogram's beautiful waterfalls and natural trails. The race celebrates this unique connection with nature." },
+  { k: "The Economic Zone", s: "The Mirsharai Economic Zone represents the region's transformation, development, and future potential — connecting the beauty of nature with the vision of a modern Bangladesh." },
+] as const;
+
+// Schematic out-and-back course (not to scale) — every distance shares the start and turns at its own marker.
+export const MIR_ROUTE_PATH = "M 95 470 C 135 458 170 446 210 430 C 260 410 310 382 350 350 C 430 290 510 230 560 160";
+
+export const mirRoutePinXY: [number, number][] = [
+  [95, 470],
+  [210, 430],
+  [350, 350],
+  [560, 160],
+];
+
+export const mirRoutePins = [
+  { label: "START · FINISH", sub: "Bhuiarhat Beribandh, Katachara", t: 0.0 },
+  { label: "10K TURN", sub: "5 KM", t: 0.24 },
+  { label: "21.1K TURN", sub: "10.55 KM", t: 0.5 },
+  { label: "42.2K TURN", sub: "21.1 KM", t: 1.0 },
+] as const;
+
+export const mirScrollPins = [
+  { y: 0.06, label: "00", sub: "Mirsharai · Pre-dawn" },
+  { y: 0.16, label: "START", sub: "Bhuiarhat Beribandh" },
+  { y: 0.32, label: "RACE", sub: "Three distances" },
+  { y: 0.46, label: "FLAG-OFF", sub: "05:00 BST" },
+  { y: 0.58, label: "10K TURN", sub: "5 KM" },
+  { y: 0.70, label: "21.1K TURN", sub: "10.55 KM" },
+  { y: 0.84, label: "42.2K TURN", sub: "21.1 KM" },
+  { y: 0.96, label: "FINISH", sub: "Cross the line" },
+];
+
+export const mirTeam: TeamMember[] = [
+  {
+    role: "Race Director",
+    name: "Md. Abdul Matin",
+    bio: ["Triathlete", "Long-distance swimmer", "Ultra marathoner"],
+    img: "/assets/events/mirsharai-coastal-marathon-2027/team-matin.jpg",
+    pos: "50% 0%",
+  },
+  {
+    role: "Race Marshal",
+    name: "Shak Nahid Uddin",
+    bio: ["National athlete", "IRONMAN 70.3 finisher", "Bangladesh Railway gold medalist"],
+    img: "/assets/events/mirsharai-coastal-marathon-2027/team-nahid.jpg",
+    pos: "50% 0%",
+  },
+  {
+    role: "Race Mentor",
+    name: "Shamsud Douza Nayan",
+    bio: ["Ultra Marathon Runner", "Cyclist"],
+    img: "/assets/events/mirsharai-coastal-marathon-2027/team-douza.jpg",
+    pos: "50% 0%",
+  },
+  {
+    role: "Race Mentor",
+    name: "Dr. Md. Arifur Rahman",
+    bio: ["Fitness enthusiast", "Socio-economic development entrepreneur", "Founder and CEO of YPSA"],
+    img: "/assets/events/mirsharai-coastal-marathon-2027/team-arifur.jpg",
+    pos: "50% 0%",
+  },
+  {
+    role: "Ambassador",
+    name: "Dr. Nasrin Akter Shimu",
+    bio: ["Duathlete", "Medicine doctor, Dhaka Medical College Hospital"],
+    img: "/assets/events/mirsharai-coastal-marathon-2027/team-nasrin.jpg",
+    pos: "50% 0%",
+  },
+];
+
+export const mirFaq = [
+  {
+    q: "When and where is the race?",
+    a: "Friday, 5 February 2027 at Bhuiarhat Beribandh, Katachara, Mirsharai Economic Zone, Chattogram. Reporting and bib collection open at 04:00 BST; the full marathon flags off at 05:00.",
+  },
+  {
+    q: "Which distances can I enter?",
+    a: "Three categories: Full Marathon 42.2 KM (BDT 1,700 · 250 slots), Half Marathon 21.1 KM (BDT 1,500 · 350 slots) and 10 KM Run (BDT 1,400 · 400 slots). Pick one when you register.",
+  },
+  {
+    q: "How do I register?",
+    a: "Registration opens on 10 October 2026 at register.triathlonbangladesh.com — the Register button on this page takes you straight to the Mirsharai Coastal Marathon form.",
+  },
+  {
+    q: "What's included with my entry?",
+    a: "Chip timing, both-way shuttle bus, race jersey, finisher medal (within the cut-off time), post-race food, finisher certificate, professional race photography, hydration and medical support, washroom facilities, kit bag and gift, plus the raffle draw at the Kit Expo.",
+  },
+  {
+    q: "What's the course like?",
+    a: "One out-and-back coastal course from Bhuiarhat Beribandh, a single lap for every distance. The marathon turns at 21.1 KM, the half marathon at 10.55 KM and the 10K at 5 KM.",
+  },
+  {
+    q: "What are the podium categories?",
+    a: "Top 3 in each of four categories — Male General, Female General, Male Veteran (50+) and Female Veteran (50+) — for all three distances.",
+  },
+  {
+    q: "How do I get to the venue?",
+    a: "A both-way shuttle bus service is included with every registration, running Chattogram – Mirsharai – Chattogram.",
+  },
+  {
+    q: "What on-course support is there?",
+    a: "Water station every 2 KM, distance marker every 1 KM and first aid every 5 KM, with medical assistance and emergency support throughout the event.",
   },
 ];
 

@@ -1,0 +1,179 @@
+---
+import { mirRoutePins, mirOnCourse, mirCategories, mirWorlds, mirMeta, MIR_ROUTE_PATH, mirRoutePinXY } from '../../data/event';
+
+const pinXY = mirRoutePinXY.map(([x, y]) => ({ x, y }));
+const lastPin = mirRoutePins[mirRoutePins.length - 1];
+---
+<section id="route" class="cmhm-section cmhm-route-sec">
+  <div class="cmhm-shead">
+    <div class="eyebrow">05 · The Course</div>
+    <h2 class="stitle">The <span class="acc">Mirsharai</span> route.</h2>
+    <p class="skicker">One coastal out-and-back from {mirMeta.venueShort}. Every distance runs out to its own turn and returns — one lap only. Schematic, not to scale.</p>
+  </div>
+
+  <!-- Mobile: numbered markers are on the SVG path; legend appears below the map -->
+  <div class="rcp-card">
+    <div class="hr-badge hr-start">
+      <span class="hr-badge-l">START · FINISH</span>
+      <span class="hr-badge-n">{mirMeta.venueShort}</span>
+    </div>
+    <div class="hr-badge hr-turn">
+      <span class="hr-badge-l">{lastPin.label}</span>
+      <span class="hr-badge-n">{lastPin.sub}</span>
+    </div>
+
+    <svg id="course-svg" class="cmhm-map" viewBox="0 0 1000 560"
+         preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="topo-c" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 0 30 Q 15 18 30 30 T 60 30" fill="none" stroke="rgba(212,175,55,.08)" stroke-width=".9" />
+          <path d="M 0 50 Q 15 40 30 50 T 60 50" fill="none" stroke="rgba(127,184,154,.06)" stroke-width=".7" />
+        </pattern>
+        <linearGradient id="routeg-c" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="var(--green-bright)" />
+          <stop offset=".6" stop-color="var(--gold-soft)" />
+          <stop offset="1" stop-color="var(--gold)" />
+        </linearGradient>
+        <filter id="glow-c" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.2" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      <!-- topographic land background -->
+      <rect x="0" y="0" width="1000" height="560" fill="url(#topo-c)" />
+
+      <!-- terrain grid -->
+      <g stroke="rgba(127,184,154,.07)" stroke-width="1">
+        {Array.from({ length: 14 }, (_, i) => (
+          <line x1={i * 77} y1="0" x2={i * 77} y2="560" />
+        ))}
+        {Array.from({ length: 9 }, (_, i) => (
+          <line x1="0" y1={i * 70} x2="1000" y2={i * 70} />
+        ))}
+      </g>
+
+      <!-- route + pins shifted right to clear the START badge -->
+      <g class="course-route-group" transform="translate(70, 0)">
+        <!-- route shadow -->
+        <path d={MIR_ROUTE_PATH} fill="none" stroke="rgba(255,255,255,.07)"
+              stroke-width="5" stroke-linecap="round" />
+
+        <!-- animated route line -->
+        <path id="course-route" class="cmhm-route" d={MIR_ROUTE_PATH}
+              fill="none" stroke="url(#routeg-c)" stroke-width="3.8"
+              stroke-linecap="round" filter="url(#glow-c)" />
+
+        <!-- pulsing highlight -->
+        <path id="course-pulse" class="cmhm-pulse" d={MIR_ROUTE_PATH}
+              fill="none" stroke="#fff" stroke-width="3.8" stroke-linecap="round" />
+
+        <!-- waypoint pins -->
+        {mirRoutePins.map((pin, i) => {
+          const xy = pinXY[i] || pinXY[0];
+          const delay = `${1.6 + pin.t * 1.0}s`;
+          return (
+            <g class="cmhm-pin" style={`transition-delay:${delay}`}>
+              <line x1={xy.x} y1={xy.y} x2={xy.x} y2={xy.y - 22}
+                    stroke="var(--gold)" stroke-width="1.5" />
+              <circle cx={xy.x} cy={xy.y - 26} r="6" fill="var(--gold)"
+                      stroke="#fff" stroke-width="1.5" />
+              <circle cx={xy.x} cy={xy.y} r="3" fill="var(--gold)" />
+              <text class="cmhm-pinlabel" x={xy.x + 14} y={xy.y - 28}>{pin.label}</text>
+              <text class="cmhm-pinsub"   x={xy.x + 14} y={xy.y - 15}>{pin.sub}</text>
+            </g>
+          );
+        })}
+      </g>
+    </svg>
+  </div>
+
+  <div class="course-mobile-legend" aria-label="Course waypoints">
+    {mirRoutePins.map((pin, i) => (
+      <div class="cml-item">
+        <span class="cml-num">{i + 1}</span>
+        <div class="cml-detail">
+          <span class="cml-label">{pin.label}</span>
+          <span class="cml-sub">{pin.sub}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="route-below">
+    <div class="route-col">
+      <h3 class="route-side-h">Flag-off &amp; Turn Points</h3>
+      <ul class="route-cutoffs">
+        {mirCategories.map((cat) => (
+          <li style={`--cat-c:${cat.colorHex}`}>
+            <div class="rc-dist">{cat.distance}</div>
+            <div class="rc-body">
+              <div class="rc-name">{cat.name}</div>
+              <div class="rc-meta">
+                <span>Flag-off {cat.flagOff}</span>
+                <span class="rc-sep">·</span>
+                <span><b>{cat.turn}</b></span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="route-col">
+      <h3 class="route-side-h">On-course support</h3>
+      <ul class="route-support">
+        {mirOnCourse.map((s) => (
+          <li><span class="ok">●</span> <b>{s.k}</b> — {s.s}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="route-side-h mir-worlds-h">A race through four worlds</h3>
+  <ul class="mir-worlds">
+    {mirWorlds.map((w) => (
+      <li>
+        <div class="g-k">{w.k}</div>
+        <div class="g-s">{w.s}</div>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script>
+  const svg = document.getElementById('course-svg');
+  const mq  = window.matchMedia('(max-width: 640px)');
+
+  function syncAspectRatio() {
+    svg?.setAttribute('preserveAspectRatio', mq.matches ? 'xMinYMid slice' : 'xMidYMid slice');
+  }
+
+  mq.addEventListener('change', syncAspectRatio);
+  syncAspectRatio();
+
+  const route = document.getElementById('course-route');
+  const pulse = document.getElementById('course-pulse');
+
+  if (svg && route) {
+    const pins = Array.from(svg.querySelectorAll<SVGGElement>('.cmhm-pin'));
+    const pref = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const trigger = () => {
+      route.classList.add('drawn');
+      pulse?.classList.add('on');
+      pins.forEach(p => p.classList.add('show'));
+    };
+
+    if (pref.matches) {
+      trigger();
+    } else {
+      const obs = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return;
+        trigger();
+        obs.disconnect();
+      }, { threshold: 0.22 });
+      obs.observe(svg);
+    }
+  }
+</script>

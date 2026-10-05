@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   eventJsonLd?: Record<string, unknown>;
   breadcrumbName?: string;
+  image?: string;
 }
 
 const {
@@ -16,11 +17,14 @@ const {
   description = `Triathlon Bangladesh organises endurance events — half marathons, duathlons, open-water swims — across Chattogram and coastal Bangladesh.`,
   eventJsonLd,
   breadcrumbName,
+  image = '/og/triathlon-bangladesh.jpg',
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
 const canonicalUrl = new URL(Astro.url?.pathname ?? '/', Astro.site ?? `${siteUrl}/`).href;
 const currentUrl = canonicalUrl;
+// Social crawlers need an absolute image URL — a relative og:image is ignored. All share images are 1200×630 JPGs.
+const imageUrl = new URL(image, `${siteUrl}/`).href;
 
 const regFeeDigits = featuredEvent?.regFee?.replace(/[^\d]/g, '');
 
@@ -55,7 +59,7 @@ const defaultJsonLdEvent = featuredEvent ? {
       "availability": featuredEvent.registrationOpen !== false ? "https://schema.org/InStock" : "https://schema.org/SoldOut"
     }
   } : {}),
-  "image": `${siteUrl}/og-image.jpg`,
+  "image": `${siteUrl}/og/duathlon-2026.jpg`,
   "description": description,
   "sport": "Duathlon",
   "url": siteUrl
@@ -74,7 +78,7 @@ const jsonLdOrg = {
   "@type": "Organization",
   "name": event.organizer,
   "url": siteUrl,
-  "logo": `${siteUrl}/og-image.jpg`,
+  "logo": `${siteUrl}/og/triathlon-bangladesh.jpg`,
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": `+880-${event.contact.phone}`,
@@ -106,12 +110,13 @@ const jsonLdBreadcrumb = {
   <!-- OG tags -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:image" content={imageUrl} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta name="twitter:image" content="/og-image.jpg" />
+  <meta name="twitter:image" content={imageUrl} />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={event.organizer} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:locale" content="en_US" />
   <!-- Twitter card -->

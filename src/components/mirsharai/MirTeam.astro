@@ -1,0 +1,28 @@
+---
+import { mirTeam } from '../../data/event';
+---
+<section id="team" class="cmhm-section cmhm-team">
+  <div class="cmhm-shead">
+    <div class="eyebrow">07 · Race Direction</div>
+    <h2 class="stitle">The crew running<br><span class="acc">the run.</span></h2>
+    <p class="skicker">Triathletes, IRONMAN 70.3 finishers, ultra runners, doctors. The people who built this race are running it with you.</p>
+  </div>
+
+  <div class="cmhm-team-grid">
+    {mirTeam.map((p) => (
+      <article class="tcard">
+        <div class="tphoto">
+          <img src={p.img} alt={`${p.role} — ${p.name}`} loading="lazy" style={`object-position:${p.pos}`} />
+          <div class="ttint"></div>
+        </div>
+        <div class="tmeta">
+          <div class="trole">{p.role}</div>
+          <div class="tname">{p.name}</div>
+          <ul class="tbio">
+            {p.bio.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
