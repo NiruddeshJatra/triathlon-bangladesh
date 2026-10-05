@@ -40,10 +40,10 @@ import MirEntitlements from '../../components/mirsharai/MirEntitlements.astro';
 import MirTeam from '../../components/mirsharai/MirTeam.astro';
 import MirFAQ from '../../components/mirsharai/MirFAQ.astro';
 import MirRegisterBand from '../../components/mirsharai/MirRegisterBand.astro';
-import { events, getEventBySlug, org, mirMeta, mirCategories, mirScrollPins, isMirRegistrationOpen } from '../../data/event';
+import { events, retiredEventSlugs, getEventBySlug, org, mirMeta, mirCategories, mirScrollPins, isMirRegistrationOpen } from '../../data/event';
 
 export function getStaticPaths() {
-  return events.map(e => ({ params: { slug: e.slug } }));
+  return [...events.map(e => e.slug), ...retiredEventSlugs].map(slug => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;

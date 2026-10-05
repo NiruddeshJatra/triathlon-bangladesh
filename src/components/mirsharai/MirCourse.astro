@@ -8,7 +8,7 @@ const lastPin = mirRoutePins[mirRoutePins.length - 1];
   <div class="cmhm-shead">
     <div class="eyebrow">05 · The Course</div>
     <h2 class="stitle">The <span class="acc">Mirsharai</span> route.</h2>
-    <p class="skicker">One coastal out-and-back from {mirMeta.venueShort}. Every distance runs out to its own turn and returns — one lap only. Schematic, not to scale.</p>
+    <p class="skicker">One coastal out-and-back from {mirMeta.venueShort}. Every distance runs out to its own turn and returns the same way — one lap only. The line shows the outbound leg; schematic, not to scale.</p>
   </div>
 
   <!-- Mobile: numbered markers are on the SVG path; legend appears below the map -->
@@ -19,7 +19,7 @@ const lastPin = mirRoutePins[mirRoutePins.length - 1];
     </div>
     <div class="hr-badge hr-turn">
       <span class="hr-badge-l">{lastPin.label}</span>
-      <span class="hr-badge-n">{lastPin.sub}</span>
+      <span class="hr-badge-n">{lastPin.sub} · return same way</span>
     </div>
 
     <svg id="course-svg" class="cmhm-map" viewBox="0 0 1000 560"

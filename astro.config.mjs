@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
-import { events } from './src/data/event.ts';
+import { events, retiredEventSlugs } from './src/data/event.ts';
 
 const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL;
 const site = 'https://triathlonbangladesh.com';
@@ -12,7 +12,11 @@ const eventPages = isVercel ? events.map((e) => `${site}/events/${e.slug}/`) : [
 
 export default defineConfig({
   site,
-  integrations: [tailwind(), react(), sitemap({ customPages: eventPages })],
+  integrations: [tailwind(), react(), sitemap({
+    customPages: eventPages,
+    // static builds emit redirect stubs for retired slugs — keep them out of the sitemap
+    filter: (page) => !retiredEventSlugs.some((slug) => page.includes(`/events/${slug}`)),
+  })],
   ...(isVercel ? {
     output: 'server',
     adapter: vercel({
