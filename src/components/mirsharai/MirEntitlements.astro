@@ -1,0 +1,32 @@
+---
+import { getEventBySlug, mirEntitlements, mirMeta } from '../../data/event';
+
+const ev = getEventBySlug('mirsharai-coastal-marathon-2027')!;
+---
+<section id="get" class="cmhm-section cmhm-get">
+  <div class="cmhm-shead">
+    <div class="eyebrow">06 · What You Get</div>
+    <h2 class="stitle">Everything that comes <span class="acc">with your bib.</span></h2>
+    <p class="skicker">All registered participants of {ev.name} receive the following facilities and benefits.</p>
+  </div>
+
+  <div class="cmhm-get-grid">
+    <img class="mir-poster" src={mirMeta.detailsPoster} alt={`${ev.name} event details poster — ${ev.dateDisplay}, ${ev.location}`} loading="lazy" />
+    <div class="medal-caption">
+      <div class="mc-eyebrow">Run Beyond the Ordinary</div>
+      <div class="mc-title">Run the coast. Embrace the nature. Experience Mirsharai.</div>
+      <p class="mc-note">{mirMeta.closing.body}</p>
+      <ul class="mc-features">
+        {mirMeta.closing.lines.map((l) => <li>{l}</li>)}
+      </ul>
+    </div>
+    <ul class="cmhm-get-list">
+      {mirEntitlements.map((it) => (
+        <li>
+          <div class="g-k">{it.k}</div>
+          <div class="g-s">{it.s}</div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

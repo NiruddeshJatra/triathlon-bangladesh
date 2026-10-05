@@ -88,6 +88,13 @@ Two intentionally distinct elements — do not merge them:
 - **`triathlon-bd-shield-white.png` is the one canonical org logo/icon** — used in Nav, BrandHero, Footer, OrgAbout, DuaFooter, *and* the favicon set. `favicon.ico`/`favicon-16.png`/`favicon-32.png`/`apple-touch-icon.png` were regenerated from it (badges-only crop, dropping the "TRIATHLON BANGLADESH" wordmark, padded to a square canvas) — do not regenerate favicons from `logo-nobg.png` again, that file is the old Chatto-Metro-specific source and is now stale.
 - **`design_handoff_duathlon/` is a local-only design reference bundle** — Fable prototype HTML/JSX + assets used to build the duathlon page. Never commit it; it's gitignored. If it needs to be re-referenced, re-request the bundle rather than reconstructing it from git history.
 
+## Locked Decisions (added 2026-10-03)
+
+- **Mirsharai Coastal Marathon 2027 reuses the Chatto Metro layout** — `/events/mirsharai-coastal-marathon-2027`, same section order, `cmhm-*` styling and 4 wheel dividers, with its own `Mir*` components and `mir*` data exports (no new skin). Spelling is "Mirsharai" (logo, poster, registration URL).
+- **Homepage shows two feature cards and no "Also on the calendar" strip** — duathlon + Mirsharai. Other upcoming events are reachable only through their own URLs.
+- **Share images live in `public/og/`** (1200×630) and are always emitted as absolute URLs; default is the org logo card.
+- **`public/assets/` root holds only folders** — `events/<slug>/`, `team/`, `logos/`. Event-only merchandise and sponsor images go in that event's folder.
+
 ## Open Items (not yet decided)
 
 - ✅ **Flag-off time: 05:00 AM BST** — confirmed by race director (2026-06-01). `event.ts` value correct.

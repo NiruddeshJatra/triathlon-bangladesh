@@ -14,7 +14,7 @@ const PINS = [
   { y: 0.96, label: "FINISH", sub: "Cross the line" },
 ];
 
-export default function ScrollRoute() {
+export default function ScrollRoute({ pins = PINS }: { pins?: typeof PINS }) {
   const [progress, setProgress] = useState(0);
   const pathRef = useRef<SVGPathElement>(null);
   const [pathLen, setPathLen] = useState(2000);
@@ -94,7 +94,7 @@ export default function ScrollRoute() {
         <circle ref={markerRef} r="4.2" fill="var(--gold)"
           style={{ filter: 'drop-shadow(0 0 6px var(--gold))' }} />
         {/* pins */}
-        {PINS.map((pin, i) => {
+        {pins.map((pin, i) => {
           const passed = progress >= pin.y - 0.02;
           const pinY = pin.y * 2300 + 30;
           const xLookup = [60, 50, 78, 40, 16, 76, 50, 25, 80, 45, 18, 70, 55];

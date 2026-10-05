@@ -4,6 +4,29 @@ Most recent first.
 
 ---
 
+## 2026-10-03 — Mirsharai Coastal Marathon 2027 page, share images, assets regrouped
+
+### What changed
+- **New event page** — `/events/mirsharai-coastal-marathon-2027` (branch in `[slug].astro`, `isMirsharai`). Same section order and `cmhm-*` styling as the old Chatto Metro full page: Hero → QuickFacts → Categories → Schedule → Course → What You Get → Team → Partners → FAQ → RegisterBand, 4 wheel dividers, `ScrollRoute` + `WheelSpin`. Components live in `src/components/mirsharai/` (`Mir*`), content in new `mir*` exports in `event.ts` (mirrors the duathlon `dua*` pattern). The original Chatto Metro components are untouched.
+- **Registration gate** — registration opens 10 October 2026. `isMirRegistrationOpen()` compares render time to `mirMeta.registrationOpensISO`; before that every Register CTA renders as a disabled "Registration opens 10 October 2026". On Vercel (server output) it flips by itself; a static build bakes the state at build time.
+- **Homepage** — `DualEventFeature.astro` is two cards again (duathlon + Mirsharai, gold `dual-cmhm` variant). "Also on the calendar" strip removed along with its `.dual-more` CSS.
+- **Share images (the "no image when sharing" bug)** — `og:image`/`twitter:image` were relative (`/og-image.jpg`), which crawlers ignore, and the file itself was the stale Chatto Metro card. `Layout.astro` now takes an `image` prop and emits an absolute URL. New 1200×630 images in `public/og/`: `triathlon-bangladesh.jpg` (default, org logo), `duathlon-2026.jpg`, `mirsharai-coastal-marathon-2027.jpg`. The duathlon card is typographic because both duathlon posters still say "13 NOV".
+- **Mirsharai SEO** — own title/description, canonical, share image, `SportsEvent` JSON-LD (three offers, `validFrom` = registration opening, YPSA as sponsor), breadcrumb.
+- **Assets regrouped** — `public/assets/` root now holds only folders: `events/`, `team/` (all `team-*` photos), `logos/` (org shields). Chatto Metro jerseys, medals and sponsor logos moved into `events/chatto-metro-2026/`. All paths in `event.ts` and components updated.
+- **`ScrollRoute.tsx`** — optional `pins` prop (defaults to the Chatto Metro pins).
+
+### Sources and open points
+- Content came from the organiser's event copy plus the sponsorship deck ("Mirsharai Coastal Marathon 2026.pdf/.pptx"): slots, timeline, prize money, on-course support, crew and media partners are from the deck. Prize pools shown are the cash totals (deck totals include crests). Budget pages were not used.
+- No cut-off times, jersey or medal artwork, or real route map were supplied — the course map is a schematic and the page has no medal carousel or pacers.
+- Spelling follows the logo, poster and registration URL: "Mirsharai".
+
+### Follow-up (2026-10-05)
+- **Duathlon date fixed** — `DuaHero.astro` and `DuaRegisterBand.astro` hardcoded "13 NOV 2026"; both now read `duaMeta.dateShort` ("6 NOV 2026").
+- **Cancelled events removed** — `chatto-metro-relay-2026` and `moheshkhali-ultra-2026` are not happening: `events[]` entries, `docs/CONTENT.md` sections and their asset folders deleted. Old URLs redirect to `/`.
+- **`public/og-image.jpg` deleted** (old Chatto Metro share card, unreferenced).
+- **Sitemap fix (approved)** — on Vercel (`output: 'server'`) the sitemap listed only `/`, `/join`, `/team`, `/terms`; `astro.config.mjs` now feeds every `events[]` slug to the sitemap integration via `customPages`.
+---
+
 ## 2026-09-12 — Chatto Metro archived, duathlon slots to 150, Nasif off the team
 
 ### What changed

@@ -1,0 +1,34 @@
+---
+import { getEventBySlug, mirMeta, mirCategories, isMirRegistrationOpen } from '../../data/event';
+
+const ev = getEventBySlug('mirsharai-coastal-marathon-2027')!;
+const regOpen = isMirRegistrationOpen();
+---
+<section id="register" class="cmhm-section cmhm-regband">
+  <div class="cmhm-regband-inner">
+    <div class="rb-eyebrow">{regOpen ? `Entries open · ${mirMeta.totalSlots} spots · ${ev.dateDisplay}` : `Registration opens ${mirMeta.registrationOpensDisplay} · ${mirMeta.totalSlots} spots`}</div>
+    <h2 class="rb-title">Come run the <span class="acc">coast.</span></h2>
+    <p class="rb-sub">{mirMeta.closing.lines.join(' ')} See you at the starting line — Mirsharai, 2027.</p>
+    {regOpen ? (
+      <a class="cmhm-btn cmhm-btn-p rb-cta" href={ev.registerUrl} target="_blank" rel="noopener noreferrer">
+        Register Now <span class="arr">→</span>
+      </a>
+    ) : (
+      <span class="cmhm-btn cmhm-btn-p cmhm-btn-closed rb-cta" aria-disabled="true">Registration opens {mirMeta.registrationOpensDisplay}</span>
+    )}
+    <div class="rb-meta">
+      <div>
+        <div class="k">{mirMeta.dateShort}</div>
+        <div class="s">{mirMeta.weekday}</div>
+      </div>
+      <div>
+        <div class="k">{mirCategories[0].flagOff}</div>
+        <div class="s">{mirCategories[0].distance} Flag-off</div>
+      </div>
+      <div>
+        <div class="k">৳ {mirCategories[0].prizePool.replace(' BDT', '')}</div>
+        <div class="s">Marathon prize pool</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -131,8 +131,6 @@ Notes: Kutubdia 2026 title sponsor Infinity Mega Mall. Boot camps: 2nd largest i
 | Slug | Name | Status | Date |
 |---|---|---|---|
 | `chatto-metro` | Chatto Metro Half Marathon 2026 | current | 10 Jul 2026 |
-| `chatto-metro-relay-2026` | Chatto Metro Relay Race 2026 | upcoming | 25 Sep 2026 |
-| `moheshkhali-ultra-2026` | Moheshkhali Island Ultra 2026 | upcoming | 26 Sep 2026 |
 | `duathlon-2026` | Chattogram Duathlon 2026 | upcoming | 6 Nov 2026 |
 | `kutubdia-2027` | Kutubdia Island Half Marathon 2027 | upcoming | 8 Jan 2027 |
 | `kutubdia-2026` | Kutubdia Island Half Marathon 2026 | previous | 27 Mar 2026 |
@@ -174,19 +172,6 @@ Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents
 - Free. Covers basics, technique, floating, hydrotherapy, Bangla Channel motivation.
 - Archive reg URL: https://freeshort.info/kMeBeb
 
-### Chatto Metro Relay Race 2026 (`chatto-metro-relay-2026`, upcoming)
-- Date: 25 September 2026 · Location: Karnaphuli Riverside (2nd outer ring road), Chattogram
-- Format: 4-runner relay · 4 × 800 m = 3200 m per team
-- Reporting: 5:00 AM · Start: 5:30 AM · Slots: 10 teams · Fee: 5000 BDT/team
-- Each team: 4 runners + 2 additional members
-
-### Moheshkhali Island Ultra 2026 (`moheshkhali-ultra-2026`, upcoming)
-- Date: 26 September 2026 · Location: Moheshkhali Island, Cox's Bazar District
-- Tagline: "Run to Save Moheshkhali's Mangrove Forest"
-- Distance: 55K · Slots: 100 · Eligibility criteria: TBC
-- Reporting: 4:00 AM · Start: 4:30 AM · Cut-off: 9 hours
-- Entitlements: T-shirt, Medal (finisher), Certificate (finisher), Medical (Ambulance + First Aid + Physio), Home Delivery Race Kit, Lunch, Hydration, Pre-Race Light Breakfast, Chip Timing
-
 ### Chattogram Duathlon 2026 (`duathlon-2026`, upcoming)
 - Date: 6 November 2026 (moved from 13 November) · Location: Bakolia Stadium, Noman College Road, Chattogram
 - Entry fee: 3,200 BDT (revised from 3,500) · 250 slots · Bike check-in + kit expo 5 November 2026
@@ -200,6 +185,22 @@ Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents
 - Categories: 3K Kids · 10K · 21.1K
 - Entitlements: T-shirt, Kit Bag, Photography, Medal (finishers), Chip Timing, Washroom, Prayer Room, Dressing Room
 - Podium: Kids 3K — Crest + Gift each; 10K/21.1K Open M/F/Veteran M 45+ — Crest + Prize Money each
+
+### Mirsharai Coastal Marathon 2027 (`mirsharai-coastal-marathon-2027`, upcoming)
+- Date: Friday, 5 February 2027 · Location: Bhuiarhat Beribandh, Katachara, Mirsharai Economic Zone, Chattogram
+- Motto: "Beyond the Miles. Beyond the Horizon. Where Nature Meets the Future."
+- Organised by Triathlon Bangladesh · Supported by Young Power in Social Action (YPSA)
+- Register URL: https://register.triathlonbangladesh.com/register/mirsharai-coastal-marathon-2027 — opens 10 October 2026
+- Categories: Full Marathon 42.2K (1,700 BDT, 250 slots, flag-off 05:00) · Half Marathon 21.1K (1,500 BDT, 350 slots, 05:30) · 10K (1,400 BDT, 400 slots, 06:00)
+- Route: one out-and-back, single lap — turns at 21.1 KM / 10.55 KM / 5 KM
+- Podium: Male/Female General and Male/Female Veteran (50+), top 3, all distances
+- Prize money (cash, 1st/2nd/3rd): 42.2K — GM 8,000/6,000/3,000 · GF 6,000/4,000/3,000 · VM and VF 5,000/4,000/3,000. 21.1K — GM and GF 5,000/4,000/2,500 · VM and VF 4,000/3,000/2,500. 10K — GM 5,000/3,500/2,000 · GF 4,500/3,000/2,000 · VM and VF 4,000/3,000/2,000. Crests for 4th–5th (10K: 4th).
+- Timeline: 04:00 reporting & bib collection · 04:50 warm-up · 05:00 opening remarks · 05:00 42.2K · 05:30 21.1K · 06:00 10K · 09:00 finishers arrival · 09:20 prize giving & cultural program · 10:00 closing
+- Benefits: chip timing, both-way shuttle bus, race jersey, finisher medal, post-race food, finisher certificate, race photography, hydration, medical support, washrooms, kit bag & gift, raffle draw at kit expo
+- On course: water every 2 KM, distance marker every 1 KM, first aid every 5 KM
+- Crew: Race Director Md. Abdul Matin · Race Marshal Shak Nahid Uddin · Race Mentors Shamsud Douza Nayan, Dr. Md. Arifur Rahman (Founder and CEO of YPSA) · Ambassador Dr. Nasrin Akter Shimu
+- Media partners (per sponsorship deck): Jamuna TV, Cplus TV, Somoy News, News24, Chattogram24, Ekhon TV
+- Not yet supplied: cut-off times, jersey/medal artwork, route map
 
 ## Stats (from event.ts)
 
