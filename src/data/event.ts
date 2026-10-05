@@ -1113,6 +1113,9 @@ export const mirFaq = [
   },
 ];
 
+// Cancelled events whose URLs were once public — [slug].astro still generates these paths so they redirect to `/` in static builds too.
+export const retiredEventSlugs = ['chatto-metro-relay-2026', 'moheshkhali-ultra-2026'];
+
 export function getCurrentEvent(): EventEntry | undefined {
   return events.find(e => e.status === 'current');
 }

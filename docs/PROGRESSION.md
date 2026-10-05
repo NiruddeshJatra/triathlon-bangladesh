@@ -24,6 +24,7 @@ Most recent first.
 - **Duathlon date fixed** — `DuaHero.astro` and `DuaRegisterBand.astro` hardcoded "13 NOV 2026"; both now read `duaMeta.dateShort` ("6 NOV 2026").
 - **Cancelled events removed** — `chatto-metro-relay-2026` and `moheshkhali-ultra-2026` are not happening: `events[]` entries, `docs/CONTENT.md` sections and their asset folders deleted. Old URLs redirect to `/`.
 - **`public/og-image.jpg` deleted** (old Chatto Metro share card, unreferenced).
+- **Review follow-ups** — course map now says the line is the outbound leg and runners return the same way (kicker + turn badge). `retiredEventSlugs` in `event.ts` keeps the two cancelled slugs in `getStaticPaths`, so static builds emit redirect pages to `/` instead of 404 (server output already redirected).
 - **Sitemap fix (approved)** — on Vercel (`output: 'server'`) the sitemap listed only `/`, `/join`, `/team`, `/terms`; `astro.config.mjs` now feeds every `events[]` slug to the sitemap integration via `customPages`.
 ---
 
