@@ -412,11 +412,9 @@ export interface EventEntry {
   facebookEvent?: string;
   regFee?: string;
   heroImage: string | null;
-  heroPosition?: string;   // CSS object-position for the page cover (default: center 30%)
-  heroHeight?: string;     // CSS min-height for the page cover (default: 320px) — taller keeps faces clear of the title
+  heroPosition?: string;   // CSS object-position for the page cover (default: center 30%) — set it so faces sit between the nav and the title
   ogImage?: string;        // 1200×630 share image in /og/; falls back to the org logo card
   gallery?: string[];
-  galleryLayout?: 'masonry';   // show every photo uncropped at its own shape (use when the set mixes upright and landscape shots)
   summary: string;
   runners?: number | null;
   dist?: string;
@@ -501,8 +499,6 @@ export const events: EventEntry[] = [
     registerUrl: '',
     heroImage: '/assets/events/bootcamp-duathlon-2026/group-photo.jpg',
     heroPosition: 'center 79%',
-    heroHeight: 'clamp(480px, 41vw, 600px)',
-    galleryLayout: 'masonry',
     ogImage: '/og/bootcamp-duathlon-2026.jpg',
     gallery: [
       '/assets/events/bootcamp-duathlon-2026/briefing.jpg',
@@ -527,6 +523,7 @@ export const events: EventEntry[] = [
     tagline: event.tagline,
     registerUrl: event.registerUrl,
     heroImage: '/assets/events/chatto-metro-2026/hero.jpg',
+    heroPosition: 'center 65%',
     gallery: [
       '/assets/events/chatto-metro-2026/mass-start.jpg',
       '/assets/events/chatto-metro-2026/start-line.jpg',
@@ -565,6 +562,7 @@ export const events: EventEntry[] = [
     tagline: 'Run for Kutubdia Embankment, Save Kutubdia',
     registerUrl: 'https://forms.gle/twrm5cNg2epk69TE6',
     heroImage: '/assets/events/kutubdia-2026/poster.jpg',
+    heroPosition: 'center 38%',
     gallery: [
       '/assets/events/kutubdia-2026/medal-render.jpg',
       '/assets/events/kutubdia-2026/medals-beach.jpg',
@@ -592,6 +590,7 @@ export const events: EventEntry[] = [
     tagline: 'Miles for Moheshkhali, Stand for Salt and Betel Farmers',
     registerUrl: '',
     heroImage: '/assets/events/moheshkhali-2025/start-line.jpg',
+    heroPosition: 'center 73%',
     gallery: [
       '/assets/events/moheshkhali-2025/poster.jpg',
       '/assets/events/moheshkhali-2025/medal.jpg',
@@ -617,6 +616,7 @@ export const events: EventEntry[] = [
     tagline: 'Train together. Run further.',
     registerUrl: '',
     heroImage: '/assets/events/bootcamp-kutubdia-2026/group-photo.jpg',
+    heroPosition: 'center 100%',
     gallery: [
       '/assets/events/bootcamp-kutubdia-2026/poster.jpg',
       '/assets/events/bootcamp-kutubdia-2026/leader.jpg',
@@ -644,6 +644,7 @@ export const events: EventEntry[] = [
     tagline: 'From basics to the Bangla Channel.',
     registerUrl: 'https://freeshort.info/kMeBeb',
     heroImage: '/assets/events/bootcamp-swimming-2026/group-photo.jpg',
+    heroPosition: 'center 60%',
     gallery: [
       '/assets/events/bootcamp-swimming-2026/leader.jpg',
       '/assets/events/bootcamp-swimming-2026/group-photo-2.jpg',
@@ -669,6 +670,7 @@ export const events: EventEntry[] = [
     tagline: 'Our team in the water. Every swimmer safe.',
     registerUrl: '',
     heroImage: '/assets/events/kutubdia-swimming-crew/team-banner.jpeg',
+    heroPosition: 'center 10%',
     gallery: [
       '/assets/events/kutubdia-swimming-crew/channel-boat-aerial.jpeg',
       '/assets/events/kutubdia-swimming-crew/rescue-boat-swimmers.jpeg',
