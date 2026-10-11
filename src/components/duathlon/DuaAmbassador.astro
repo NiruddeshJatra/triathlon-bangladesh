@@ -1,0 +1,21 @@
+---
+import { duaAmbassadors } from '../../data/event';
+---
+<section id="ambassador" class="dua-section">
+  <div class="dua-shead">
+    <div class="eyebrow">08 · Ambassador</div>
+    <h2 class="stitle">The face of <span class="acc">the race.</span></h2>
+  </div>
+  {duaAmbassadors.map((p) => (
+    <article class="dua-amb">
+      <img src={p.img} alt={`${p.role} — ${p.name}`} loading="lazy" />
+      <div class="dua-amb-body">
+        <div class="role">{p.role}</div>
+        <h3 class="name">{p.name}</h3>
+        <ul>
+          {p.bio.map((b) => <li>{b}</li>)}
+        </ul>
+      </div>
+    </article>
+  ))}
+</section>

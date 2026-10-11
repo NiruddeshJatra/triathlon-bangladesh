@@ -25,6 +25,7 @@ import DuaEntitlements from '../../components/duathlon/DuaEntitlements.astro';
 import DuaFacilities from '../../components/duathlon/DuaFacilities.astro';
 import DuaSchedule from '../../components/duathlon/DuaSchedule.astro';
 import DuaRules from '../../components/duathlon/DuaRules.astro';
+import DuaAmbassador from '../../components/duathlon/DuaAmbassador.astro';
 import DuaPacers from '../../components/duathlon/DuaPacers.astro';
 import DuaFAQ from '../../components/duathlon/DuaFAQ.astro';
 import DuaRegisterBand from '../../components/duathlon/DuaRegisterBand.astro';
@@ -59,11 +60,15 @@ const isMirsharai = eventEntry.slug === 'mirsharai-coastal-marathon-2027';
 
 const pageTitle = isMirsharai
   ? `${eventEntry.name} · 42.2K, 21.1K & 10K · Triathlon Bangladesh`
+  : isDuathlon
+  ? `${eventEntry.name} · 10K Run, 40K Bike, 5K Run · Triathlon Bangladesh`
   : `${eventEntry.name} · Triathlon Bangladesh`;
 const pageDesc = isMirsharai
   ? `${eventEntry.name} — full marathon (42.2K), half marathon (21.1K) and 10K run on ${eventEntry.dateDisplay} at ${eventEntry.location}. Registration opens ${mirMeta.registrationOpensDisplay}. Organised by Triathlon Bangladesh.`
+  : isDuathlon
+  ? `${eventEntry.name} — Olympic-distance duathlon (${eventEntry.dist}), ${eventEntry.dateDisplay}, ${eventEntry.location}. Entry ${eventEntry.regFee}. Registration open.`
   : eventEntry.summary;
-const pageImage = isDuathlon ? '/og/duathlon-2026.jpg' : isMirsharai ? mirMeta.ogImage : undefined;
+const pageImage = isDuathlon ? '/og/duathlon-2026.jpg' : isMirsharai ? mirMeta.ogImage : eventEntry.ogImage;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://triathlonbangladesh.com';
 
@@ -101,7 +106,7 @@ const duathlonJsonLd = eventEntry.slug === 'duathlon-2026' ? {
   },
   ...(offers ? { "offers": offers } : {}),
   "image": `${siteUrl}/og/duathlon-2026.jpg`,
-  "description": eventEntry.summary,
+  "description": pageDesc,
   "sport": "Duathlon",
   "url": `${siteUrl}/events/${eventEntry.slug}`
 } : undefined;
@@ -148,8 +153,27 @@ const mirsharaiJsonLd = isMirsharai ? {
   "sport": "Running",
   "url": `${siteUrl}/events/${eventEntry.slug}`
 } : undefined;
+
+// Every other event page describes itself — without this, Layout's default (the featured duathlon) would be emitted.
+const genericJsonLd = !isDuathlon && !isMirsharai ? {
+  "@context": "https://schema.org",
+  "@type": eventEntry.eventType === 'program' ? "Event" : "SportsEvent",
+  "name": eventEntry.name,
+  "startDate": eventEntry.date,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": eventEntry.location,
+    "address": { "@type": "PostalAddress", "addressLocality": eventEntry.location, "addressCountry": "BD" }
+  },
+  "organizer": { "@type": "Organization", "name": org.name, "url": siteUrl },
+  "image": `${siteUrl}${eventEntry.ogImage ?? '/og/triathlon-bangladesh.jpg'}`,
+  "description": eventEntry.summary,
+  "url": `${siteUrl}/events/${eventEntry.slug}`
+} : undefined;
 ---
-<Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd ?? mirsharaiJsonLd} breadcrumbName={eventEntry.name} image={pageImage}>
+<Layout title={pageTitle} description={pageDesc} eventJsonLd={duathlonJsonLd ?? mirsharaiJsonLd ?? genericJsonLd} breadcrumbName={eventEntry.name} image={pageImage}>
   {isFullEvent && <ScrollRoute client:visible />}
   {isMirsharai && <ScrollRoute pins={mirScrollPins} client:visible />}
   {(isFullEvent || isMirsharai) && <WheelSpin client:idle />}
@@ -195,6 +219,8 @@ const mirsharaiJsonLd = isMirsharai ? {
         <DiagonalTape text="NON-DRAFTING · 12M DRAFT ZONE · 4HR CUT-OFF" />
         <GearDivider label="RULES & STANDARDS" />
         <DuaRules />
+        <GearDivider label="AMBASSADOR" />
+        <DuaAmbassador />
         <GearDivider label="PACERS" />
         <DuaPacers />
         <GearDivider label="FAQ" />
@@ -225,7 +251,7 @@ const mirsharaiJsonLd = isMirsharai ? {
         {/* Hero */}
         <div class={`ev-page-hero${eventEntry.heroImage ? ' ev-page-hero--img' : ''}`}>
           {eventEntry.heroImage && (
-            <img class="ev-page-hero-img" src={eventEntry.heroImage} alt={eventEntry.name} loading="eager" />
+            <img class="ev-page-hero-img" src={eventEntry.heroImage} alt={eventEntry.name} loading="eager" style={eventEntry.heroPosition ? `object-position:${eventEntry.heroPosition}` : undefined} />
           )}
           <div class="ev-page-hero-overlay" aria-hidden="true"></div>
           <div class="ev-page-hero-content">
