@@ -412,6 +412,8 @@ export interface EventEntry {
   facebookEvent?: string;
   regFee?: string;
   heroImage: string | null;
+  heroPosition?: string;   // CSS object-position for the page cover (default: center 30%)
+  ogImage?: string;        // 1200×630 share image in /og/; falls back to the org logo card
   gallery?: string[];
   summary: string;
   runners?: number | null;
@@ -445,7 +447,7 @@ export const events: EventEntry[] = [
     registerUrl: 'https://register.triathlonbangladesh.com',
     registrationOpen: true,
     facebookEvent: 'https://www.facebook.com/events/1559539922251109',
-    regFee: '3,200 BDT',
+    regFee: '2,700 BDT',
     heroImage: null,
     gallery: [],
     summary: 'Chattogram\'s first duathlon — Olympic distance. Run. Ride. Run. along the Karnaphuli. Registration open.',
@@ -485,6 +487,32 @@ export const events: EventEntry[] = [
   },
 
   // ── previous ─────────────────────────────────────────────────────────────
+  {
+    slug: 'bootcamp-duathlon-2026',
+    eventType: 'program',
+    name: 'Bootcamp for Chattogram Duathlon 2026',
+    status: 'previous',
+    date: '2026-10-09',
+    dateDisplay: '9 October 2026',
+    location: 'CRB Hill, Chattogram',
+    tagline: 'Chattogram\'s first duathlon bootcamp.',
+    registerUrl: '',
+    heroImage: '/assets/events/bootcamp-duathlon-2026/group-photo.jpg',
+    heroPosition: 'center 52%',
+    ogImage: '/og/bootcamp-duathlon-2026.jpg',
+    gallery: [
+      '/assets/events/bootcamp-duathlon-2026/briefing.jpg',
+      '/assets/events/bootcamp-duathlon-2026/poster.jpg',
+      '/assets/events/bootcamp-duathlon-2026/instructor-bike.jpg',
+      '/assets/events/bootcamp-duathlon-2026/gear-demo.jpg',
+      '/assets/events/bootcamp-duathlon-2026/bike-demo-circle.jpg',
+      '/assets/events/bootcamp-duathlon-2026/gear-talk.jpg',
+      '/assets/events/bootcamp-duathlon-2026/session-circle.jpg',
+      '/assets/events/bootcamp-duathlon-2026/audience.jpg',
+    ],
+    summary: 'The first duathlon bootcamp in Chattogram — a Friday-morning session at CRB led by Shak Nahid Uddin, ahead of the Chattogram Duathlon 2026.',
+    note: 'Boot camp leader: Shak Nahid Uddin (Triathlete, National Athlete, IRONMAN 70.3 Finisher, Bangladesh Railway Gold Medalist). Hands-on session with the bike and race gear. Organised by Triathlon Bangladesh for the Chattogram Duathlon 2026.',
+  },
   {
     slug: 'chatto-metro',
     name: 'Chatto Metro Half Marathon 2026',
@@ -691,7 +719,7 @@ export const duaQuickFacts = [
   { k: "6 Nov 2026", s: "Friday · Race Day" },
   { k: "Bakolia Stadium", s: "Noman College Road" },
   { k: "10 · 40 · 5", s: "Run · Bike · Run (KM)" },
-  { k: "৳3,200", s: "Entry Fee" },
+  { k: "৳2,700", s: "Entry Fee" },
   { k: "150 Slots", s: "First come, first served" },
   { k: "5 Nov", s: "Bike Check-in · Kit Expo" },
 ] as const;
@@ -737,13 +765,24 @@ export interface DuaEntitlement {
 }
 
 export const duaEntitlements: DuaEntitlement[] = [
-  { k: "Official Cycling Pro Jersey", s: "Race-fit sublimated pro jersey — design reveal pending.", soon: true },
-  { k: "Premium Finisher Medal", s: "Premium China-made hardware — design reveal pending.", soon: true },
+  { k: "Official Cycling Pro Jersey", s: "Race-fit sublimated pro jersey in chartreuse and black — Run · Bike · Run, 10K · 40K · 5K on the back." },
+  { k: "Premium Finisher Medal", s: "Premium China-made hardware with a ship's-wheel edge and the run-bike silhouette. First look is out — final look to follow." },
   { k: "Finisher T-Shirt", s: "Yours at the line." },
   { k: "Chip Timing", s: "Full chip-timed splits across both runs and the bike." },
   { k: "Special Kit Bag", s: "Event kit bag at the expo." },
   { k: "Personalized Bib + Race Pack", s: "Your name on the bib. Front for the runs, back for the bike." },
   { k: "E-Certificate", s: "Issued post-race with your chip time." },
+];
+
+// Kit reveals shown above the entitlement list. `fit` keeps an image uncropped inside its square tile (`contain-light` for a white design sheet).
+export const duaReveals: { img: string; alt: string; caption: string; fit?: 'contain' | 'contain-light' }[] = [
+  { img: '/assets/events/duathlon-2026/medal-first-look.jpg', alt: 'Chattogram Duathlon 2026 finisher medal held in hand — silver medal with a ship\'s wheel, blue cycling helmet and Finisher lettering on an orange ribbon', caption: 'Finisher medal · first look', fit: 'contain' },
+  { img: '/assets/events/duathlon-2026/medal-design.jpg', alt: 'Chattogram Duathlon 2026 finisher medal design, front and back — the back reads Run 10K, Bike 40K, Run 5K', caption: 'Medal design · front & back', fit: 'contain-light' },
+  { img: '/assets/events/duathlon-2026/jersey.jpg', alt: 'Chattogram Duathlon 2026 official cycling pro jersey mockup, front and back, chartreuse with black side panels', caption: 'Pro jersey · mockup' },
+];
+
+export const duaAmbassadors: { role: string; name: string; bio: string[]; img: string }[] = [
+  { role: 'Ambassador', name: 'Nasrin Akter Shimu', bio: ['Duathlete', 'Medicine Doctor'], img: '/assets/events/duathlon-2026/ambassador-nasrin.jpg' },
 ];
 
 export const duaFacilities = [
@@ -834,7 +873,7 @@ export const duaFaq = [
   },
   {
     q: "How do I register?",
-    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳3,200 with 150 slots, first come first served.",
+    a: "Registration runs at register.triathlonbangladesh.com — the Register Now button takes you straight there. Entry is ৳2,700 with 150 slots, first come first served.",
   },
   {
     q: "Which bikes are allowed?",

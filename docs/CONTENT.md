@@ -137,6 +137,7 @@ Notes: Kutubdia 2026 title sponsor Infinity Mega Mall. Boot camps: 2nd largest i
 | `moheshkhali-2025` | Moheshkhali Island Half Marathon 2025 | previous | 12 Sep 2025 |
 | `bootcamp-kutubdia-2026` | Bootcamp for Kutubdia Island HM | previous (program) | 23 Jan 2026 |
 | `bootcamp-swimming-2026` | Swimming Bootcamp 2026 | previous (program) | 27 Jan 2026 |
+| `bootcamp-duathlon-2026` | Bootcamp for Chattogram Duathlon 2026 | previous (program) | 9 Oct 2026 |
 
 Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents()`, `getEventBySlug(slug)`.
 
@@ -172,12 +173,19 @@ Helper functions: `getCurrentEvent()`, `getUpcomingEvents()`, `getPreviousEvents
 - Free. Covers basics, technique, floating, hydrotherapy, Bangla Channel motivation.
 - Archive reg URL: https://freeshort.info/kMeBeb
 
+### Bootcamp for Chattogram Duathlon 2026 (`bootcamp-duathlon-2026`, previous, program)
+- Date: Friday morning, 9 October 2026 · Location: CRB Hill, Chattogram
+- First duathlon bootcamp in Chattogram. Led by Shak Nahid Uddin (Triathlete, National Athlete, IRONMAN 70.3 Finisher, Bangladesh Railway Gold Medalist)
+- Organised by Triathlon Bangladesh for the Chattogram Duathlon 2026
+
 ### Chattogram Duathlon 2026 (`duathlon-2026`, upcoming)
 - Date: 6 November 2026 (moved from 13 November) · Location: Bakolia Stadium, Noman College Road, Chattogram
-- Entry fee: 3,200 BDT (revised from 3,500) · 250 slots · Bike check-in + kit expo 5 November 2026
+- Entry fee: 2,700 BDT (revised from 3,200, originally 3,500) · 150 slots · Bike check-in + kit expo 5 November 2026
 - First duathlon in Chattogram, second in Bangladesh
 - Distance: Standard/Olympic — 10K Run · 40K Bike · 5K Run
 - Categories: Open 18–39 (Male/Female), Masters 40+ (Male/Female)
+- Ambassador: Nasrin Akter Shimu — Duathlete, Medicine Doctor
+- Kit revealed: finisher medal (first look; ship's-wheel edge, back reads Run 10K · Bike 40K · Run 5K) and official cycling pro jersey (mockup, chartreuse/black)
 
 ### Kutubdia Island Half Marathon 2027 (`kutubdia-2027`, upcoming)
 - Date: 8 January 2027 · Location: Kutubdia Island, Cox's Bazar District

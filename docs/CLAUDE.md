@@ -43,7 +43,7 @@ src/
 │       ├── DiagonalTape.astro # Rotated marquee tape band
 │       ├── DuaHero.astro · DuaQuickFacts.astro · DuaDistances.astro · DuaCategories.astro
 │       ├── DuaPrizes.astro · DuaEntitlements.astro · DuaFacilities.astro · DuaSchedule.astro
-│       ├── DuaRules.astro · DuaPacers.astro · DuaFAQ.astro · DuaRegisterBand.astro
+│       ├── DuaRules.astro · DuaAmbassador.astro · DuaPacers.astro · DuaFAQ.astro · DuaRegisterBand.astro
 │       └── DuaFooter.astro    # Chartreuse-skinned footer for this page only (site Footer.astro unaffected)
 ├── data/
 │   └── event.ts               # SINGLE SOURCE OF TRUTH — all content. Exports: event, categories,
@@ -51,12 +51,12 @@ src/
 │                              #   org, events[], orgTeam[], chattoMetroPartners[], plus helpers:
 │                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getCommunityEvents(), getEventBySlug()
 │                              #   EventEntry fields: slug, name, eventType?('race'|'program'|'community'), status,
-│                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?,
+│                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?, heroPosition?, ogImage?,
 │                              #   facebookEvent?, regFee?, heroImage, gallery?[], summary, runners?,
 │                              #   dist?, note?, partners?
 │                              #   Duathlon-specific content (all `dua`-prefixed, mirrors the CMHM exports above):
 │                              #   duaMeta, duaQuickFacts, duaLegs, duaCategories, duaPrizeNote,
-│                              #   duaEntitlements, duaFacilities, duaScheduleKnown, duaRules, duaFaq
+│                              #   duaEntitlements, duaReveals, duaAmbassadors, duaFacilities, duaScheduleKnown, duaRules, duaFaq
 │                              #   Mirsharai-specific content (all `mir`-prefixed): mirMeta, mirQuickFacts, mirCategories,
 │                              #   mirSchedule, mirEntitlements, mirOnCourse, mirWorlds, MIR_ROUTE_PATH, mirRoutePins,
 │                              #   mirScrollPins, mirTeam, mirFaq, mirPartners, isMirRegistrationOpen()

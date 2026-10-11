@@ -4,6 +4,21 @@ Most recent first.
 
 ---
 
+## 2026-10-11 — Duathlon: fee 2,700 BDT, medal + jersey reveals, ambassador
+
+### What changed
+- **Entry fee 3,200 → 2,700 BDT** — `events[]` `regFee`, `duaQuickFacts` and the duathlon FAQ answer in `event.ts`; hero, register band, homepage card and JSON-LD price follow from `regFee`.
+- **Kit reveals replace the "Coming Soon" tiles** — `DuaEntitlements.astro` renders `duaReveals` (three tiles: medal first-look photo, medal design front & back, pro jersey mockup). The jersey and medal entitlement rows lost their `soon` flag and got real copy.
+- **New Ambassador section** — `DuaAmbassador.astro` (`duaAmbassadors`: Nasrin Akter Shimu) sits before Pacers; Pacers is now section 09 and FAQ 10.
+- **Images** — four supplied files in `public/assets/events/duathlon-2026/` renamed. Website crops were cut from the reveal posters with the poster headline text removed: `medal-first-look.jpg`, `jersey.jpg`, `ambassador-nasrin.jpg`; `medal-design.jpg` is the supplied design sheet as-is. Full posters kept as `poster-medal-reveal.jpg`, `poster-jersey-reveal.jpg`, `poster-ambassador-nasrin.jpg` (not referenced by the site).
+- Not used as-is: the ambassador poster's logo still says "13 NOV", so only the portrait crop is shown.
+- **Duathlon bootcamp archived** — new `bootcamp-duathlon-2026` entry (`eventType: 'program'`, `status: 'previous'`, 9 October 2026, CRB) renders through the generic `[slug].astro` template and appears first in the homepage Track Record cards. Nine supplied images renamed descriptively in `public/assets/events/bootcamp-duathlon-2026/` (poster converted PNG → JPG).
+- **SEO** — bootcamp page has its own share image (`public/og/bootcamp-duathlon-2026.jpg`, via new `EventEntry.ogImage`) and its own structured data. All generic event pages now emit an `Event`/`SportsEvent` JSON-LD built from their `events[]` entry; before, they inherited Layout's default, which describes the duathlon. Duathlon page title and meta description now carry distances, date, venue, fee and slots (built from `event.ts`).
+- **Cover position** — new optional `EventEntry.heroPosition` (CSS `object-position`) for the generic page cover; the bootcamp uses `center 52%` so the group, not the trees, is in frame.
+- **Unused duathlon posters deleted** (client approved): `poster.jpg`, `poster-diagonal.jpg` (both said 13 Nov) and the three full reveal posters. The "Full posters kept" note above no longer applies.
+
+---
+
 ## 2026-10-03 — Mirsharai Coastal Marathon 2027 page, share images, assets regrouped
 
 ### What changed
