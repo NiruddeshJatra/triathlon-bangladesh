@@ -249,7 +249,7 @@ const genericJsonLd = !isDuathlon && !isMirsharai ? {
     ) : (
       <div class="ev-page">
         {/* Hero */}
-        <div class={`ev-page-hero${eventEntry.heroImage ? ' ev-page-hero--img' : ''}`}>
+        <div class={`ev-page-hero${eventEntry.heroImage ? ' ev-page-hero--img' : ''}`} style={eventEntry.heroHeight ? `min-height:${eventEntry.heroHeight}` : undefined}>
           {eventEntry.heroImage && (
             <img class="ev-page-hero-img" src={eventEntry.heroImage} alt={eventEntry.name} loading="eager" style={eventEntry.heroPosition ? `object-position:${eventEntry.heroPosition}` : undefined} />
           )}
@@ -316,7 +316,7 @@ const genericJsonLd = !isDuathlon && !isMirsharai ? {
           {eventEntry.gallery && eventEntry.gallery.length > 0 && (
             <div class="ev-page-gallery-wrap">
               <div class="eyebrow ev-gallery-eyebrow">Gallery</div>
-              <div class="ev-page-gallery">
+              <div class:list={['ev-page-gallery', eventEntry.galleryLayout === 'masonry' && 'ev-page-gallery--masonry']}>
                 {eventEntry.gallery.map((src, i) => (
                   <div class="ev-gallery-item">
                     <img src={src} alt={`${eventEntry.name} — photo ${i + 1}`} loading="lazy" />

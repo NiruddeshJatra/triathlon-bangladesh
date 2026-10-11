@@ -14,7 +14,8 @@ Most recent first.
 - Not used as-is: the ambassador poster's logo still says "13 NOV", so only the portrait crop is shown.
 - **Duathlon bootcamp archived** — new `bootcamp-duathlon-2026` entry (`eventType: 'program'`, `status: 'previous'`, 9 October 2026, CRB) renders through the generic `[slug].astro` template and appears first in the homepage Track Record cards. Nine supplied images renamed descriptively in `public/assets/events/bootcamp-duathlon-2026/` (poster converted PNG → JPG).
 - **SEO** — bootcamp page has its own share image (`public/og/bootcamp-duathlon-2026.jpg`, via new `EventEntry.ogImage`) and its own structured data. All generic event pages now emit an `Event`/`SportsEvent` JSON-LD built from their `events[]` entry; before, they inherited Layout's default, which describes the duathlon. Duathlon page title and meta description now carry distances, date, venue, fee and slots (built from `event.ts`).
-- **Cover position** — new optional `EventEntry.heroPosition` (CSS `object-position`) for the generic page cover; the bootcamp uses `center 52%` so the group, not the trees, is in frame.
+- **Cover position** — new optional `EventEntry.heroPosition` (CSS `object-position`) for the generic page cover; plus `EventEntry.heroHeight` (CSS `min-height`). The bootcamp uses `center 79%` with a taller cover so both rows of faces sit between the nav and the title instead of under them.
+- **Gallery** — new optional `EventEntry.galleryLayout: 'masonry'` shows every photo uncropped at its own shape (CSS columns). Used by the bootcamp, whose upright photos were being cropped to landscape tiles with heads cut off. Other galleries keep the mosaic grid.
 - **Unused duathlon posters deleted** (client approved): `poster.jpg`, `poster-diagonal.jpg` (both said 13 Nov) and the three full reveal posters. The "Full posters kept" note above no longer applies.
 
 ---

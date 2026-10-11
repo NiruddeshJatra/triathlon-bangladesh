@@ -51,8 +51,8 @@ src/
 │                              #   org, events[], orgTeam[], chattoMetroPartners[], plus helpers:
 │                              #   getCurrentEvent(), getUpcomingEvents(), getPreviousEvents(), getCommunityEvents(), getEventBySlug()
 │                              #   EventEntry fields: slug, name, eventType?('race'|'program'|'community'), status,
-│                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?, heroPosition?, ogImage?,
-│                              #   facebookEvent?, regFee?, heroImage, gallery?[], summary, runners?,
+│                              #   date, dateDisplay, location, tagline, registerUrl, registrationOpen?, heroPosition?, heroHeight?, ogImage?, galleryLayout?,
+│                              #   facebookEvent?, regFee?, heroImage, gallery?[] (string or { src, portrait }), summary, runners?,
 │                              #   dist?, note?, partners?
 │                              #   Duathlon-specific content (all `dua`-prefixed, mirrors the CMHM exports above):
 │                              #   duaMeta, duaQuickFacts, duaLegs, duaCategories, duaPrizeNote,

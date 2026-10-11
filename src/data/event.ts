@@ -413,8 +413,10 @@ export interface EventEntry {
   regFee?: string;
   heroImage: string | null;
   heroPosition?: string;   // CSS object-position for the page cover (default: center 30%)
+  heroHeight?: string;     // CSS min-height for the page cover (default: 320px) — taller keeps faces clear of the title
   ogImage?: string;        // 1200×630 share image in /og/; falls back to the org logo card
   gallery?: string[];
+  galleryLayout?: 'masonry';   // show every photo uncropped at its own shape (use when the set mixes upright and landscape shots)
   summary: string;
   runners?: number | null;
   dist?: string;
@@ -498,16 +500,18 @@ export const events: EventEntry[] = [
     tagline: 'Chattogram\'s first duathlon bootcamp.',
     registerUrl: '',
     heroImage: '/assets/events/bootcamp-duathlon-2026/group-photo.jpg',
-    heroPosition: 'center 52%',
+    heroPosition: 'center 79%',
+    heroHeight: 'clamp(480px, 41vw, 600px)',
+    galleryLayout: 'masonry',
     ogImage: '/og/bootcamp-duathlon-2026.jpg',
     gallery: [
       '/assets/events/bootcamp-duathlon-2026/briefing.jpg',
-      '/assets/events/bootcamp-duathlon-2026/poster.jpg',
       '/assets/events/bootcamp-duathlon-2026/instructor-bike.jpg',
       '/assets/events/bootcamp-duathlon-2026/gear-demo.jpg',
       '/assets/events/bootcamp-duathlon-2026/bike-demo-circle.jpg',
       '/assets/events/bootcamp-duathlon-2026/gear-talk.jpg',
       '/assets/events/bootcamp-duathlon-2026/session-circle.jpg',
+      '/assets/events/bootcamp-duathlon-2026/poster.jpg',
       '/assets/events/bootcamp-duathlon-2026/audience.jpg',
     ],
     summary: 'The first duathlon bootcamp in Chattogram — a Friday-morning session at CRB led by Shak Nahid Uddin, ahead of the Chattogram Duathlon 2026.',
